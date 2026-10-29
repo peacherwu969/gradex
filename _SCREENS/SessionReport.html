@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<#include "/header.html">
+	<style>
+
+		.frame { background: #fff; border: solid 1px #ddd; box-shadow: 0 0 4px rgba(0,0,0,.2);
+		  font: 10px sans-serif; height: 600px; position: relative; width: 600px;}
+
+		.frame svg { border-left: solid 0px #C0C0C0; left: 0px; position: absolute; top: 0; }
+		.frame circle .little { fill: #FFF; stroke: #888; stroke-width: 1.5px; }
+		.frame button {left: 0px; position: absolute; top: 0px; width: 80px; }
+		.frame .tooltip { color: red; }
+
+	</style>
+</head>
+<body>
+
+	<div data-role="page" id="mainPage" unselectable="on" onselectstart="return sfalse;" style="-moz-user-select:none; -webkit-user-select:none; -ms-user-select:none; user-select:none;">
+
+		<!-- A list a panel that appears in the left-hand side by clicking the icon at the top right-->
+		<div data-role="panel" id="testPanel" data-position="right" data-display="overlay">
+			<ul data-role="listview">
+				<li data-role="divider" data-iconpos="notext" data-theme="e"><@gx_translate text_id="GX.COMMON.ACTIONS" /></li>
+				<li id="plusplus" data-icon="plus"><a href="#"><@gx_translate text_id="GX.COMMON.EXPAND_ALL" /></a></li>
+				<li id="minusminus" data-icon="minus"><a href="#"><@gx_translate text_id="GX.COMMON.COLLAPSE_ALL" /></a></li>
+				<li data-icon="back" data-rel="close"><a href="#testPanel"><@gx_translate text_id="GX.COMMON.BACK" /></a></li>
+			</ul>
+		</div><!-- /panel -->
+
+
+		<div data-role="popup" id="infoPopup" class="ui-content" data-theme="e" style="max-width:75%; max-height:50%;">
+			<div class="ui-icon ui-icon-info"></div>
+			<h3 id="informationTitle"></h3>
+			<hr/>
+			<p id="info" style="{font-size:6pt;}"></p>
+		</div><!-- /popup -->
+
+		<div data-role="header">
+			<!-- info popup icon -->
+			<!-- <a class="ui-icon-nodisc ui-btn-left"  href="#infoPopup" data-transition="slidedown" data-rel="popup" data-role="button" data-icon="info" data-iconpos="notext" data-iconshadow="false" data-inline="true">Info</a> -->
+			<!-- action panel -->
+			<a class="ui-icon-nodisc ui-btn-right" href="#testPanel" data-role="button" data-icon="bars" data-iconpos="notext" data-iconshadow="false" data-inline="true">Actions</a>
+			<h1 id="title" style="margin-left:10%;margin-right:10%;"></h1>
+		</div>
+
+		<div id="content" data-role="content" class="ui-content">
+
+			<h3 id="dateTime">#</h3>
+
+			<!-- collapsibles for each section in session -->
+
+			<div id="summary" data-role="collapsible">
+				<h1><@gx_translate text_id="GX.TOOL.VEHICLE_ID.SUMMARY.PAGE_HEADER" /></h1>
+				<div id="summaryContent"></div>
+			</div>
+
+			<div id="dtc" data-role="collapsible">
+				<h1><@gx_translate text_id="GX.TOOL.DTC.HEADING" /></h1>
+					<div id="dtcContent"></div>
+			</div>
+
+			<div id="identification" data-role="collapsible">
+				<h1><@gx_translate text_id="GX.TOOL.VEHICLE_ID.PARTNUMBERS.PAGE_HEADER" /></h1>
+				<div id="identificationContent"></div>
+			</div>
+
+			<div id="symptom" data-role="collapsible">
+				<h1><@gx_translate text_id="GX.TOOL.SYMPTOMS.HEADING" /></h1>
+				<div id="symptomContent"></div>
+			</div>
+
+			<div id="testResult" data-role="collapsible">
+				<h1><@gx_translate text_id="GX.COMMON.TESTS.TEST_RESULTS" /></h1>
+				<div id="testResultContent"></div>
+			</div>
+
+			<div id="flashResult" data-role="collapsible">
+				<h1><@gx_translate text_id="GX.COMMON.FLASH.FLASH_RESULTS" /></h1>
+				<div id="flashResultContent"></div>
+			</div>
+
+		</div> <!-- content -->
+
+		<script type="text/javascript">
+
+			// This function sets a row of a table with cells
+			function makeTableRow(columns)
+			{
+
+				var tableRow = "<tr>";
+				// A row with more than one column
+				if (columns instanceof Array) {
+					var valueName = columns[0].replace(/ /g,'') + '-' + columns[1].replace(/ /g,'');
+					for (var columnId in columns) {
+						if (columns.hasOwnProperty(columnId)) {
+							column = columns[columnId];
+						
+							// for cells contatining a value with a unit
+							if (column.value) {
+								var tableData = '<td id="' + valueName + '" style="word-wrap:break-word">' + GSPlib.vehicleContext.getDisplayValue(column) + GSPlib.vehicleContext.getMemberValue(column, "unitDisplayName") + '</td>';
+								tableRow += tableData;
+	
+								quantity.api.getQuantityInPreferred(column,
+									function(convertedQuantity) {
+										$('#' + valueName).text(convertedQuantity.value + convertedQuantity.unitDisplayName);
+									}
+								);
+							} else { // for rest of the cells
+								tableRow += '<td style="word-wrap:break-word">' + column + '</td>';
+							}
+						}
+					}
+				} else {    // A row with one column
+					tableRow += '<td style="word-wrap:break-word">' + columns + '</td>';
+				}
+				tableRow += '</tr>';
+
+				return tableRow;
+			}
+
+			// This function creates a table with horizontal headings
+			function createTable(tableId, headings, rows)
+			{
+				var tableTop = '<table data-role="table" data-mode="reflow" class="ui-responsive table-stripe" style="display:table; table-layout:fixed; width:100%" id="' + tableId + '">';
+				tableTop += '<thead><tr>';
+				for (var headingId in headings) {
+					if (headings.hasOwnProperty(headingId)) {
+						tableTop += '<th style="word-wrap:break-word">' + headings[headingId] + '</th>';
+					}
+				}
+				tableTop += '</tr></thead>';
+
+				var tableBody = "<tbody>";
+				for (var rowId in rows) {
+					if (rows.hasOwnProperty(rowId)) {
+						tableBody += makeTableRow(rows[rowId]);
+					}
+				}
+				tableBody += '</tbody>';
+
+				return tableTop + tableBody + '</table>';
+			}
+
+			// setup up screen for initial display
+			$('#mainPage').bind('pageinit', function() {
+					// get OTX screen arguments
+
+					var VIN = OTX.hmi.getArgument('VIN');
+					var config = OTX.hmi.getArgument('config');
+					var vehicleid=OTX.hmi.getArgument('vehicleid');
+					var dateTime = OTX.hmi.getArgument('dateTime');
+
+					$("#dateTime").text(dateTime);
+
+					// Display test panel when the screen is swiped to left
+					$(document).on("swipeleft", "#mainPage", function(e)
+					{
+						if ($.mobile.activePage.jqmData("panel") !== "open")
+						{
+							if (e.type === "swipeleft")
+							{
+								$("#testPanel").panel("open");
+							}
+						}
+					});
+
+					// Stop Button (bottom left) is clicked
+					$("#stopButton").on("taphold", function(e)
+					{
+						// abort immediately
+						OTX.hmi.valueChangedInPage('abort', 'true');
+						OTX.hmi.closeScreen();
+					});
+
+					$("#plusplus").click(function(e)
+					{
+						$('.ui-collapsible-heading').trigger('expand');
+						$("#testPanel").panel( "close" );
+					});
+
+					$("#minusminus").click(function(e)
+					{
+						$('.ui-collapsible-heading').trigger('collapse');
+						$("#testPanel").panel( "close" );
+					});
+
+					$.getJSON(GSPlib.url.getVehicleContextPath(sessionId, ''), function(session)
+					{
+						// assign elements in session to variables
+						var machine = session.machine;
+						var networks = machine.networks;
+						var symptoms = machine.symptoms;
+						var testResults = machine.testResults;
+						var contexts = machine.context;
+						//alert(machine.id);
+						//alert(vehicleid);
+						if(machine.id=="SAIC_SK83")
+						{
+							if(vehicleid=="DoIPVehicle")
+							{
+								var network = networks[0];
+									var dtcCount = 0;
+									var identificationCount = 0;
+									var dtcTableRows = new Array();
+									var identificationTableRows = new Array();
+									var flashResultCount = 0;
+									var flashResultTableRows = new Array();
+	
+									for (ecu in network.ecus)
+									{
+										// assign current ecu to a variable
+										var ecu = network.ecus[ecu];
+	
+										for (dtc in ecu.dtcs)
+										{
+											// assign current dtc to a variable
+											var dtc = ecu.dtcs[dtc];
+											// DTC table rows
+											dtcTableRows[dtcCount] = [ecu.displayName, dtc.displayTroubleCode, dtc.text, dtc.status];
+											dtcCount++;
+										}
+										for (identification in ecu.identifications)
+										{
+											// assign current Identification to a variable
+											identification = ecu.identifications[identification];
+											// Identification table rows
+											if ( typeof identification.value === 'object' )
+											{
+												// null value or complex object
+												identificationTableRows[identificationCount] = [ecu.displayName, identification.displayText, (identification.value == null) ? "NA" : (identification.value.value == null) ? "NA" : identification.value ];
+											}
+											else
+											{
+												// non null simple value
+												identificationTableRows[identificationCount] = [ecu.displayName, identification.displayText, identification.value ];
+											}
+											identificationCount++;
+										}
+										for (flashResult in ecu.flashResults)
+										{
+											flashResult = ecu.flashResults[flashResult];
+											flashResultTableRows[flashResultCount] = [ecu.displayName, flashResult.id, flashResult.status, flashResult.timestamp];
+											flashResultCount++;
+										}
+									}
+							}
+							else if(vehicleid=="DoIPCANVehicle")
+							{
+									var network = networks[1];
+									var dtcCount = 0;
+									var identificationCount = 0;
+									var dtcTableRows = new Array();
+									var identificationTableRows = new Array();
+									var flashResultCount = 0;
+									var flashResultTableRows = new Array();
+	
+									for (ecu in network.ecus)
+									{
+										// assign current ecu to a variable
+										var ecu = network.ecus[ecu];
+	
+										for (dtc in ecu.dtcs)
+										{
+											// assign current dtc to a variable
+											var dtc = ecu.dtcs[dtc];
+											// DTC table rows
+											dtcTableRows[dtcCount] = [ecu.displayName, dtc.displayTroubleCode, dtc.text, dtc.status];
+											dtcCount++;
+										}
+										for (identification in ecu.identifications)
+										{
+											// assign current Identification to a variable
+											identification = ecu.identifications[identification];
+											// Identification table rows
+											if ( typeof identification.value === 'object' )
+											{
+												// null value or complex object
+												identificationTableRows[identificationCount] = [ecu.displayName, identification.displayText, (identification.value == null) ? "NA" : (identification.value.value == null) ? "NA" : identification.value ];
+											}
+											else
+											{
+												// non null simple value
+												identificationTableRows[identificationCount] = [ecu.displayName, identification.displayText, identification.value ];
+											}
+											identificationCount++;
+										}
+										for (flashResult in ecu.flashResults)
+										{
+											flashResult = ecu.flashResults[flashResult];
+											flashResultTableRows[flashResultCount] = [ecu.displayName, flashResult.id, flashResult.status, flashResult.timestamp];
+											flashResultCount++;
+										}
+									}
+							}
+							else
+							{
+								
+									// assign current network to a variable
+									var network = networks[2];
+									var dtcCount = 0;
+									var identificationCount = 0;
+									var dtcTableRows = new Array();
+									var identificationTableRows = new Array();
+									var flashResultCount = 0;
+									var flashResultTableRows = new Array();
+	
+									for (ecu in network.ecus)
+									{
+										// assign current ecu to a variable
+										var ecu = network.ecus[ecu];
+	
+										for (dtc in ecu.dtcs)
+										{
+											// assign current dtc to a variable
+											var dtc = ecu.dtcs[dtc];
+											// DTC table rows
+											dtcTableRows[dtcCount] = [ecu.displayName, dtc.displayTroubleCode, dtc.text, dtc.status];
+											dtcCount++;
+										}
+										for (identification in ecu.identifications)
+										{
+											// assign current Identification to a variable
+											identification = ecu.identifications[identification];
+											// Identification table rows
+											if ( typeof identification.value === 'object' )
+											{
+												// null value or complex object
+												identificationTableRows[identificationCount] = [ecu.displayName, identification.displayText, (identification.value == null) ? "NA" : (identification.value.value == null) ? "NA" : identification.value ];
+											}
+											else
+											{
+												// non null simple value
+												identificationTableRows[identificationCount] = [ecu.displayName, identification.displayText, identification.value ];
+											}
+											identificationCount++;
+										}
+										for (flashResult in ecu.flashResults)
+										{
+											flashResult = ecu.flashResults[flashResult];
+											flashResultTableRows[flashResultCount] = [ecu.displayName, flashResult.id, flashResult.status, flashResult.timestamp];
+											flashResultCount++;
+										}
+									}
+								
+							}
+						}
+						else
+						{
+							for (network in networks)
+								{
+									// assign current network to a variable
+									var network = networks[network];
+									var dtcCount = 0;
+									var identificationCount = 0;
+									var dtcTableRows = new Array();
+									var identificationTableRows = new Array();
+									var flashResultCount = 0;
+									var flashResultTableRows = new Array();
+	
+									for (ecu in network.ecus)
+									{
+										// assign current ecu to a variable
+										var ecu = network.ecus[ecu];
+										//alert('ecu:' + JSON.stringify(ecu));
+	
+										for (dtc in ecu.dtcs)
+										{
+											// assign current dtc to a variable
+											var dtc = ecu.dtcs[dtc];
+											// DTC table rows
+											dtcTableRows[dtcCount] = [ecu.displayName, dtc.displayTroubleCode, dtc.text, dtc.status];
+											dtcCount++;
+										}
+										for (identification in ecu.identifications)
+										{
+											// assign current Identification to a variable
+											identification = ecu.identifications[identification];
+											// Identification table rows
+											if ( typeof identification.value === 'object' )
+											{
+												// null value or complex object
+												identificationTableRows[identificationCount] = [ecu.displayName, identification.displayText, (identification.value == null) ? "NA" : (identification.value.value == null) ? "NA" : identification.value ];
+											}
+											else
+											{
+												// non null simple value
+												identificationTableRows[identificationCount] = [ecu.displayName, identification.displayText, identification.value ];
+											}
+											identificationCount++;
+										}
+										for (flashResult in ecu.flashResults)
+										{
+											flashResult = ecu.flashResults[flashResult];
+											flashResultTableRows[flashResultCount] = [ecu.displayName, flashResult.id, flashResult.status, flashResult.timestamp];
+											flashResultCount++;
+										}
+									}
+								}
+						}
+						
+						var symptomCount = 0;
+						var testResultCount = 0;
+						var symptomTableRows = new Array();
+						var testResultTableRows = new Array();
+
+						for (symptom in symptoms)
+						{
+							// Assign current symptom to a variable
+							symptom = symptoms[symptom];
+							// Symptom table rows if the value is true
+							if (symptom.value == true)
+							{
+								// strip unneccesary text from id
+								var symptomIdStr = String(symptom.id).replace("SYMPTOMS.", "");
+								var symptomId = symptomIdStr.split(".").join(" > ");
+								symptomTableRows[symptomCount] = symptomId;
+							}
+							symptomCount++;
+						}
+						var contextsCount = 0;
+						var contextsTableRows = new Array();
+						contextsTableRows[contextsCount] = ['<@gx_translate text_id="GX.COMMON.VIN" /> ', VIN];
+						contextsCount++;
+						contextsTableRows[contextsCount] = ['<@gx_translate text_id="GX.TOOL.VEHICLE_ID.SUMMARY.SELECTED_PRODUCT" /> ', machine.id];
+						contextsCount++;
+						for (context in contexts)
+						{
+							context = contexts[context];
+							contextsTableRows[contextsCount] = [context.displayText, context.value];
+							contextsCount++;
+						}
+
+						for (testResult in testResults)
+						{
+							// assign current Test Result to a variable
+							testResult = testResults[testResult];
+							var resultText = GSPlib.tests.getStatusMapping(testResult.result).title;
+							testResultTableRows[testResultCount] = [testResult.displayText, resultText, testResult.data, testResult.timestamp];
+							testResultCount++;
+						}
+
+						// create tables
+						var summaryTable = createTable('summarytable', ['<@gx_translate text_id="GX.COMMON.NAME" /> ', '<@gx_translate text_id="GX.COMMON.VALUE" /> '], contextsTableRows);
+						var dtcTable = createTable('dtcTable', ['<@gx_translate text_id="ECU" /> ', '<@gx_translate text_id="GX.TOOL.DTC.DTC_CODE" /> ', '<@gx_translate text_id="GX.COMMON.DESCRIPTION" /> ', '<@gx_translate text_id="GX.TOOL.DTC.DTC_STATUS" /> '], dtcTableRows);
+						var identificationTable = createTable('identificationTable', ['<@gx_translate text_id="ECU" /> ',  '<@gx_translate text_id="GX.COMMON.NAME" /> ', '<@gx_translate text_id="GX.COMMON.VALUE" /> '], identificationTableRows);
+						var symptomTable = createTable('symptomTable', ['<@gx_translate text_id="GX.COMMON.SYMPTOM" /> '], symptomTableRows);
+						var testResultTable = createTable('testResultTable', ['<@gx_translate text_id="GX.COMMON.TEST" /> ', '<@gx_translate text_id="GX.COMMON.TEST.RESULT" /> ', '<@gx_translate text_id="GX.COMMON.TEST.INFORMATION" /> ', '<@gx_translate text_id="GX.COMMON.TIMEDATE.TIME" /> '], testResultTableRows);
+						var flashResultTable = createTable('flashResultTable', ['<@gx_translate text_id="ECU" /> ', '<@gx_translate text_id="GX.COMMON.FLASH.SESSION" /> ', '<@gx_translate text_id="GX.COMMON.FLASH.RESULT" /> ', '<@gx_translate text_id="GX.COMMON.TIMEDATE.TIME" /> '], flashResultTableRows);
+
+						// append tables to collapsible contents
+						$("#title").append('<@gx_translate text_id="GX.TOOL.SESSIONMAN.REPORT" /> - ' + session.id);
+						$("#dtcContent").append(dtcTable);
+						$("#identificationContent").append(identificationTable);
+						$("#symptomContent").append(symptomTable);
+						$("#testResultContent").append(testResultTable);
+						$("#flashResultContent").append(flashResultTable);
+						$("#summaryContent").append(summaryTable);
+
+			    		// set width of certain columns in the tables
+			    		$("#dtcTable th:nth-child(1), #identificationContent th:nth-child(1)").css({"width": "200px"});
+			    		$("#dtcTable th:nth-child(2)").css({"width": "12%"});
+			    		$("#dtcTable th:nth-child(4), #identificationContent th:nth-child(3)").css({"width": "20%"});
+			    		$("#dtcTable td:nth-child(1), #dtcTable td:nth-child(2), #identificationContent td:nth-child(1)").css({"word-wrap": ""});
+			    		$("#flashResultTable th:nth-child(1), #iflashResultContent th:nth-child(1)").css({"width": "8%"});
+			    		$("#flashResultTable th:nth-child(3), #iflashResultContent th:nth-child(4)").css({"width": "13%"});
+			    		$("#flashResultTable th:nth-child(4), #iflashResultContent th:nth-child(4)").css({"width": "24%"});
+						
+						$("#identificationContent th:nth-child(1)").css({"width": "20%"});
+						$("#identificationContent th:nth-child(3)").css({"width": "30%"});
+
+			    		// render tables
+			    		$("#title").trigger('create');
+			    		$("#dtcContent").trigger('create');
+			    		$("#identificationContent").trigger('create');
+			    		$("#symptomContent").trigger('create');
+			    		$("#testResultContent").trigger('create');
+			    		$("#summaryContent").trigger('create');
+
+					});
+				});
+
+		</script>
+	</div>
+</body>
+</html>

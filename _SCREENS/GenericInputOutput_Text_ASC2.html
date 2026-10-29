@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Input Confirm</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="common/jquery.mobile-1.3.0.min.css" />
+<link rel="stylesheet" href="busy.css" />
+<script src="common/jquery-1.9.1.min.js"></script>
+<script src="common/jquery.mobile-1.3.0.min.js"></script>
+<script src="common/js-url.min.js"></script>
+<script src="common/otx.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=9" />
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="-1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+
+
+<body>
+	<div data-role="page" id="mainPage" >
+
+
+		<div data-role="header">
+			<h1 id="title"></h1>
+		</div>
+
+		<div data-role="content">
+			<h3 id="conditions_heading"></h3>
+			<ul id="conditions"></ul>
+			<h3 id="steps_heading"></h3>
+			<ul id="steps"></ul>
+			<label id="alertMsg"></label>
+			<input type="text" id="IOText" maxlength="1" oninput="value=value.replace(/[^a-zA-Z0-9 .:-@~!#$%^&*]/g, '').toUpperCase()" onkeyup="doKeyup(this)"/>
+			<br>
+			<label id="inputNotice"></label>
+			<label id="inputCharNumber"></label>
+			<input type="hidden" id="message1" name="message1" value='<@gx_translate text_id="SAIC_LDV_EV79_UI.MESSAGE.THENUMBEROFCHARACTERSYOUINPUT" />' />
+		</div>
+		
+
+	    <div data-role="footer" data-theme="c" data-position="fixed">
+	    	<div>
+				<fieldset class="ui-grid-c">
+					<div class="ui-block-a"></div>
+					<div class="ui-block-b"><button id="response_yes" data-corners="true" data-mini="false" data-icon="check" data-iconpos="left"><@gx_translate text_id="GX.COMMON.YES" /></button></div>
+					<div class="ui-block-c"><button id="response_no" data-corners="true" data-mini="false" data-icon="delete" data-iconpos="left"><@gx_translate text_id="GX.COMMON.CANCEL" /></button></div>
+				</fieldset>
+			</div>
+        </div> <!-- footer -->
+
+		<script type="text/javascript">
+
+				//initial variable
+				var reg;
+				var regSelection = 0;
+				var isNumber = false;
+				var min;
+				var max;
+				
+				var message=document.getElementById("message1").value;
+				//set regular express
+
+				
+				function setRegExp()
+				{
+					console.log("current:"+$('#IOText')[0].maxLength);
+					console.log("regSelection:"+regSelection);
+				}
+				
+				//check input
+				function isValidation()
+				{
+					var IOValue = $("#IOText").val();
+					
+					//displace the space
+					IOValue = IOValue.replace(/[ ]/g,"");
+
+					//set regular express
+					setRegExp();
+					
+					//null
+					if(IOValue == "")
+					{
+						alert("The value you input can't be null");
+						return false;
+					}
+
+
+					console.log("current1:"+$('#IOText')[0].maxLength);
+					console.log("regSelection1:"+regSelection);
+					if($('#IOText')[0].value.length!=regSelection)
+					{
+						alert("The value you input is not correct. Please input again");
+						return false;
+					}
+  				
+
+				}
+				
+			// setup up screen for initial display
+
+			$('#mainPage').bind('pageshow', function()
+				{
+/*
+					$(document).on("swipeleft", "#mainPage", function(e)
+					{
+						if ($.mobile.activePage.jqmData("panel") !== "open")
+						{
+							if (e.type === "swipeleft")
+							{
+								$("#testPanel").panel("open");
+							}
+						}
+					});
+					*/
+
+
+					title = OTX.hmi.getArgument('title');
+					conditions_heading = OTX.hmi.getArgument('conditions_heading');
+					conditions = OTX.hmi.getArgument('conditions');
+					steps_heading = OTX.hmi.getArgument('steps_heading');
+					steps = OTX.hmi.getArgument('steps');
+					alertMsg = OTX.hmi.getArgument('alertMsg');
+					regSelection = OTX.hmi.getArgument('regSel');
+					min = OTX.hmi.getArgument('min');
+					max = OTX.hmi.getArgument('max');
+					isNumber = OTX.hmi.getArgument('isNumber');
+					strLen = OTX.hmi.getArgument('strLen');
+					InputValue = OTX.hmi.getArgument('InputValue');
+					GSPlib.page.fixJxBrowserChangePageInputFocus();
+
+
+					$('#title').text(title);
+					$('#conditions_heading').text(conditions_heading);
+					$('#steps_heading').text(steps_heading);
+					//document.getElementById("IOText").value=InputValue;
+					$("#IOText:text").val(InputValue);
+					//document.getElementById("IOText").focus();
+
+					console.log("current:"+$('#IOText')[0].maxLength);
+					console.log("regSelection:"+regSelection);
+					$('#IOText')[0].maxLength=regSelection;
+
+					var stepsString = "";
+
+					for (var step=0; step < steps.length; step++)
+					{
+					     stepsString = stepsString + "<li>" + steps[step] + "</li>";
+					}
+
+					$('#steps').html(stepsString);
+					$('#alertMsg').text(alertMsg);
+					
+					var conditionsString = ""
+					for (var step=0; step < conditions.length; step++)
+					{
+					     conditionsString = conditionsString + "<li>" + conditions[step] + "</li>";
+					}
+					$('#conditions').html(conditionsString);
+					
+					if(!isNumber)
+					{
+
+							$("#inputNotice").text(message);
+
+	  				var cvalue = $("#IOText").val();
+	  				
+	  				//replace the space
+	  				cvalue = cvalue.replace(/[ ]/g,"");
+	  				
+	  				if(cvalue.length == 0)
+	  				{
+	  					$("#inputCharNumber").text("");
+	  				}
+	  				else
+	  				{
+
+							$("#inputCharNumber").text(cvalue.length);
+
+						}
+
+					}
+
+				});
+
+
+				$("#response_yes").click(function(e)
+				{
+					
+					//check validation
+					if(isValidation() == false)
+					{
+						return;
+					}
+					
+					var curValue="";
+					
+					curValue=$("#IOText").val();
+					
+					curValue = curValue.replace(/[ ]/g,"");
+					
+					if(regSelection==0)//VIN
+					{
+						curValue=curValue.toUpperCase();
+					}
+					
+					OTX.hmi.valueChangedInPage('InputValue',curValue);
+					
+					OTX.hmi.valueChangedInPage('result', '1');
+					
+					OTX.hmi.closeScreen();
+				  		    	
+				});
+
+				$("#response_no").click(function(e)
+				{
+					OTX.hmi.valueChangedInPage('result', '2')
+					OTX.hmi.closeScreen();
+				});
+			
+				//$("#IOText").on('blur', function()
+				function doKeyup(obj){
+  				//display the input char number
+					if(!isNumber) {
+						
+						var cvalue = obj.value.replace(/[ ]/g,"");
+						$("#inputCharNumber").text(cvalue.length);								
+					}
+				}
+		</script>
+	</div>
+</body>
+</html>

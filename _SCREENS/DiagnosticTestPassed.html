@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<div data-role="page" id="mainPage" unselectable="on" onselectstart="return false;" style="-moz-user-select:none; -webkit-user-select:none; -ms-user-select:none; user-select:none;">
+
+		<div data-role="panel" id="testPanel" data-position="right" data-display="overlay">
+			<ul data-role="listview">
+				<li data-role="divider" data-iconpos="notext" data-theme="e">Actions</li>
+				<li data-icon="delete" id="testAbortPanelMenuItem"><a href="#">Abort</a></li>
+				<li data-icon="back" data-rel="close"><a href="#mainPage">Back to test</a></li>
+			</ul>
+		</div><!-- /panel -->
+
+		<div data-role="popup" id="popupMenuAbort">
+			<ul data-role="listview" data-inset="true" style="min-width:210px;">
+				<li data-role="divider" data-iconpos="notext" data-theme="e">Abort Menu</li>
+				<li data-icon="delete" id="testAbortPopupMenuItem"><a href="#">Abort</a></li>
+				<li data-icon="back"><a href="#" data-rel="back">Back to test</a></li>
+			</ul><!-- popup -->
+		</div>
+
+		<div data-role="popup" id="infoPopup" class="ui-content" data-theme="e" style="max-width:50%; max-height:50%;">
+			<div class="ui-icon ui-icon-info"></div>
+			<h3 id="informationTitle"></h3>
+			<hr/>
+			<p id="info"></p>
+		</div><!-- /popup -->
+
+		<div data-role="header">
+			<a class="ui-icon-nodisc ui-btn-left"  href="#infoPopup" data-transition="slidedown" data-rel="popup" data-role="button" data-icon="info" data-iconpos="notext" data-iconshadow="false" data-inline="true">Info</a>
+			<a class="ui-icon-nodisc ui-btn-right" href="#testPanel" data-role="button" data-icon="bars" data-iconpos="notext" data-iconshadow="false" data-inline="true">Actions</a>
+			<h1 id="title"></h1>
+		</div>
+
+		<div data-role="content">
+			<img src="/passed.png"/>
+			<h2 id="subtitle"></h2>
+			<p id="message"></p>
+			<div><ul id="items"><ul></div>
+		</div>
+
+	    <div data-role="footer" data-theme="c" data-position="fixed">
+	    	<div>
+	    	<fieldset class="ui-grid-b">
+			    <div class="ui-block-a"></div>
+			    <div class="ui-block-b"><button id="next" data-corners="true" data-mini="false" data-icon="forward" data-iconpos="left">Next Step</button></div>
+			    <div class="ui-block-c"><div style="float:right;"><a href="#popupMenuAbort" data-corners="false" data-rel="popup" data-role="button" data-inline="true" style="margin:0px; padding:0px;"><img id="stopButton" src="/stop.png"/></a></div></div>
+			</fieldset>
+        </div> <!-- footer -->
+
+		<script type="text/javascript">
+
+			// setup up screen for initial display
+
+			$('#mainPage').bind('pageshow', function()
+				{
+
+					$(document).on("swipeleft", "#mainPage", function(e)
+					{
+						if ($.mobile.activePage.jqmData("panel") !== "open")
+						{
+							if (e.type === "swipeleft")
+							{
+								$("#testPanel").panel("open");
+							}
+						}
+					});
+
+					$("#stopButton").on("taphold", function(e)
+					{
+						// abort immediately
+						OTX.hmi.valueChangedInPage('abort', 'true');
+						OTX.hmi.closeScreen();
+					});
+
+					title = OTX.hmi.getArgument('title');
+					subtitle = OTX.hmi.getArgument('subtitle');
+					message = OTX.hmi.getArgument('message');
+					items = OTX.hmi.getArgument('items');
+					info = OTX.hmi.getArgument('info');
+
+
+					$('#title').text(title);
+					$('#informationTitle').text(title);
+					$('#subtitle').text(subtitle);
+					$('#message').text(message);
+					$('#info').text(info);
+
+					var itemsString = "";
+
+					for (var item=0; item < items.length; item++)
+					{
+					     itemsString = itemsString + "<li>" + items[item] + "</li>";
+					}
+
+					$('#items').html(itemsString);
+				});
+
+
+
+				$("#testAbortPanelMenuItem").click(function(e)
+				{
+					OTX.hmi.valueChangedInPage('abort', 'true')
+					OTX.hmi.closeScreen();
+				});
+
+				$("#testAbortPopupMenuItem").click(function(e)
+				{
+					$("#popupMenuAbort").popup("close");
+					OTX.hmi.valueChangedInPage('abort', 'true')
+					OTX.hmi.closeScreen();
+				});
+
+				$("#next").click(function(e)
+				{
+					OTX.hmi.closeScreen();
+				});
+
+		</script>
+	</div>
+</body>
+</html>

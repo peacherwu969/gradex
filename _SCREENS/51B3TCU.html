@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Input Confirm</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="common/jquery.mobile-1.3.0.min.css" />
+<link rel="stylesheet" href="busy.css" />
+<script src="common/jquery-1.9.1.min.js"></script>
+<script src="common/jquery.mobile-1.3.0.min.js"></script>
+<script src="common/js-url.min.js"></script>
+<script src="common/otx.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=9" />
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="-1"/>
+</head>
+
+
+<body>
+	<div data-role="page" id="mainPage" >
+
+
+		<div data-role="header">
+			<h1 id="title"></h1>
+		</div>
+
+		<div data-role="content" >
+			<h3 id="conditions_heading"></h3>
+			<ul id="conditions"></ul>
+			<ul id="name"></ul>
+			<h3 id="steps_heading"></h3>
+			<ul id="steps"></ul>
+			
+			<table id="table-column-toggle" style="width:95%;table-layout:fixed;" align="center" >
+			<tr>
+				<td width="120px" align="left">
+					<h3 id="ID1"></h3>
+				</td>
+				<td>
+					<input type="text" id="IOText" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h3 id="ID2"></h3>
+				</td>
+				<td>
+					<input type="text" id="IOText1" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h3 id="ID3"></h3>
+				</td>
+				<td>
+					<input type="text" id="IOText2" />
+				</td>
+			</tr>			
+			</table>
+			<br>
+			<label id="inputNotice"></label>
+			<label id="inputCharNumber"></label>
+			<input type="hidden" id="message1" name="message1" value='<@gx_translate text_id="SAIC_LDV_EV79_UI.MESSAGE.THENUMBEROFCHARACTERSYOUINPUT" />' />
+		</div>
+		
+
+	    <div data-role="footer" data-theme="c" data-position="fixed">
+	    	<div>
+				<fieldset class="ui-grid-c">
+					<div class="ui-block-a"></div>
+					<div class="ui-block-b"><button id="response_yes" data-corners="true" data-mini="false" data-icon="check" data-iconpos="left"><@gx_translate text_id="GX.COMMON.YES" /></button></div>
+					<div class="ui-block-c"><button id="response_no" data-corners="true" data-mini="false" data-icon="delete" data-iconpos="left"><@gx_translate text_id="GX.COMMON.CANCEL" /></button></div>
+				</fieldset>
+			</div>
+        </div> <!-- footer -->
+
+		<script type="text/javascript">
+
+				//initial variable
+				var reg;
+				var regSelection = 0;
+				var isNumber = false;
+				var min;
+				var max;
+				
+				var message=document.getElementById("message1").value;
+				//set regular express
+				
+				function setRegExp()
+				{
+					switch(regSelection)
+					{
+
+						case 0://vin
+							//reg = /^[a-zA-Z0-9]{17}$/;
+							reg = /^[0-9a-zA-Z]+$/;
+							break;
+						case 1://security key
+							reg = /^[a-zA-F0-9]{24}$/;
+							break;
+						case 2://PIN
+							reg = /^[a-zA-F0-9]{8}$/;
+							break;
+						case 3://number with no decimal
+							reg = /^(0|[1-9][0-9]*)$/;
+							break;
+						case 4://number with 2 decimals no negative
+							reg =/^(0|[1-9][0-9]*)(\.\d{1,2})?$/;
+							break;
+						case 5://number with 2 decimals with negative
+							reg =/^(\-)?(0|[1-9][0-9]*)(\.\d{1,2})?$/;
+							break;
+						case 6://Date
+							reg =/^[0-9]{6}$/;
+							break;
+						case 7://BCD
+							reg = /^[a-zA-F0-9]*$/;
+							break;
+						case 711://BCD
+							reg = /^[A-Z0-9]*$/;
+							break;
+						case 8://
+							reg = /^[a-zA-Z0-9]{8}$/;
+							break;
+						case 9://
+							reg = /^[a-zA-Z0-9]{9}$/;
+							break;
+						case 10://PIN only number
+							reg = /^[0-9]{0,10}$/;
+							break;
+						case 11://Part Number
+							reg = /^[a-zA-Z0-9]{11}$/;
+							break;
+						case 12://
+							reg = /^[a-zA-Z0-9]{12}$/;
+							break;
+						case 13://
+							reg = /^[a-zA-Z0-9]{4}$/;
+							break;
+						case 16://Vehicle Feature Identification
+							reg = /^[a-fA-F0-9]{16}$/;
+							break;
+						case 34://Vehicle Feature Identification
+							reg = /^[a-fA-F0-9]{34}$/;
+							break;
+						case 40://Vehicle Feature Identification
+							reg = /^[a-fA-F0-9]{40}$/;
+							break;
+						case 64://Vehicle Feature Identification
+							reg = /^[0-9A-Fa-f]{64}$/;
+							break;
+						case 66://Vehicle Feature Identification
+							reg = /^[0-9]{66}$/;
+							break;
+						case 88://Vehicle Feature Identification
+							reg = /^[0-9A-Fa-f]{88}$/;
+							break;
+						case 92://Date
+							reg =/^[0-9]{92}$/;
+							break;
+						case 99://No Limit
+							reg = /^([a-zA-Z0-9]+)$/;
+							break;
+						case 101://
+							reg = /^[a-zA-Z0-9]{1}$/;
+							break;
+						case 102://
+							reg = /^[a-zA-Z0-9]{2}$/;
+							break;
+						case 103://
+							reg = /^[a-zA-Z0-9]{3}$/;
+							break;
+						case 104://
+							reg = /^[a-zA-Z0-9]{4}$/;
+							break;
+						case 105://
+							reg = /^[a-zA-Z0-9]{5}$/;
+							break;
+						case 200://
+							reg = /^[a-zA-Z0-9]{200}$/;
+							break;
+						case 204://
+							reg = /^[a-zA-Z0-9]{204}$/;
+							break;
+						case 208://
+							reg = /^[a-zA-Z0-9]{208}$/;
+							break;
+						default:							
+							break;
+					}
+					
+				}
+				
+				//check input
+				function isValidation()
+				{
+					var IOValue = $("#IOText").val();
+					var IOValue1 = $("#IOText1").val();
+					var IOValue2 = $("#IOText2").val();
+					
+					//displace the space
+					IOValue = IOValue.replace(/[ ]/g,"");
+					IOValue1 = IOValue1.replace(/[ ]/g,"");
+					IOValue2 = IOValue2.replace(/[ ]/g,"");
+
+					//set regular express
+					setRegExp();					
+					if(!reg.test(IOValue)){
+					
+						$("#IOText").focus();
+						return 1;
+					}
+					if(!reg.test(IOValue1)){
+					
+						$("#IOText1").focus();
+						return 2;
+					}
+					if(!reg.test(IOValue2)){
+					
+						$("#IOText2").focus();
+						return 3;
+					}	
+					
+					return 0;
+				}
+				
+			// setup up screen for initial display
+
+			$('#mainPage').bind('pageshow', function()
+				{
+
+					$(document).on("swipeleft", "#mainPage", function(e)
+					{
+						if ($.mobile.activePage.jqmData("panel") !== "open")
+						{
+							if (e.type === "swipeleft")
+							{
+								$("#testPanel").panel("open");
+							}
+						}
+					});
+
+
+					title = OTX.hmi.getArgument('title');
+					conditions_heading = OTX.hmi.getArgument('conditions_heading');
+					conditions = OTX.hmi.getArgument('conditions');
+					steps_heading = OTX.hmi.getArgument('steps_heading');
+					steps = OTX.hmi.getArgument('steps');
+					regSelection = 0;//OTX.hmi.getArgument('regSel');
+					min = OTX.hmi.getArgument('min');
+					max = OTX.hmi.getArgument('max');
+					isNumber = OTX.hmi.getArgument('isNumber');
+					nameList = OTX.hmi.getArgument('nameList');
+					strLen = OTX.hmi.getArgument('strLen');
+					ID1 = OTX.hmi.getArgument('ID1');
+					ID2 = OTX.hmi.getArgument('ID2');
+					ID3 = OTX.hmi.getArgument('ID3');
+
+					InputValue = OTX.hmi.getArgument('InputValue');
+					InputValue1 = OTX.hmi.getArgument('InputValue1');
+					InputValue2 = OTX.hmi.getArgument('InputValue2');
+
+
+
+					$('#title').text(title);
+					$('#conditions_heading').text(conditions_heading);
+					$('#steps_heading').text(steps_heading);
+					$('#ID1').text(ID1);
+					$('#ID2').text(ID2);
+					$('#ID3').text(ID3);
+
+					//document.getElementById("IOText").value=InputValue;
+					$("#IOText:text").val(InputValue);
+					$("#IOText1:text").val(InputValue1);
+					$("#IOText2:text").val(InputValue2);
+
+					$("#IOText").focus();
+
+					var stepsString = "";
+
+					for (var step=0; step < steps.length; step++)
+					{
+					     stepsString = stepsString + "<li>" + steps[step] + "</li>";
+					}
+
+					$('#steps').html(stepsString);
+					
+
+					
+					var conditionsString = ""
+					for (var step=0; step < conditions.length; step++)
+					{
+					     conditionsString = conditionsString + "<li>" + conditions[step] + "</li>";
+					}
+					$('#conditions').html(conditionsString);
+					
+					if(!isNumber)
+					{
+
+							$("#inputNotice").text(message);
+
+	  				var cvalue = $("#IOText").val();
+	  				
+	  				//replace the space
+	  				cvalue = cvalue.replace(/[ ]/g,"");
+	  				
+	  				if(cvalue.length == 0)
+	  				{
+	  					$("#inputCharNumber").text("");
+	  				}
+	  				else
+	  				{
+
+							$("#inputCharNumber").text(cvalue.length);
+
+						}
+					
+					
+
+					}
+
+				});
+
+
+				$("#response_yes").click(function(e)
+				{
+					
+					//check validation
+					var ret = isValidation();
+					if (ret !== 0) {
+					 	alert($("#ID"+ret).html() + ", " + '<@gx_translate text_id="GX.COMMON.VUE.INPUT.ERROR" />');			 
+						return;					 
+					}
+					
+					var curValue="";
+					
+					curValue=$("#IOText").val();
+					
+					curValue = curValue.replace(/[ ]/g,"");
+					
+					if(regSelection==0)//VIN
+					{
+						curValue=curValue.toUpperCase();
+					}
+					var curValue1="";
+					
+					curValue1=$("#IOText1").val();
+					
+					curValue1 = curValue1.replace(/[ ]/g,"");
+					var curValue2="";
+					
+					curValue2=$("#IOText2").val();
+					
+					curValue2 = curValue2.replace(/[ ]/g,"");
+					var curValue3="";
+
+
+					
+					
+					OTX.hmi.valueChangedInPage('InputValue',curValue);
+					OTX.hmi.valueChangedInPage('InputValue1',curValue1);
+					OTX.hmi.valueChangedInPage('InputValue2',curValue2);
+					
+					OTX.hmi.valueChangedInPage('result', '1');
+					
+					OTX.hmi.closeScreen();
+				  		    	
+				});
+
+				$("#response_no").click(function(e)
+				{
+					OTX.hmi.valueChangedInPage('result', '2')
+					OTX.hmi.closeScreen();
+				});
+			
+				$("#IOText").keyup(function()
+				{
+  				//display the input char number
+  				if(!isNumber)
+  				{
+	  				var cvalue = $("#IOText").val();
+	  				
+	  				//replace the space
+	  				cvalue = cvalue.replace(/[ ]/g,"");
+	  				
+	  				if(cvalue.length == 0)
+	  				{
+	  					$("#inputCharNumber").text("");
+	  				}
+	  				else
+	  				{
+
+							$("#inputCharNumber").text(cvalue.length);
+
+						}
+					
+					}
+
+				});
+				$("#IOText1").keyup(function()
+				{
+  				//display the input char number
+  				if(!isNumber)
+  				{
+	  				var cvalue1 = $("#IOText1").val();
+	  				
+	  				//replace the space
+	  				cvalue1 = cvalue1.replace(/[ ]/g,"");
+	  				
+	  				if(cvalue1.length == 0)
+	  				{
+	  					$("#inputCharNumber").text("");
+	  				}
+	  				else
+	  				{
+
+							$("#inputCharNumber").text(cvalue1.length);
+
+						}
+					
+					}
+
+				});
+				$("#IOText2").keyup(function()
+				{
+  				//display the input char number
+  				if(!isNumber)
+  				{
+	  				var cvalue2 = $("#IOText2").val();
+	  				
+	  				//replace the space
+	  				cvalue2 = cvalue2.replace(/[ ]/g,"");
+	  				
+	  				if(cvalue2.length == 0)
+	  				{
+	  					$("#inputCharNumber").text("");
+	  				}
+	  				else
+	  				{
+
+							$("#inputCharNumber").text(cvalue2.length);
+
+						}
+					
+					}
+
+				});
+		</script>
+	</div>
+</body>
+</html>

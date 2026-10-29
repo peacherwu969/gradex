@@ -1,0 +1,49 @@
+<!--
+ This page is a test page to show how to deal with a list of quantity values as an InParameter to a screen.
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>DynamicScreenQuantityListIn</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="jquery.mobile-1.3.0.min.css" />
+<link rel="stylesheet" href="busy.css" />
+<script src="jquery-1.9.1.min.js"></script>
+<script src="jquery.mobile-1.3.0.min.js"></script>
+<script src="js-url.min.js"></script>
+<script src="otx.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=9" />
+<META http-equiv="Pragma" content="no-cache">
+<META http-equiv="Expires" content="-1">
+</head>
+
+<body>
+	<div data-role="page" id="mainPage">
+
+		<div data-role="header">
+			<h1>Dynamic Quantity List InParameter Test</h1>
+		</div>
+
+		<div data-role="content">
+			<p>values [0] <span id="quantityPlaceholder0">---</span></p>
+			<p>values [1] <span id="quantityPlaceholder1">---</span></p>
+			<p>values [2] <span id="quantityPlaceholder2">---</span></p>
+		</div>
+
+                <script>
+
+                	setInterval( function() {
+				modelVars = OTX.hmi.getParameterValue('values');
+				$('#quantityPlaceholder0').text(modelVars[0].value + ' ' + modelVars[0].unit);
+		        	$('#quantityPlaceholder1').text(modelVars[1].value + ' ' + modelVars[1].unit);
+		        	$('#quantityPlaceholder2').text(modelVars[2].value + ' ' + modelVars[2].unit);
+			}, 100);
+		
+		</script>
+
+
+	</div>
+
+</body>
+</html>

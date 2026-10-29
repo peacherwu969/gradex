@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Diagnostic Question</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="common/jquery.mobile-1.3.0.min.css" />
+<link rel="stylesheet" href="busy.css" />
+<script src="common/jquery-1.9.1.min.js"></script>
+<script src="common/jquery.mobile-1.3.0.min.js"></script>
+<script src="common/js-url.min.js"></script>
+<script src="common/otx.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=9" />
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="-1"/>
+</head>
+
+<body>
+	<div data-role="page" id="mainPage" unselectable="on" onselectstart="return false;" style="-moz-user-select:none; -webkit-user-select:none; -ms-user-select:none; user-select:none;">
+
+
+		<div data-role="header">
+			<h1 id="title"></h1>
+		</div>
+
+		<div data-role="content" border:1px solid #C0C0C0; width: 70%; height: 550px; left: 20%; right: 20%;">	
+		 	<table height="30px"><tr><td></td></tr></table>
+			<table style="width:70%; height: 350px; min-width: 350px; border: 1px solid #C0C0C0; 
+						 align: center; margin:auto;">				
+				<tr>
+					<td width="100%" align="left"><span style='font-size: 20pt;' id="description"></span></td>
+				</tr>
+			</table> 
+		</div>	
+
+	    <div data-role="footer" data-theme="c" data-position="fixed">
+	    	<div>
+				<fieldset class="ui-grid-c">
+					<div class="ui-block-a"></div>
+					<div class="ui-block-b"><button id="response_yes" data-corners="true" data-mini="false" data-icon="check" data-iconpos="left"><@gx_translate text_id="GX.COMMON.YES" /></button></div>
+					<div class="ui-block-c"><button id="response_no" data-corners="true" data-mini="false" data-icon="delete" data-iconpos="left"><@gx_translate text_id="SAIC_LDV_EV79_SV51_RF.DS_TEXTTABLE.NO" /></button></div>
+				</fieldset>
+			</div>
+        </div> <!-- footer -->
+
+		<script type="text/javascript">
+
+			// setup up screen for initial display
+
+			$('#mainPage').bind('pageshow', function()
+				{
+
+					var title = OTX.hmi.getArgument('title');
+					var description = OTX.hmi.getArgument('description'); 
+
+
+					$('#title').text(title);
+					$('#description').html(description);  
+				});
+
+
+				$("#response_yes").click(function(e)
+				{
+					OTX.hmi.valueChangedInPage('result', '1')
+					OTX.hmi.closeScreen();
+				});
+
+				$("#response_no").click(function(e)
+				{
+					OTX.hmi.valueChangedInPage('result', '2')
+					OTX.hmi.closeScreen();
+				});
+
+		</script>
+	</div>
+</body>
+</html>

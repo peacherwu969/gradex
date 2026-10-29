@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>OBD Confirm</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="common/jquery.mobile-1.3.0.min.css" />
+<link rel="stylesheet" href="busy.css" />
+<script src="common/jquery-1.9.1.min.js"></script>
+<script src="common/jquery.mobile-1.3.0.min.js"></script>
+<script src="common/js-url.min.js"></script>
+<script src="common/otx.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=9" />
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="-1"/>
+</head>
+
+<body>
+    <div data-role="page" id="mainPage" unselectable="on" onselectstart="return false;" style="-moz-user-select:none; -webkit-user-select:none; -ms-user-select:none; user-select:none;">
+
+        <div data-role="header">
+            <h1 id="title"></h1>
+        </div>
+
+        <div data-role="content" style="text-align:center; padding-top: 24px;">
+            <h3 style="text-align:center; color:#cc0000; font-weight:bold; font-size:200%; line-height:1.2; margin-bottom: 12px;"><@gx_translate text_id="GX.COMMON.HINT" /></h3>
+        </div>
+        <div data-role="content" style="text-align:center; padding-top: 24px;">
+            <h3 style="color:#cc0000; font-weight:bold;"><@gx_translate text_id="GX.COMMON.READOBD.DATA.FUNCTION.CONDITION1" /></h3>
+        </div>
+
+        <div data-role="footer" data-theme="c" data-position="fixed">
+            <fieldset class="ui-grid-b">
+                <div class="ui-block-a"></div>
+                <div class="ui-block-b"><button id="response_yes" data-corners="true" data-mini="false" data-icon="check" data-iconpos="left"><@gx_translate text_id="GX.COMMON.YES" /></button></div>
+                <div class="ui-block-c"></div>
+            </fieldset>
+        </div>
+
+        <script type="text/javascript">
+            $('#mainPage').bind('pageshow', function() {
+                if (typeof OTX !== 'undefined' && OTX.hmi && OTX.hmi.getArgument) {
+                    var title = OTX.hmi.getArgument('title');
+                    if (title) {
+                        $('#title').text(title);
+                    }
+                }
+            });
+
+            $('#response_yes').click(function() {
+                if (typeof OTX !== 'undefined' && OTX.hmi) {
+                    if (OTX.hmi.valueChangedInPage) {
+                        OTX.hmi.valueChangedInPage('result', '1');
+                    }
+                    if (OTX.hmi.closeScreen) {
+                        OTX.hmi.closeScreen();
+                    }
+                }
+            });
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dynamic Screen Test</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="common/jquery.mobile-1.3.0.min.css" />
+<link rel="stylesheet" href="busy.css" />
+<link rel="stylesheet" href="common/nv.d3.css" />
+<script src="common/jquery-1.9.1.min.js"></script>
+<script src="common/jquery.mobile-1.3.0.min.js"></script>
+<script src="common/js-url.min.js"></script>
+<script type="text/javascript" src="common/d3.min.js"></script>
+<script type="text/javascript" src="common/nv.d3.min.js"></script>
+<script src="common/otx.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=9" />
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="-1"/>
+</head>
+
+<body>
+	<div data-role="page" id="mainPage">
+
+		<div data-role="header">
+			<h1>Select Model</h1>
+		</div>
+
+		<div data-role="panel" id="modelPanel" data-position="right" data-display="overlay" data-theme="e">
+		        <h2>Selected Model</h2>
+		        <h3 id="modelSelectedName">----</h3>
+		        <p  id="modelSelectedDescription">----</p>
+		        <img id="modelSelectedImage" src="" width="100%" />
+				<div data-role="controlgroup" data-type="horizontal">
+					<a id="modelConfirm" href="#" data-role="button" data-icon="check">Yes</a>
+					<a href="#" data-role="button" data-icon="delete" data-rel="close">No</a>
+				</div>
+		</div><!-- /panel -->
+
+		<div data-role="content">
+			<div class="ui-grid-a">
+    			<div class="ui-block-a"><div class="ui-bar"><h1 id="imgHeading_ka">#</h1><img id="ka" src="/images/ford/ka.png"/></div></div>
+    			<div class="ui-block-b"><div class="ui-bar"><h1 id="imgHeading_fiesta">#</h1><img id="fiesta"  src="/images/ford/fiesta.png"/></div></div>
+			</div><!-- /grid-a -->
+			<div class="ui-grid-a">
+    			<div class="ui-block-a"><div class="ui-bar"><h1 id="imgHeading_bmax">#</h1><img id="bmax" src="/images/ford/bmax.png"/></div></div>
+    			<div class="ui-block-b"><div class="ui-bar"><h1 id="imgHeading_focus">#</h1><img id="focus"  src="/images/ford/focus.png"/></div></div>
+			</div><!-- /grid-a -->
+		</div>
+
+		<script type="text/javascript">
+
+		    var modelNames = {
+		    					ka:		{model:"Ka", desc: "Ford Ka Hatchback - all variants"},
+		    					fiesta:	{model:"Fiesta", desc: "Ford Fiesta Hatchback  - all variants"},
+		    					bmax:	{model:"B-MAX", desc: "Ford B-MAX Compact MPV - all variants"},
+		    					focus:	{model:"Focus", desc: "Ford Focus - all variants"}
+		    				};
+
+		    selectedModel = "";
+
+			$(document).ready(function()
+			{
+
+			    var key;
+			    for (key in modelNames)
+			    {
+			    	$("#imgHeading_" + key).text(modelNames[key].model);
+			    	$("#imgHeading_" + key).css("padding", "4px");
+			    	$("#imgHeading_" + key).css("border", "1px solid #e0e0e0");
+			    	$("#imgHeading_" + key).css("float", "left");
+			    	$("#imgHeading_" + key).addClass("ui-corner-all ui-shadow");
+
+			    	$("#" + key).click(function()
+						{
+							imageId = $(this).attr('id');
+							selectedModel = imageId;
+							modelSelectecImgSrc = $(this).attr('src');
+							$("#modelSelectedName").text(modelNames[imageId].model);
+							$("#modelSelectedDescription").text(modelNames[imageId].desc);
+							$("#modelSelectedImage").attr('src', '/images/ford/' + imageId + '.png');
+							$("#modelPanel").panel('open');
+						});
+			    };
+
+				$("#modelConfirm").click(function()
+				{
+					// alert(selectedModel);
+					OTX.hmi.valueChangedInPage('model', imageId);
+					OTX.hmi.closeScreen();
+				});
+			});
+		</script>
+	</div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROPERTIES>
+    <PROPERTY name="commsServerVehicle" value="SAIC_LDV"/>
+    <PROPERTY name="commsServerProject" value="SAIC_LDV"/>
+    <PROPERTY name="triage/showDtcTabFirst" value="true"/>
+    <PROPERTY name="gradex.ui.showButtonLabels" value="true" />
+    <PROPERTY name="proceduresPath" value="Procedures" />
+	<PROPERTY name="maxCustomSignalGroupNumber" value="99" />
+	<PROPERTY name="enableVciConnectionStatus" value="true"/>
+	<PROPERTY name="doipCombinationMode" value="1" />
+    <PROPERTY name="vehicleDiscoveryTime" value="1000"/>
+	<PROPERTY name="enableExecuteServiceVariants" value="true"/>
+	<PROPERTY name="ProcessOdxTables" value="true" />
+<PROPERTY name="locale" value="zh_CN"/>
+<PROPERTY name="commsServerDataPath" value="C:\GXAppData\Bosch\SAIC-GRADE-X\GRADE-X_DATA\_CommsServerData"/>
+<PROPERTY name="com.bosch.gradex.service.textmanager.TextManagerStorageServiceOptions.dbUrl" value="jdbc:h2:C:\GXAppData\Bosch\SAIC-GRADE-X\GRADE-X_DATA\textdb"/>
+<PROPERTY name="flashDataPath" value="C:\GXAppData\Bosch\SAIC-GRADE-X\GRADE-X_DATA\_DATA\_ECU\FlashData"/>
+</PROPERTIES>

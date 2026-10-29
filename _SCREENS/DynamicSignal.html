@@ -1,0 +1,44 @@
+<!--
+ This page is a test page to show how to deal with a single quantity value as an InParameter to a screen.
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dynamic screen test</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="jquery.mobile-1.3.0.min.css" />
+<link rel="stylesheet" href="busy.css" />
+<script src="jquery-1.9.1.min.js"></script>
+<script src="jquery.mobile-1.3.0.min.js"></script>
+<script src="js-url.min.js"></script>
+<script src="otx.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=9" />
+<META http-equiv="Pragma" content="no-cache">
+<META http-equiv="Expires" content="-1">
+</head>
+
+<body>
+	<div data-role="page" id="mainPage">
+
+		<div data-role="header">
+			<h1>Dynamic Signal InParameter Test</h1>
+		</div>
+
+		<div data-role="content">
+			<p><span id="signalPlaceholder"></span></p>
+		</div>
+
+		<script type="text/javascript">
+        $('#mainPage').bind('pagebeforecreate', function(e, data) {
+        	sig = OTX.hmi.getArgument('sig1');
+        	for (var key in sig) {
+        		$('#signalPlaceholder').append("<p>" + key + " -> " + sig[key] + "</p>");
+        	};
+        });
+		</script>
+
+	</div>
+
+</body>
+</html>

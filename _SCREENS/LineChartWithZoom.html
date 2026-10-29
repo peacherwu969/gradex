@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dynamic screen test</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="common/jquery.mobile-1.3.0.min.css" />
+<link rel="stylesheet" href="busy.css" />
+<link rel="stylesheet" href="common/nv.d3.css" />
+<link rel="stylesheet" href="http://nvd3.org/css/bootstrap.css" />
+<script src="common/jquery-1.9.1.min.js"></script>
+<script src="common/jquery.mobile-1.3.0.min.js"></script>
+<script src="common/js-url.min.js"></script>
+<script type="text/javascript" src="common/d3.min.js"></script>
+<script type="text/javascript" src="common/gauge.js"></script>
+<script type="text/javascript" src="common/barChart.js"></script>
+<script type="text/javascript" src="common/nv.d3.min.js"></script>
+<script src="common/otx.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=9" />
+<META http-equiv="Pragma" content="no-cache">
+<META http-equiv="Expires" content="-1">
+<!-- This style is ignored when viewed in the runtime which uses css from global.css
+but this shows how you can target specific instances of a graph
+rather than having all instances of a graph type styled the same -->
+<style>
+
+svg {
+font: 10px sans-serif;
+}
+
+#graph .line1 {
+fill: none;
+stroke: #F00;
+stroke-width: 3.5px;
+}
+
+.axis path, .axis line {
+fill: none;
+stroke: #000;
+shape-rendering: crispEdges;
+}
+
+</style>
+</head>
+
+<body>
+	<div data-role="page" id="mainPage">
+
+		<div data-role="panel" id="testPanel" data-position="right" data-display="overlay">
+			<ul data-role="listview">
+				<li data-role="divider" data-iconpos="notext" data-theme="e">Actions</li>
+				<li data-icon="delete" id="testAbortPanelMenuItem"><a href="#">Abort</a></li>
+				<li data-icon="back" data-rel="close"><a href="#mainPage">Back to test</a></li>
+			</ul>
+		</div><!-- /panel -->
+
+		<div data-role="popup" id="popupMenuAbort">
+			<ul data-role="listview" data-inset="true" style="min-width:210px;">
+				<li data-role="divider" data-iconpos="notext" data-theme="e">Abort Menu</li>
+				<li data-icon="delete" id="testAbortPopupMenuItem"><a href="#">Abort</a></li>
+				<li data-icon="back"><a href="#" data-rel="back">Back to test</a></li>
+			</ul><!-- popup -->
+		</div>
+
+		<div data-role="popup" id="infoPopup" class="ui-content" data-theme="e" style="max-width:75%; max-height:50%;">
+			<div class="ui-icon ui-icon-info"></div>
+			<h3 id="informationTitle"></h3>
+			<hr/>
+			<p id="info" style="{font-size:6pt;}"></p>
+		</div><!-- /popup -->
+
+		<div data-role="header">
+			<a class="ui-icon-nodisc ui-btn-left"  href="#infoPopup" data-transition="slidedown" data-rel="popup" data-role="button" data-icon="info" data-iconpos="notext" data-iconshadow="false" data-inline="true">Info</a>
+			<a class="ui-icon-nodisc ui-btn-right" href="#testPanel" data-role="button" data-icon="bars" data-iconpos="notext" data-iconshadow="false" data-inline="true">Actions</a>
+			<h1 id="title">Line Chart With Zoom</h1>
+		</div>
+
+		<div data-role="content">
+			<style>
+				#chart .nv-context .nv-line	{fill: none; stroke-width: 2px; }
+				#chart .nv-focus .nv-line	{fill: none; stroke-width: 4px; }
+			</style>
+			<div id='chart'>
+			  <svg style='height:500px'> </svg>
+			</div>
+		</div>
+
+	    <div data-role="footer" data-theme="c" data-position="fixed">
+	    	<div>
+	    	<fieldset class="ui-grid-b">
+			    <div class="ui-block-a"></div>
+			    <div class="ui-block-b"><button id="next" data-corners="true" data-mini="false" data-icon="forward" data-iconpos="left">OK</button></div>
+			    <div class="ui-block-c"><div style="float:right;"><a href="#popupMenuAbort" data-corners="false" data-rel="popup" data-role="button" data-inline="true" style="margin:0px; padding:0px;"><img id="stopButton" src="/stop.png"/></a></div></div>
+			</fieldset>
+        </div> <!-- footer -->
+
+		<script type="text/javascript">
+
+    	var chart;
+
+		$('#mainPage').bind('pagebeforecreate', function(e, data)
+		{
+
+			$(document).on("swipeleft", "#mainPage", function(e)
+			{
+				if ($.mobile.activePage.jqmData("panel") !== "open")
+				{
+					if (e.type === "swipeleft")
+					{
+						$("#testPanel").panel("open");
+					}
+				}
+			});
+
+			$("#stopButton").on("taphold", function(e)
+			{
+				// abort immediately
+				OTX.hmi.valueChangedInPage('abort', 'true');
+				OTX.hmi.closeScreen();
+			});
+
+			title = OTX.hmi.getArgument('title');
+			info = OTX.hmi.getArgument('info');
+			$('#title').text(title);
+			$('#informationTitle').text(title);
+			$('#info').text(info);
+
+    		// line chart uses nvd3 which is built on top of d3
+
+
+			nv.addGraph(function()
+			{
+
+				chart = nv.models.lineWithFocusChart();
+
+				chart.xAxis
+ 			       	.axisLabel('Time (ms)')
+					.tickFormat(d3.format(',r'));
+
+				chart.yAxis
+					.axisLabel('Values')
+ 					.tickFormat(d3.format('.02f'));
+
+				chart.y2Axis
+					.axisLabel('Values')
+ 					.tickFormat(d3.format('.02f'));
+
+				d3.select('#chart svg')
+					.datum(sinAndCos())
+					.transition().duration(250)
+					.call(chart);
+
+				nv.utils.windowResize(function() { d3.select('#chart svg').call(chart) });
+
+				return chart;
+			});
+		});
+
+        /* Function to provide sample data for the sin/cos graph */
+		function sinAndCos()
+		{
+			var sin = [], cos = [], sin2 = [], cos2 = [];
+
+			for (var i = 0; i < 300; i++)
+			{
+				sin.push({x: i, y: Math.sin(i/10)});
+				cos.push({x: i, y: .8 * Math.cos(i/10)});
+				sin2.push({x: i, y: .6 * Math.sin(i/20)});
+				cos2.push({x: i, y: .4 * Math.cos(i/20)});
+			}
+
+			return [ { values: sin, key: 'Signal 1', color: '#ff7f0e' },
+			         { values: cos, key: 'Signal 2', color: '#2ca02c' },
+			         { values: sin2, key: 'Signal 3', color: '#6666ff' },
+			         { values: cos2,  key: 'Signal 4', color: '#ff9933' },
+			       ];
+		}
+
+
+		$("#testAbortPanelMenuItem").click(function(e)
+		{
+			OTX.hmi.valueChangedInPage('abort', 'true')
+			OTX.hmi.closeScreen();
+		});
+
+		$("#testAbortPopupMenuItem").click(function(e)
+		{
+			$("#popupMenuAbort").popup("close");
+			OTX.hmi.valueChangedInPage('abort', 'true')
+			OTX.hmi.closeScreen();
+		});
+
+		$("#next").click(function(e)
+		{
+			OTX.hmi.closeScreen();
+		});
+
+		</script>
+
+	</div>
+</body>
+</html>

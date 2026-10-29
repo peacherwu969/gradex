@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>HMS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="common/jquery.mobile-1.3.0.min.css" />
+<link rel="stylesheet" href="busy.css" />
+<link rel="stylesheet" href="common/nv.d3.css" />
+<script src="common/jquery-1.9.1.min.js"></script>
+<script src="common/jquery.mobile-1.3.0.min.js"></script>
+<script src="common/js-url.min.js"></script>
+<script type="text/javascript" src="common/d3.min.js"></script>
+<script type="text/javascript" src="common/nv.d3.min.js"></script>
+<script src="common/otx.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=9" />
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="-1"/>
+</head>
+
+<body>
+	<div data-role="page" id="mainPage" unselectable="on" onselectstart="return false;" 
+			style="-moz-user-select:none; -webkit-user-select:none; -ms-user-select:none; user-select:none; ">
+		
+		<div data-role="content">		
+		  <style type="text/css" scoped> 
+				table
+				{ 
+					border-collapse: collapse; 
+					margin: 0 auto; 
+					text-align: center; 
+					min-width: 400px;
+				} 
+				table td, table th 
+				{ 
+					border: 1px solid #000; 
+					<!--background: #fff; -->
+					height: 10px;
+				}  
+				table thead tr td
+				{  
+					border: 1px solid #000; 
+					font-size: 18px;
+					height: 10px;
+				}
+				table tbody tr 
+				{ 
+					<!--background: #FFF;-->
+					height: 10px;
+				}
+				table tr:nth-child(odd) 
+				{ 
+					background: #fff; 
+					font-size: 18px;
+				} 
+				table tr:nth-child(even) 
+				{ 
+					background: #fff;
+					font-size: 18px;
+				}		 
+				img {
+					cursor: pointer
+				}
+			</style>
+			<h3 align="center" id="funtitle"></h3>			
+			<table width="100%" height="150px" id="table-column-toggle" style="min-width:200px;overflow:hidden;">		
+				<tbody id="H2tableData"> 
+				</tbody>		
+			</table>				
+			<br>
+			<div style="height:350px;">
+				<table width="100%" height="350px" id="datastream">		
+					<thead>				
+						<tr height="30px" style="background-color: #D8D8D8;font-weight:bold;">
+							<td width="70%"><@gx_translate text_id="GX.COMMON.NAME" /></td>
+							<td width="30%"><@gx_translate text_id="GX.COMMON.VALUE" /></td>
+						</tr>  	
+					</thead>
+					<tbody id="DatastreamtableData"> 
+					</tbody>	
+				</table>		 
+			</div>
+		</div>	
+		
+		<div data-role="footer" data-position="fixed">
+			<div data-role="controlgroup" data-type="horizontal" style="text-align:center">		
+				<button id="closeBtn" data-transition="slide" data-corners="true" data-mini="false" data-icon="delete" data-inline="false">
+				<@gx_translate text_id="GX.COMMON.CLOSE" />
+				</button>						
+			</div>		
+		</div>
+		
+		<script type="text/javascript">
+					
+			var	titleStr = OTX.hmi.getArgument('titleParam'); //alert('titleStr:'+'<@gx_translate text_id="'+titleStr+'" />');
+		 	var	nameList = OTX.hmi.getArgument('nameListParam');
+			var	dsNameList = OTX.hmi.getArgument('dsNameListParam');
+			var trContent = '', dsTrContent = '', maxCount = 0;
+			var itemName = '', btns = [], btnName = '', btnId = '', gIndex = 0, curExecLine = -1, namePrix = 'execName-';
+ 
+			//var valueList = OTX.hmi.getArgument('valueList');		
+			//alert('titleStr:' + titleStr);
+			$('#mainPage').bind('pageshow', function() {
+	
+				//alert('nameList:' + nameList);				
+				$('#funtitle').html(titleStr);
+				
+				nameList.forEach(function (item, index) {
+				
+				    if(item.split('@')[1].split('#').length > maxCount) {
+						maxCount = item.split('@')[1].split('#').length;
+					} 
+				});
+				//alert('maxCount: ' + maxCount);
+					
+				nameList.forEach(function (item, index) {
+				
+				    itemName = item.split('@')[0];
+					trContent += '<tr height="30px">';
+					
+					trContent += '<td width="70%" style="font-size:18px;" id="' + (namePrix + (index + 1)) + '">'+itemName+'</td>';
+					btns = item.split('@')[1].split('#');
+					gIndex = 0;
+					btns.forEach(function (btnItem, btnIndex) {
+					
+						btnName = btnItem.split('&')[0];
+						btnId = btnItem.split('&')[1];  
+						trContent += '<td width="120px" style="min-width:85px;white-space:nowrap"><button style="height:40px;width:120px;cursor: pointer;font-size:18px;background:#7FFFD4;border:1px solid #000;" id="'+btnId+'">'+btnName+'</button></td>';
+						gIndex++;
+					}); 
+						
+					while(gIndex < maxCount) {
+						trContent += '<td></td>';
+						gIndex++;
+					} 
+ 					trContent += '</tr>';
+												
+				});
+				//alert('trContent: ' + trContent);
+				$('#H2tableData').html(trContent);		
+				
+				dsNameList.forEach(function (item, index) {
+				 
+					dsTrContent += '<tr><td width="70%" style="font-size:18px;">'+item+'</td><td width="30%"><span style="font-size:18px;" id="datastreamvalue'+(index+1)+'"></span></td></tr>';								
+				});			
+				//alert('dsTrContent: ' + dsTrContent);
+				$('#DatastreamtableData').html(dsTrContent);				
+
+				$("button[id^='button-']").click(function(e){
+					var id = $(this).attr('id');
+					curExecLine = id.substr(7,1); //open-
+					OTX.hmi.valueChangedInPage('btnValueParam', id);	
+					//$("#closeBtn").attr("disabled", true);
+							 
+				});			
+			});								
+			 			
+			$("#closeBtn").click(function(e) {
+			 
+				OTX.hmi.valueChangedInPage('btnValueParam', 'exit');	
+				OTX.hmi.closeScreen();		 	 
+			});				
+					
+			OTX.hmi.addValueListener('valueParam1', function(newValue) {
+				 
+				$("#datastreamvalue1").html(newValue);
+			});
+			OTX.hmi.addValueListener('valueParam2', function(newValue) {
+				 
+				$("#datastreamvalue2").html(newValue);
+			});			
+			OTX.hmi.addValueListener('valueParam3', function(newValue) {
+				 
+				$("#datastreamvalue3").html(newValue);
+			});
+			OTX.hmi.addValueListener('valueParam4', function(newValue) {
+				 
+				$("#datastreamvalue4").html(newValue);
+			});
+			OTX.hmi.addValueListener('valueParam5', function(newValue) {
+				 
+				$("#datastreamvalue5").html(newValue);
+			});		
+			OTX.hmi.addValueListener('errorCodeParam', function(newValue) {
+				
+				//var curItemId = '#' + namePrix + curExecLine;
+				//var curItemName = $(curItemId).html();
+				//var itemName = '';
+					
+				/*
+				nameList.forEach(function (item, index) {
+				
+				 itemName = item.split('@')[0]; 
+				    if(curExecLine == (index+1)) { alert('itemName: ' + itemName);
+						$(curItemId).html(itemName + '(' + newValue + ')');
+					} else {
+						$(curItemId).html(itemName);
+					}
+				}); */
+				
+				for(var i = 0; i < nameList.length; i++) {    
+					(function () {   
+					var temp = i; 
+					var curItemId = '#' + namePrix + (temp + 1);
+				 	if(curExecLine == (temp + 1)) {
+						if (newValue == '') {
+						
+							$(curItemId).html(nameList[temp].split('@')[0]);
+						} else {
+							
+							$(curItemId).html(nameList[temp].split('@')[0] + '(' + newValue + ')');
+						}
+					} else {
+						$(curItemId).html(nameList[temp].split('@')[0]);
+					}
+				  })();   
+				}		
+			});
+			
+			OTX.hmi.addValueListener('btnValueParam', function(newValue) {
+				
+				if (newValue == '-1') {
+					$("#closeBtn").removeAttr("disabled");
+				} else {
+					$("#closeBtn").attr("disabled", true);
+				}
+			});
+
+		</script>
+	</div>
+</body>
+</html>

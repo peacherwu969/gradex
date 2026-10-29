@@ -1,0 +1,138 @@
+<#assign "page"="symptoms_user"/>
+
+
+/** Namespace for testTroubleshootingtool functions. */
+var SymptomDisplay = {};
+
+var SymptomDisplay = function()
+{
+
+	/**
+	 * Adds a individual symptom to a container as a label. This method will
+	 * then recurse over the children of the symptom (if any) to add those to
+	 * the list as well.
+	 * 
+	 * @param container
+	 *            The HTML ul element to add the symptom labels to.
+	 * @param symptom
+	 *            The symptom to add.
+	 */
+	var addSymptom = function(container, symptom)
+	{
+		var children = symptom.children;
+		var escapedId = symptom.id.replace(/\//g, '.');
+		if (children === undefined)
+		{
+			var symptomItem = $("<span class='symptom_list_inline'>"
+					+ "<label data-corners='false' class='label_no_border'><input type='checkbox' id='${page}-"
+					+ escapedId + "' name='" + escapedId + "'/>" + symptom.name
+					+ "</label></span>");
+			symptomItem.change(function(e)
+					{
+						SymptomDisplay.storeSymptomSelection();
+					});
+			container.append(symptomItem);
+		}
+		else
+		{
+			for (var child in children)
+			{
+				addSymptom(container, children[child]);
+			}
+		}
+	};
+	
+	/**
+	 * Gets the initial selection from the vehicle context server and selects the checkboxes
+	 * so that they reflect the users selection.
+	 */
+	var setInitialSelection = function()
+	{
+		$.get(GSPlib.url.getVehicleContextPath(sessionId, 'machine/symptoms'), 
+				function(symptoms) {
+					for (var index in symptoms)
+					{
+						var symptom = symptoms[index];
+						var checkbox = $('input:checkbox[name="' + symptom.id
+								+ '"]');
+						checkbox.prop('checked', symptom.value).checkboxradio('refresh');
+					}
+		}, 'json');
+	};
+
+	/**
+	 * Function for loading symptoms
+	 */
+	var loadSymptoms = function()
+	{
+		$.ajax({
+        url: "/triage/symptoms.html",
+        async: false,
+        success: function (data) {
+				symptomItems = data;
+        }
+    });
+		
+	};
+
+	// public
+	return {
+
+		/**
+		 * Show all the symptoms in a filterable mobile JQuery list. This
+		 * assumes that the symptom data is available as a JSON string in a
+		 * variable called 'symptomItems'. This method will recurse over all the
+		 * symptoms and render them as a flat list.
+		 */
+		showSymptoms : function()
+		{
+			loadSymptoms();
+			
+			var symptomTree = JSON.parse(symptomItems);
+			var symptomContainer = $("<ul id='${page}-symptomPresentationList' data-role='listview' data-filter='true'>");
+					
+			$('#${page}-symptomPresentation').empty().append(symptomContainer);
+
+			for (var symptomIndex in symptomTree)
+			{
+				var symptom = symptomTree[symptomIndex];
+				addSymptom(symptomContainer, symptom);
+			}
+
+			setInitialSelection();
+		},
+
+		/**
+		 * Store the user's symptom selection in the vehicle context server.
+		 */
+		storeSymptomSelection : function()
+		{
+			var items = Array();
+			var idItems = Array();
+			var valueItems = Array();
+			$('#${page} input[type="checkbox"]').each(function()
+					{
+						var checkbox = $(this);
+						var symptom = new Object();
+						var checkboxId = checkbox.attr('id');
+						
+						symptom.id = checkboxId.substring("${page}-".length);
+						symptom.value = checkbox.is(':checked');
+						items.push(symptom);
+						idItems.push(symptom.id);
+						valueItems.push(symptom.value.toString());
+					});
+
+			GSPlib.ws.call("gxSetTaxonomyItems", { 'ids': idItems, 'values': valueItems });
+
+			$.ajax({
+				type : 'POST',
+				url : GSPlib.url.getVehicleContextPath(sessionId,
+						'machine/symptoms'),
+				data : JSON.stringify(items),
+				contentType : "application/json",
+				async : false
+			});
+		}
+	}
+}();

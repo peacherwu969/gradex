@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><@gx_translate text_id="GX.TOOL.VEHICLE_ID.PARTNUMBERS.PAGE_HEADER"/></title>
+	<#include "/header.html">
+		</head>
+<body>
+
+<!-- freemarker defs -->
+<#assign "icon_spin"="/spinner.gif"/>
+<#assign "icon_info"="/info-blue.png"/>
+<#assign "icon_bars"="/common/bars.gif"/>
+<#assign "icon_err"="/error.png"/>
+<#assign "page"     ="machine-summary-tool-part-numbers"/>
+
+<div id="${page}" data-role="page" data-position="fixed" >
+	<style>
+		.contextTable { width : 100%;}
+		.contextTable > tbody > tr:first-child > td:first-child {width : 33%;}
+		.partTable    { display:table; table-layout:fixed; width:100%; }
+		.partTable    > thead > tr { word-wrap:break-word; }
+		.partTable    > thead > tr > th:nth-child(2) { width:33%; }
+		.partTable    > tbody > tr { word-wrap:break-word; }
+		.partTable    > tbody > tr > td:nth-child(2) { width:33%; }
+		.ecuSelected  {  }
+		.ecuNoSelect  {  }
+		ul[data-role="listview"] li {overflow : hidden;	white-space: nowrap; text-overflow : ellipsis;}
+
+		/* sort */
+        .list-block{
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .list-block .sp{
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            background-color: rgba(0,0,0,.4);
+            color: #fff;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 50%;
+            line-height: 18px;
+            text-align: center;
+            margin-right: 6px;
+            position: relative;
+            right: 2px;
+			margin-top: 24px;
+        }
+        .list-block .e-block{
+            width: calc(100% - 24px);
+        }
+        /* sort */
+	</style>
+		<!-- A list a panel that appears in the left-hand side by clicking the icon at the top right-->
+	<div data-role="panel" id="${page}_rightToolPanel" data-position="right" data-display="overlay">
+		<ul data-role="listview">
+			<li data-role="divider" data-iconpos="notext" data-theme="e"><@gx_translate text_id="GX.COMMON.ACTIONS" /></li>
+			<li id="${page}_plusplus" data-icon="plus"><a href="#"><@gx_translate text_id="GX.COMMON.EXPAND_ALL" /></a></li>
+			<li id="${page}_minusminus" data-icon="minus"><a href="#"><@gx_translate text_id="GX.COMMON.COLLAPSE_ALL" /></a></li>
+			<li data-icon="back" data-rel="close"><a href="#${page}_rightToolPanel"><@gx_translate text_id="GX.COMMON.BACK" /></a></li>
+		</ul>
+	</div><!-- /panel -->	
+	<div id="${page}-header" data-role="header">
+		<a class="ui-icon-nodisc ui-btn-right" href="#${page}_rightToolPanel" data-role="button" data-icon="bars" data-iconpos="notext"
+				data-iconshadow="false" data-inline="true"><@gx_translate text_id="GX.COMMON.ACTIONS"/></a>
+		<h1 id="${page}-title" class="tool-title"></h1>
+	</div> <!-- /header -->
+	<div id="${page}-ecumenu" data-role="panel" data-position="right" data-position-fixed="true" data-display="overlay">
+		<ul data-role="listview">
+			<li id="${page}-ecumenu-name" style ="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;" data-role="list-divider" data-theme="e">
+				<@gx_translate text_id="GX.COMMON.ACTIONS"/>
+			</li>
+			<li data-icon="refreshEcu">
+				<a id="${page}-ecumenu-refresh" data-rel="close">
+					<@gx_translate text_id="GX.TOOL.VEHICLE_ID.REFRESH"/>
+				</a>
+			</li> 
+		</ul>
+	</div> <!-- /panel -->
+	
+	<div id="${page}-sequence-cancelled" data-role="popup" data-transition="pop" data-theme="a">
+		<p class="standard-popup"><@gx_translate text_id="GX.TOOL.VEHICLE_ID.OPERATION_CANCELLED"/></p>
+	</div> <!-- /popup -->
+
+	<div data-role="content">
+		<div id="${page}-eculistpartnums"></div>
+	</div> <!-- /content -->
+	
+	<div data-role="${page}-footer" data-theme="c" class="ui-bar-c">
+		<fieldset id="${page}-footer-buttons" class="ui-grid-a">
+			<div class="ui-block-a">
+				<a id="${page}-refresh-all" class="ctrlgroup-btn-left" data-role="button" data-corners="true" data-mini="false" data-icon="refresh" data-iconpos="left">
+					<@gx_translate text_id="GX.TOOL.VEHICLE_ID.REFRESH_ALL"/>
+				</a>
+			</div>
+			<div class="ui-block-b">
+				<a id="${page}-cancel-all" class="ctrlgroup-btn-right" data-role="button" data-corners="true" data-mini="false" class="ui-disabled">
+					<@gx_translate text_id="GX.COMMON.CANCEL"/>
+				</a>
+			</div>
+		</fieldset> <!-- fieldset -->
+		<div id="${page}-navbar" data-role="navbar" class="ui-body-a">
+			<ul>
+				<li>
+					<a id="${page}-navbar-page-0" href="#" onclick="$.mobile.changePage('/screen/MachineSummaryToolSummary.html');" data-role="button" data-inline="true" data-icon="gear" data-iconpos="top">
+						<@gx_translate text_id="GX.TOOL.VEHICLE_ID.SUMMARY.BT_SUMMARY" />
+					</a>
+				</li>
+				<li>
+					<a id="${page}-navbar-page-1" data-role="button" data-inline="true" data-icon="grid" data-iconpos="top" class=" ui-btn-active ui-state-persist">
+						<@gx_translate text_id="GX.TOOL.VEHICLE_ID.SUMMARY.BT_PARTNUMBERS" />
+					</a>
+				</li>
+			</ul>
+		</div> <!-- navbar -->
+	</div> <!-- footer -->
+
+	<script type="text/javascript">
+
+		var idSession = "";
+		var idmachine = "";
+		var idVin     = "";
+		var ecuModel  = {}; 
+
+		var mstpnOnScroll = function()
+		{
+			sessionStorage.setItem(sessionId + "MSTPNScrollPos", $(window).scrollTop());
+		};
+
+		// sort elements by id
+		// --------------------------------------------------------------------------------
+		function sortById(selection)
+		{
+			$(selection).sort(function(a,b) { return a.id > b.id }).each( function ( i, e)
+			{ var p = $(e).parent(); $(e).detach; p.append(e); });
+		}
+
+		// sort elements by attribute
+		// --------------------------------------------------------------------------------
+		function sortByAttribute(selection, attribute)
+		{
+			$(selection).sort(function(a,b) { return $(a).attr(attribute) > $(b).attr(attribute) }).each( function (i,e)
+			{ var p = $(e).parent(); $(e).detach; p.append(e); });
+		}
+
+		// button animation
+		// --------------------------------------------------------------------------------
+
+		function buttonShowHide(button, state)
+		{
+			if (state == true)
+			{
+				button.removeClass('ui-disabled');
+			}
+			else
+			{
+				button.addClass('ui-disabled');
+			}
+		}
+
+
+		// populate ecu information
+		// --------------------------------------------------------------------------------
+
+		function populateEcuInfo(ecu, network)
+		{
+			var ecuInfoTable = "";
+
+			var th1 = "<@gx_translate text_id='GX.COMMON.NAME'/>";
+			var th2 = "<@gx_translate text_id='GX.COMMON.VALUE'/>";
+			var ecuInfoTable = "" +
+					"<table id='${page}-ecuinfo-table" + ecu +
+					"' data-role='table' data-mode='reflow' class='ui-responsive table-stripe partTable'>" +
+					"<thead>" +
+					"<tr>" +
+					"<th class='table-header-text'>" + th1 + "</th>" +
+					"<th class='table-header-text' data-priority='1'>" + th2 + "</th>" +
+					"</tr></thead></table>"
+
+			$("#${page}-ecuinfo" + ecu).html(ecuInfoTable);
+
+			var table = $("#${page}-ecuinfo-table" + ecu);
+
+			var tbody = $("<tbody/>").appendTo(table);
+
+			$.getJSON(GSPlib.url.getVehicleContextPath(idSession, 'machine/networks/' + network + '/ecus/' + ecu + '/identifications'),
+					function(session)
+					{
+						$.each(session, function(index, item)
+						{
+							var row = $("<tr/>").appendTo(tbody);
+							$("<td>" + item.displayText + "</td>").appendTo(row);
+
+
+							// process value with correct formatting
+
+							var valueField = GSPlib.vehicleContext.getDisplayValue(item.value) +
+									GSPlib.vehicleContext.getMemberValue(item.value, 'unitDisplayName');
+
+							if (valueField == "null" || valueField == null)
+							{
+								var value = $("<td>NA</td>").appendTo(row);
+							}
+							else
+							{
+								var value = $("<td>" + valueField + "</td>").appendTo(row);
+							}
+
+							quantity.api.getQuantityInPreferred(item.value,	function(convertedQuantity)
+							{
+								value.text(convertedQuantity.value + convertedQuantity.unitDisplayName);
+							});
+						});
+					});
+		}
+
+		// build ecu information
+		// --------------------------------------------------------------------------------
+
+        let n = 1;
+		function buildEcuCollapsibles()
+		{
+			Object.keys(ecuModel).sort(
+			
+				function compareFunction(param1, param2) {				 
+						return ecuModel[param1]['info']['ecuDescriptiveName'].localeCompare(ecuModel[param2]['info']['ecuDescriptiveName'],"zh");
+					 
+				}
+			).forEach(function (ecu) {
+				var ecuContainer = "";
+				var network = ecuModel[ecu]["info"]["network"];
+				var ecuName = ecuModel[ecu]["info"]["ecuInternalName"];
+				var ecuDescription = ecuModel[ecu]["info"]["ecuDescriptiveName"];
+				var ecuOrder = ecuModel[ecu]["info"]["order"];
+				var collapsed = sessionStorage.getItem(sessionId + "MSTPNExpandedCollapsible" + ecu);
+				if (collapsed == null)
+				{
+					collapsed = true;
+				}
+				ecuContainer = "<div class='list-block'><span class='sp'>"+n+"</span>" +
+						"<div class='e-block' id='${page}-clp" + ecu + "' data-role='collapsible' data-collapsed='" + collapsed + "'ecu='" + ecu + "' network='" + network + "' order='" + ecuDescription + "'>" +
+						"<h3 id='${page}-hdr" + ecu + "' ecu='" + ecu + "' network='" + network + "'>" +
+						"<table><tr>" +
+						"<td><img id='${page}-ecuimg" + ecu + "' src='${icon_spin}' style='vertical-align: middle; margin-right: 5px'/></td>" +
+						"<td style='width:100%; max-width:10px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;'>" + ecuDescription + "</td>" +
+						"<td><a id='${page}-ecubtn" + ecu + "' ecu='" + ecu + "' data-role='button' style='width:23px; height:23px; background-image:url(${icon_bars})'></a></td>" +
+						"</tr></table>" +
+						"</h3>" +
+						"<div class='parts-container' id='${page}-ecuinfo" + ecu + "' network='" + network	+ "'></div>" +
+						"</div></div>"
+						
+				$("#${page}-eculistpartnums").append(ecuContainer);
+            	n++;
+				$("#${page}-clp" + ecu).bind('expand', function () {
+					sessionStorage.setItem(sessionId + "MSTPNExpandedCollapsible" + ecu, false);
+				}).bind('collapse', function () {
+					sessionStorage.setItem(sessionId + "MSTPNExpandedCollapsible" + ecu, true);
+				});
+            });
+
+			// sort collapsibles according to authored order
+			//sortByAttribute($("[id*=${page}-clp]"), "order");
+
+			// handles clicks on the menu button within the collapsible header
+
+			$("[id*=${page}-ecubtn]").on('click', function(e)
+			{
+				// highlight ecu collapsible when panel is opened
+
+				var ecuName = e.currentTarget.getAttribute('ecu');
+				var ecuNoSelectStyle = "ui-btn-up-c ui-body-c ui-btn-hover-c";
+				var ecuSelectedStyle = "ui-btn-up-b ui-body-b ui-btn-hover-b";
+
+				$("#${page}-clp" + ecuName + " .ui-collapsible-heading-toggle").removeClass("ecuNoSelect " + ecuNoSelectStyle).addClass("ecuSelected " + ecuSelectedStyle);
+
+				$("#${page}-ecumenu").on('panelbeforeclose', function ()
+				{
+					$("#${page}-clp" + ecuName + " .ui-collapsible-heading-toggle").removeClass("ecuSelected " + ecuSelectedStyle).addClass("ecuNoSelect " + ecuNoSelectStyle);
+				});
+
+				$("#${page}-ecumenu").panel('open');
+
+				return false;
+			});
+		}
+
+		function restoreDisplay()
+		{
+			OTX.hmi.getParameterValue("ecuComplete", function (ecuComplete) {
+				Object.keys(ecuModel).forEach(function (key, index) {
+					if (ecuComplete[key] === "true") {
+						$("#${page}-ecuimg" + key).attr('src', '${icon_info}');
+						populateEcuInfo(ecu, ecuModel[key].info.network);
+					}
+					else if(ecuComplete[key] === "false"){
+						$("#${page}-ecuimg" + key).attr('src', '${icon_err}');
+						$("#${page}-ecuinfo" + key).html('').append('<p><@gx_translate text_id="GX.TOOL.VEHICLE_ID.PARTNUMBERS.ERROR_READING"/></p>');
+					}
+					else {
+						$("#${page}-ecuimg" + key).attr('src', '${icon_err}');
+						$("#${page}-ecuinfo" + key).html('').append('<p><@gx_translate text_id="GX.COMMON.RESULT_ABORTED"/></p>');
+					}
+				});
+			});
+		}
+		// refresh display as ecus are refreshed
+		// --------------------------------------------------------------------------------
+
+		function updateDisplay(value)
+		{
+			// value is the number of responding ecus
+
+			OTX.hmi.getParameterValue('ecuComplete', function(ecuCompleteList)
+			{
+				for (ecu in ecuCompleteList)
+				{
+					var ecuIsComplete = ecuCompleteList[ecu];
+
+					if (ecuIsComplete == "true")
+					{
+						$("#${page}-ecuimg" + ecu).attr('src', '${icon_info}');
+						populateEcuInfo(ecu, ecuModel[ecu].info.network);
+					}
+					else
+					{
+						$("#${page}-ecuimg" + ecu).attr('src', '${icon_err}');
+						$("#${page}-ecuinfo" + ecu).html('').append('<p><@gx_translate text_id="GX.TOOL.VEHICLE_ID.PARTNUMBERS.ERROR_READING"/></p>');
+					}
+				}
+			});
+		}
+
+
+		// all ecus done
+		// -------------------------------------------------------------------------------
+
+		function completed(value)
+		{
+			if (value == true)
+			{
+				updateDisplay(value);
+				buttonShowHide($("#${page}-refresh-all"), true);
+				buttonShowHide($("#${page}-cancel-all"), false);
+			}
+		}
+
+
+		$('#${page}').bind('pagebeforecreate', function()
+		{
+			// executed once the first time the page is loaded
+
+			// get argument list
+
+			ecuModel = OTX.hmi.getArgument('ecuModel');
+			var ecuList = OTX.hmi.getArgument('ecuList');
+			var ecuComplete = OTX.hmi.getArgument('ecuComplete');
+			var ecuUpdateCounter = OTX.hmi.getArgument('ecuUpdateCounter');
+			var sessionProfile = OTX.hmi.getArgument('sessionProfile');
+			var machineProfile = OTX.hmi.getArgument('machineProfile');
+			var machineContext = OTX.hmi.getArgument('machineContext');
+			var noVci = OTX.hmi.getArgument('noVci');
+			var invocations = OTX.hmi.getArgument('invocations');
+			var restoreNavbar = OTX.hmi.getArgument('restoreNavbar');
+			var vehicleName = OTX.hmi.getArgument("vehicleName");
+
+			$('#${page}-title').text(vehicleName + ' <@gx_translate text_id="GX.TOOL.VEHICLE_ID.PARTNUMBERS.PAGE_HEADER" />');
+
+			// need some error handling so that is no valiud session then use the known (current) sessionId
+
+			idSession = sessionProfile["ID_SESSION"];
+			idmachine = sessionProfile["ID_MACHINE"];
+			idVin     = sessionProfile["ID_VIN"];
+
+			// machine details
+
+			buildEcuCollapsibles();
+			buttonShowHide($("#${page}-refresh-all"), true);
+			buttonShowHide($("#${page}-cancel-all"), false);
+
+			OTX.hmi.addValueListener ('ecuUpdateCounter', function(value) { updateDisplay(value) } );
+			OTX.hmi.addValueListener ('complete', function(value) { completed(value) } );
+
+			// initialize popup manually
+			$("#${page}-sequence-cancelled").popup();
+
+			if (invocations > 0)
+			{
+				restoreDisplay();
+				completed(true);
+			}
+			else
+			{
+				updateDisplay();
+			}
+
+			// handler for refresh all ecus button
+
+			$("#${page}-refresh-all").click(function(e)
+			{
+				$(window).unbind("scroll", mstpnOnScroll);
+				OTX.hmi.valueChangedInPage('userAction', 'RefreshAll');
+
+				// remove existing data and show spinners
+
+				$("[id*=${page}-ecuinfo]").html('');
+				$("[id*=${page}-ecuimg]").attr('src', '${icon_spin}');
+				buttonShowHide($("#${page}-refresh-all"), false);
+				buttonShowHide($("#${page}-cancel-all"), true);
+			});
+
+			// handler for cancel all ecus button
+
+			$("#${page}-cancel-all").click(function(e)
+			{
+				$(window).unbind("scroll", mstpnOnScroll);
+				OTX.hmi.valueChangedInPage('userAction', 'CancelAll');
+				$("#${page}-sequence-cancelled").popup('open', { history: false });
+				setTimeout( function() { $("#${page}-sequence-cancelled").popup('close'); }, 2000 );
+			});
+
+			// handler for refresh single ecu panel action
+
+			$("#${page}-ecumenu-refresh").click(function(e)
+			{
+				$(window).unbind("scroll", mstpnOnScroll);
+				var selectedEcu = $(".ecuSelected").parents();
+				var ecuName = selectedEcu[0].getAttribute('ecu');
+				var network = selectedEcu[0].getAttribute('network');
+				OTX.hmi.valueChangedInPage('userAction', 'RefreshEcu' + "," + ecuName + "," + network);
+				$("#${page}-ecuinfo" + ecuName).html('');
+				$("#${page}-ecuimg"  + ecuName).attr('src', '${icon_spin}');
+				buttonShowHide($("#${page}-refresh-all"), false);
+				buttonShowHide($("#${page}-cancel-all"), true);
+			});
+
+			$("[id*=${page}-navbar-page]").click(function(e)
+			{
+				var navbarSelected = e.currentTarget.id;
+				var navbar = parseInt(navbarSelected.substr(navbarSelected.length - 1));
+				OTX.hmi.valueChangedInPage('restoreNavbar', navbar);
+			});
+		});
+
+		$("#${page}").bind('pageremove', function(){
+			OTX.hmi.clearValueListeners();
+		});
+
+		$('#${page}').bind('pagebeforehide', function()
+		{
+			$(window).unbind("scroll", mstpnOnScroll);
+		});
+
+		$('#${page}').bind('pageshow', function()
+		{
+            // First get into the same preccess stack as the vehicle context server as the
+            // code above will be updateing the DOM in callbacks from this for each ECU.
+            $.getJSON(GSPlib.url.getVehicleContextPath(), function (session){
+                // Now get into the jquery update thread.
+            	setTimeout(function (){
+        			$(window).scrollTop(sessionStorage.getItem(sessionId + "MSTPNScrollPos"));
+        			$(window).bind("scroll", mstpnOnScroll);
+                    }, 50);
+                });
+				
+			//$('#ecuscontent').css('height', Math.max(document.body.scrollHeight,document.documentElement.scrollHeight));
+			
+			//$('#${page}').css('height', Math.max(document.body.scrollHeight,document.documentElement.scrollHeight));
+
+			//$("#${page}-eculistpartnums").css('height', Math.max(document.body.scrollHeight,document.documentElement.scrollHeight));
+
+		});
+
+		// setup up screen for initial display
+		$('#${page}').bind('pageinit', function() {
+			// Display right tool panel when the screen is swiped to left
+			$(document).on("swipeleft", '#${page}', function(e) {
+				if ($.mobile.activePage.jqmData("panel") !== "open") {
+					if (e.type === "swipeleft") {
+						$("#${page}_rightToolPanel").panel("open");
+					}
+				}
+			});
+			$("#${page}_plusplus").click(function(e) {
+				$('.ui-collapsible-heading','#${page}').trigger('expand');
+				$("#${page}_rightToolPanel").panel( "close" );
+			});
+			$("#${page}_minusminus").click(function(e) {
+				$('.ui-collapsible-heading','#${page}').trigger('collapse');
+				$("#${page}_rightToolPanel").panel( "close" );
+			});
+			/// End of right tool panel script
+		});
+		
+		//function updateProgress(){
+		
+		//}
+		//	setInterval(updateProgress, 2000);
+			
+		
+	</script>
+</div>
+</body>
+</html>

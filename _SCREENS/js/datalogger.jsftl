@@ -1,0 +1,1119 @@
+/** Namespace for Datalogger functions. */
+var DataLogger = {};
+
+DataLogger.IN_PARAM_IS_RECORDING = 'isRecording';
+DataLogger.OUT_PARAM_ERROR_IN_SCREEN = 'errorInScreen';
+DataLogger.RECORDING_CONFIRM_DIALOG_URL = "/screen/MonitoringToolStartRecordingDialog.html";
+DataLogger.ERROR_STR = "\u2509\u26A0\u2509";
+
+DataLogger.api = (function() {
+
+	// private
+	var IN_PARAM_LIST_OF_SIGNALS = 'listOfSignals';
+	//for new 2.0.45
+	var IN_PARAM_LIST_OF_SIGNALECUNAMES = 'SignalECUnameList';
+	var IN_PARAM_UI_REFRESH_INTERVAL = 'uiRefreshIntervalInMillis';
+	var IN_OUT_PARAM_STOP_RECORDING_MONITOR = 'stopRecordingMonitor';
+	var IN_OUT_PARAM_EXIT_MONITOR = 'exitMonitor';
+	var IN_OUT_PARAM_PAUSED_MONITOR = 'pausedMonitor';
+	var OUT_PARAM_MARGIN_VALUE = 'marginValue';
+
+	//only used if we want to use the long name of each ECU
+	var ecusData = [];
+
+	var refreshCount = 0;
+	var firstRefresh = true;
+	var samplePoints = 0;
+	var samplePointsReached = false;
+	var samplePointsToShow = 75;
+	var liveChart;
+	var values = [];
+	var stateValues = []
+	var yVals = [[],[],[],[],[],[],[],[]];
+	var constantRatio = [0.44,0.88,0.11,0.66,0.22,0.55,0.33,0.77];
+	var filter = false;
+	var ignore = [ false, false, false, false, false, false, false, false ];
+	var units = [ "", "", "", "", "", "", "", "" ];
+	var validSignal = [ true, true, true, true, true, true, true, true ];
+	var enumSignal = [ 0, 0, 0, 0, 0, 0, 0, 0 ];
+	var lineCount;
+	var timestamp = 0;
+	var needsRefresh = false;
+	var viewFrozen = false;
+
+	var interval = 0;
+	var origInterval = 0;
+	var intervalAdjustment = 100; //millis
+	var refreshTimeoutRef = false;
+	var monitoringTimerRef = false;
+	var monitoringTimerCheckPeriod = intervalAdjustment; //should be the same
+	var monitoringTimerCnt = 0;
+	var monitoringTimerPrev = 0;
+	var monitoringCancelled = false;
+	
+	// the change of the displayname of the ecuname
+	var ecuMap = new Map([
+						 ["EV69_OLD_TBOX","TBOX"],
+						 ["EV69_FICM_CR_2018","FICM_CR"],
+						 ["ABSESP","ABSESP"],
+						 ["ABSESP_CCAN","ABSESP"],
+						 ["AFS","AFS"],
+						 ["AFS_CCAN","AFS"],
+						 ["BCM","BCM"],
+						 ["BCM_CCAN","BCM"],
+						 ["BMS","BMS"],
+						 ["BMS_PCAN","BMS"],
+						 ["BVS","BVS"],
+						 ["DCDC","DCDC"],
+						 ["DCDC_PCAN","DCDC"],
+						 ["EHPS","EHPS"],
+						 ["EHPS_CCAN","EHPS"],
+						 ["GAW","GAW"],
+						 ["HCM","HCM"],
+						 ["HCM_CCAN","HCM"],
+						 ["IPK","IPK"],
+						 ["IPK_CCAN","IPK"],
+						 ["LCA","LCA"],
+						 ["LCA_Slave","LCA"],
+						 ["MC","MC"],
+						 ["MC_PCAN","MC"],
+						 ["PEPS","PEPS"],
+						 ["PEPS_CCAN","PEPS"],
+						 ["PTG","PTG"],
+						 ["SRS","SRS"],
+						 ["SRS_CCAN","SRS"],
+						 ["TBOX","TBOX"],
+						 ["TBOX_PCAN","TBOX"],
+						 ["TPMS","TPMS"],
+						 ["TPMS_CCAN","TPMS"],
+						 ["VMS","VMS"],
+						 ["VMS_PCAN","VMS"],
+						 ["SK81_FICM_CR","FICM_CR"],
+						 ["SV51_FICM_CR","FICM_CR"],
+						 ["SV61_2018_BCM","BCM"],
+						 ["SV61_2018_FICM_CR","FICM_CR"],
+						 ["SV61_2018_GAW","GAW"],
+						 ["SV61_2018_IPK","IPK"],
+						 ["SV61_2018_LCA","LCA"],
+						 ["SV61_2018_TBOX","TBOX"],
+						 ["SV71_FICM_CR","FICM_CR"],
+						 ["SV73_FICM_CR","FICM_CR"],
+						 ["SV63_FICM_CR","FICM_CR"],
+						 ["SV91_FICM_CR","FICM_CR"]
+										          ]);
+	
+	var lineColours = [
+                       { "code" : 0, "rgb" : "#1f77b4" },
+                       { "code" : 1, "rgb" : "#ff7f0e" },
+                       { "code" : 2, "rgb" : "#2ca02c" },
+                       { "code" : 3, "rgb" : "#d62728" },
+                       { "code" : 4, "rgb" : "#9467bd" },
+                       { "code" : 5, "rgb" : "#8c564b" },
+                       { "code" : 6, "rgb" : "#e377c2" },
+                       { "code" : 7, "rgb" : "#bcbd22" }];
+
+    /**
+     * Evaluates integer value for string representation of state according provided enumeration values
+     */
+	var evaluateEnumeratedValue = function(yVal, signal, line)
+	{
+		var states = signal.VARIABLE.VALUE.ENUMERATION_VALUES;
+		
+		if (states)
+		{
+			
+			if (enumSignal[line] && states[yVal] != undefined)
+			{
+				
+				return states[yVal];
+			}
+		}
+		return -1;
+	};
+
+	/**
+	 * Adds value into value array
+	 */
+    var addValue = function (line, xVal, yVal, pos, lineColor, scale, isVisible, isEnum, display){
+    	values.push({
+    		id : line,
+    		x : xVal,
+    		y : yVal,
+    		position : pos,
+    		rgb : lineColor,
+    		axisScale : scale,
+    		visible:isVisible,
+    		enum:isEnum,
+    		displayValue : display
+    	});
+    };
+
+		/**
+		* Clear any running Timeout	or Interval
+		*/
+		var clearTimeoutIntervals = function () {
+			if (refreshTimeoutRef !== false) {
+				clearTimeout(refreshTimeoutRef);
+				refreshTimeoutRef = false;
+			}
+			if (monitoringTimerRef !== false) {
+				clearInterval(monitoringTimerRef);
+				monitoringTimerRef = false;
+			}
+		};
+
+
+// public
+return {
+		/**
+		 * Encode byte array value for display.
+		 *
+		 * @param valueCode
+		 *            the value to encode
+		 *
+		 * @return the value encoded in a string
+		 */
+		encodeBytes : function(valueCode) {
+			var byteArrayStr = valueCode.toString();
+			var byteArray = byteArrayStr.split(",");
+			byteArrayStr = "";
+
+			for (var i = 0; i < byteArray.length; i++) {
+				u = (256 + parseInt(byteArray[i])) % 256;
+				byteArrayStr = byteArrayStr + (0x100 + u).toString(16).substr(-2).toUpperCase();
+			}
+
+			return byteArrayStr;
+		},
+
+		/**
+		 * Encode a value for display.
+		 *
+		 * @param typeCode
+		 *            string type of the value
+		 * @param valueCode
+		 *            the value to encode
+		 *
+		 * @return the value encoded in a string
+		 */
+		encodeValue : function(typeCode, valueCode) {
+			var newValue = valueCode;
+
+			switch (typeCode)
+			{
+				case "VT_QUANTITY":
+					newValue = valueCode.value;
+					break;
+
+				case "VT_FLOAT":
+					newValue = valueCode.toPrecision(6);
+					break;
+
+				case "VT_BYTEFIELD":
+					newValue = DataLogger.api.encodeBytes(valueCode);
+					break;
+
+				case "VT_BOOLEAN":
+				case "VT_STRING":
+				case "VT_INTEGER":
+				case "VT_TEXTTABLE":
+				default:
+					break;
+			}
+
+			return newValue;
+		},
+
+		/**
+		 * Improve displaying of OTX units.
+		 *
+		 * @param unit
+		 *            the unit code to format
+		 *
+		 * @return the unit string for display
+		 */
+		reformatUnit : function(unit) {
+			if(unit.indexOf('[int]') > -1 || unit.indexOf('[long]') > -1 || unit.indexOf('[float]') > -1){
+				return "";
+			}
+			return unit.replace(".", "");
+		},
+
+		/**
+		 * Returns the current line colours.
+		 *
+		 * @return array of line colour mappings
+		 */
+		getLineColours : function() {
+			return lineColours;
+		},
+
+		/**
+		 * Returns the short name of the ecu.
+		 *
+		 */
+		getEcuShortName : function(ecuName) {
+			if(ecuMap.has(ecuName)){
+				return ecuMap.get(ecuName);
+			}
+			else{
+				return ecuName.split("_")[1];
+			}
+		},
+		
+		/**
+		 * Sets the current line colours.
+		 *
+		 * @param newLineColours
+		 *            the new line colours
+		 */
+		setLineColours : function(newLineColours) {
+			lineColours = newLineColours;
+		},
+
+		/**
+		 * Renders the signal display with one row per signal in table with ID
+		 * "tableData".
+		 *
+		 * @param modelVars
+		 *            the signals to render
+		 * @param allowsReresh
+		 *            true when called from the point when the table has been
+		 *            created by jQM and allows refreshing
+		 */
+		displayModelVars : function(modelVars, EcuVars,allowsRefresh, useEcuLongName)
+		{
+			
+			for (var i = 0; i < modelVars.length; i++)
+			{
+				if(monitoringCancelled === true) {
+					return;
+				}
+				var valueText = '<@gx_translate text_id="GX.COMMON.UNKNOWN" />';
+				var unitText = "";
+				var variableValue = modelVars[i].VARIABLE.VALUE;
+				
+				
+				
+				if(modelVars[i].ERROR_STRING.length>0)
+				{
+					
+					var errorString = modelVars[i].ERROR_STRING;
+					if (errorString === "")
+					{
+						if ((variableValue !== undefined) && (variableValue !== null) && (variableValue !== ""))
+						{
+							if ((variableValue.VALUE !== undefined) && (variableValue.VALUE !== null) && (variableValue.VALUE !== ""))
+							{
+								valueText = DataLogger.api.encodeValue(variableValue.dataType, variableValue.VALUE);
+								
+								if ((variableValue.VALUE.unit !== undefined) && (variableValue.VALUE.unit !== null))
+								{
+									unitText = variableValue.VALUE.unit;
+								}
+							}
+						}
+					}
+					else
+					{
+						valueText = DataLogger.ERROR_STR;
+					}
+				}
+				else
+				{
+					
+					
+					if ((variableValue !== undefined) && (variableValue !== null) && (variableValue !== ""))
+						{
+							if ((variableValue.VALUE !== undefined) && (variableValue.VALUE !== null) && (variableValue.VALUE !== ""))
+							{
+								valueText = DataLogger.api.encodeValue(variableValue.dataType, variableValue.VALUE);
+								
+								if ((variableValue.VALUE.unit !== undefined) && (variableValue.VALUE.unit !== null))
+								{
+									unitText = variableValue.VALUE.unit;
+								}
+							}
+						}
+						
+				}
+				
+
+				var signalId = "signal_" + i;
+
+				if ($("#" + signalId).length > 0)
+				{
+					$("#" + signalId).text(valueText);
+					$("#unit-" + signalId).text(DataLogger.api.reformatUnit(unitText));
+					if (errorString ==null||errorString === "")
+					{
+						$("#" + signalId).parent().removeAttr( 'style' );
+					}
+					else
+					{
+						$("#" + signalId).parent().css('border','2px solid red');
+					}
+				}
+				else
+				{
+					needsRefresh = true;
+
+					var listTxt = "<tr>";
+					//have it default to ecu name
+					//var ecuName = modelVars[i].VARIABLE.ECU_NAME;
+					var ecuName = EcuVars[i];
+					ecuName = DataLogger.api.getEcuShortName(ecuName);
+
+					if(useEcuLongName == true){
+						for(var x = 0; x < ecusData.length; x++) {
+							//couple of possibilties here of it being wrong so make sure we have something.
+							if(ecusData[x].displayName!==undefined && ecusData[x].displayName!=null && EcuVars[i] == ecusData[x].displayName) {
+								ecuName = ecusData[x].displayDescription;
+								break;
+							}
+						}
+					}
+					
+
+					if (variableValue != null && variableValue.dataType == "VT_QUANTITY")
+					{
+						listTxt = listTxt + "<td>" + ecuName + "</td>" + "<td>" + modelVars[i].DISPLAY_NAME + "</td><td id='" + signalId + "'>" + valueText + "</td><td id='unit-" + signalId + "'>"	+ DataLogger.api.reformatUnit(unitText) + "</td>";
+					}
+					else
+					{
+						listTxt = listTxt + "<td>" + ecuName + "</td>" + "<td>" + modelVars[i].DISPLAY_NAME + "</td><td id='" + signalId + "'>" + valueText + "</td><td id='unit-" + signalId + "'></td>";
+					}
+
+					listTxt = listTxt + "</tr>";
+					$('#tableData').append(listTxt);
+				}
+			}
+
+			if (needsRefresh && allowsRefresh)
+			{
+				needsRefresh = false;
+				$('#signal-table').table("refresh");
+
+				// Workaround for GXSTAND-1165 that should be removed by  GXSTAND-1172
+				var columnIndex = 0;
+				$("#signal-table-popup fieldset").find("input").each(function() {
+					var sel = ":nth-child(" + (columnIndex + 1) + ")";
+					$(this).jqmData("cells", $("#signal-table").find("tr").children(sel));
+					columnIndex++;
+				});
+			}
+		},
+
+		/**
+		 * Renders the signal display with selected row per signal in table with ID
+		 * "tableData".
+		 *
+		 * @param modelVars
+		 *            the signals to render
+		 * @param allowsReresh
+		 *            true when called from the point when the table has been
+		 *            created by jQM and allows refreshing
+		 */
+		displayModelVars2 : function(modelVars, EcuVars,allowsRefresh, n, useEcuLongName)
+		{
+			for (var i = n; i <= n+25 && i < modelVars.length; i++)
+			{
+				if(monitoringCancelled === true) {
+					return;
+				}
+				var valueText = '<@gx_translate text_id="GX.COMMON.UNKNOWN" />';
+				var unitText = "";
+				var variableValue = modelVars[i].VARIABLE.VALUE;
+				
+				if(modelVars[i].ERROR_STRING>0)
+				{
+					var errorString = modelVars[i].ERROR_STRING;
+					if (errorString === "")
+					{
+						if ((variableValue !== undefined) && (variableValue !== null) && (variableValue !== ""))
+						{
+							if ((variableValue.VALUE !== undefined) && (variableValue.VALUE !== null) && (variableValue.VALUE !== ""))
+							{
+								valueText = DataLogger.api.encodeValue(variableValue.dataType, variableValue.VALUE);
+								if ((variableValue.VALUE.unit !== undefined) && (variableValue.VALUE.unit !== null))
+								{
+									unitText = variableValue.VALUE.unit;
+								}
+							}
+						}
+					}
+					else
+					{
+						valueText = DataLogger.ERROR_STR;
+					}
+				}
+				else
+				{
+					
+					
+					if ((variableValue !== undefined) && (variableValue !== null) && (variableValue !== ""))
+						{
+							if ((variableValue.VALUE !== undefined) && (variableValue.VALUE !== null) && (variableValue.VALUE !== ""))
+							{
+								valueText = DataLogger.api.encodeValue(variableValue.dataType, variableValue.VALUE);
+								if ((variableValue.VALUE.unit !== undefined) && (variableValue.VALUE.unit !== null))
+								{
+									unitText = variableValue.VALUE.unit;
+								}
+							}
+						}
+				}
+				
+
+				var signalId = "signal_" + i;
+
+				if ($("#" + signalId).length > 0)
+				{
+					$("#" + signalId).text(valueText);
+					$("#unit-" + signalId).text(DataLogger.api.reformatUnit(unitText));
+					if (errorString ==null||errorString === "")
+					{
+						$("#" + signalId).parent().removeAttr( 'style' );
+					}
+					else
+					{
+						$("#" + signalId).parent().css('border','2px solid red');
+					}
+				}
+				else
+				{
+					needsRefresh = true;
+
+					var listTxt = "<tr>";
+					//have it default to ecu name
+					//var ecuName = modelVars[i].VARIABLE.ECU_NAME;
+					var ecuName = EcuVars[i];
+					
+					ecuName = DataLogger.api.getEcuShortName(ecuName);
+					
+					if(useEcuLongName == true){
+						for(var x = 0; x < ecusData.length; x++) {
+							//couple of possibilties here of it being wrong so make sure we have something.
+							if(ecusData[x].displayName!==undefined && ecusData[x].displayName!=null && EcuVars[i] == ecusData[x].displayName) {
+								ecuName = ecusData[x].displayDescription;
+								break;
+							}
+						}
+					}
+
+					
+					if (variableValue != null && variableValue.dataType == "VT_QUANTITY")
+					{
+						listTxt = listTxt + "<td>" + ecuName + "</td>" + "<td>" + modelVars[i].DISPLAY_NAME + "</td><td id='" + signalId + "'>" + valueText + "</td><td id='unit-" + signalId + "'>"	+ DataLogger.api.reformatUnit(unitText) + "</td>";
+					}
+					else
+					{
+						listTxt = listTxt + "<td>" + ecuName + "</td>" + "<td>" + modelVars[i].DISPLAY_NAME + "</td><td id='" + signalId + "'>" + valueText + "</td><td id='unit-" + signalId + "'></td>";
+					}
+
+					listTxt = listTxt + "</tr>";
+					$('#tableData').append(listTxt);
+				}
+			}
+
+			if (needsRefresh && allowsRefresh)
+			{
+				needsRefresh = false;
+				$('#signal-table').table("refresh");
+
+				// Workaround for GXSTAND-1165 that should be removed by  GXSTAND-1172
+				var columnIndex = 0;
+				$("#signal-table-popup fieldset").find("input").each(function() {
+					var sel = ":nth-child(" + (columnIndex + 1) + ")";
+					$(this).jqmData("cells", $("#signal-table").find("tr").children(sel));
+					columnIndex++;
+				});
+			}
+		},
+		
+		/**
+		 * Initialises the data logger.
+		 *
+		 * @param height
+		 *            the height of the live view chart
+		 * @param width
+		 *            the width of the live view chart
+		 */
+		init : function(height, width, buttonContainer, useEcuLongName) {
+
+			var modelVars = OTX.hmi.getArgument(IN_PARAM_LIST_OF_SIGNALS);
+			var EcuVars = OTX.hmi.getArgument(IN_PARAM_LIST_OF_SIGNALECUNAMES);
+
+			//only make this call if we actually need it to stop unecessary overhead
+			if(useEcuLongName == true) {
+					$.ajax({
+							url: "/monitoring/data-provider",
+							async: false,
+							success: function (data) {
+									ecusData = data.ecus;
+							}
+					});
+			}
+
+			DataLogger.api.displayModelVars(modelVars, EcuVars,false, useEcuLongName);
+			DataLogger.api.initChart(height, width, buttonContainer, useEcuLongName);
+		},
+
+		
+		/**
+		 * return the signaldata that mostly near the top of the screen.
+		 * 
+		 */
+		marginvalue : function(modelVars) {
+			for (var i = 0; i < modelVars.length; i++) {
+				var signalId = "signal_" + i;
+				var x = $("#" + signalId).offset().top;
+				var y = $(window).scrollTop();
+				var z = x-y;
+				if(z>65){
+					return i = 0;
+				}
+				if(z<=65 && z>= -65){
+					return i;
+				}
+				else{
+					continue;
+				}
+			}
+		},
+		
+		/**
+		 * Abort the data logger screen.
+		 *
+		 */
+		abort : function() {
+			OTX.hmi.valueChangedInPage(IN_OUT_PARAM_EXIT_MONITOR, 'true');
+			monitoringCancelled = true;
+			monitoringTimerCnt = monitoringTimerPrev = 0;
+			clearTimeoutIntervals();
+		},
+
+
+		/**
+		 * Start updating the live chart and tabular view.
+		 *
+		 */
+		startUpdates : function() {
+			monitoringTimerCnt = monitoringTimerPrev = 0;
+			monitoringCancelled = false;
+			origInterval = interval = OTX.hmi.getArgument(IN_PARAM_UI_REFRESH_INTERVAL);
+			monitoringTimerRef = setInterval(function(){monitoringTimerCnt++;}, monitoringTimerCheckPeriod);
+			refreshTimeoutRef = setTimeout(DataLogger.api.refreshMonitoringDisplay, interval);
+		},
+
+
+		/**
+		 * Refresh the MonitoringDisplay
+		 */
+		refreshMonitoringDisplay : function() {
+		
+			if(monitoringCancelled === true) {
+				return;
+			}
+			OTX.hmi.getParameterValues([IN_PARAM_LIST_OF_SIGNALS], function(values) {
+
+					var diffTimerInterval = (monitoringTimerCnt - monitoringTimerPrev) * monitoringTimerCheckPeriod;
+					if(diffTimerInterval > interval && monitoringTimerPrev > 0) {
+						interval += intervalAdjustment;
+					} else if(diffTimerInterval < interval && monitoringTimerPrev > 0 && (interval - diffTimerInterval) >= intervalAdjustment) {
+						interval -= intervalAdjustment;
+						interval = interval < origInterval ? origInterval:interval;
+					}
+					monitoringTimerPrev = monitoringTimerCnt;
+
+					if (!viewFrozen) {
+						if(values[IN_PARAM_LIST_OF_SIGNALS].length <= 25 )
+						{
+							
+							DataLogger.api.displayModelVars(values[IN_PARAM_LIST_OF_SIGNALS],values[IN_PARAM_LIST_OF_SIGNALECUNAMES], true);
+						}
+						else
+						{	
+							var n = DataLogger.api.marginvalue(values[IN_PARAM_LIST_OF_SIGNALS]);
+							OTX.hmi.valueChangedInPage(OUT_PARAM_MARGIN_VALUE, n);
+							DataLogger.api.displayModelVars2(values[IN_PARAM_LIST_OF_SIGNALS], values[IN_PARAM_LIST_OF_SIGNALECUNAMES],true, n);
+						}
+					}
+					DataLogger.api.updateChart(values[IN_PARAM_LIST_OF_SIGNALS]);					
+					
+					if(refreshCount === 1){
+						firstRefresh = false;
+						DataLogger.api.refreshMonitoringDisplay();	
+						refreshCount = 2;
+					}
+					if(firstRefresh === true){
+						interval = monitoringTimerCnt * monitoringTimerCheckPeriod;		
+						refreshCount = 1;
+						DataLogger.api.refreshMonitoringDisplay();	
+					}
+					
+			});
+			
+			if(firstRefresh !== true){	
+				refreshTimeoutRef = setTimeout(DataLogger.api.refreshMonitoringDisplay, interval);
+			}
+		},
+
+		/**
+		 * Callback from 'stop recording button'. This updates the button
+		 * states, and stops the recording.
+		 *
+		 * @param btStartRecording
+		 *            the button will be enabled
+		 * @param btStopRecording
+		 *            the button that will be disabled
+		 */
+		onStopRecordingButton : function(btStartRecording, btStopRecording) {
+			OTX.hmi.valueChangedInPage(IN_OUT_PARAM_STOP_RECORDING_MONITOR, 'true');
+			GSPlib.hmi.disableButton(btStopRecording);
+			GSPlib.hmi.enableButton(btStartRecording, function() {
+			DataLogger.api.onStartRecordingButton(btStartRecording, btStopRecording);
+			});
+		},
+
+		/**
+		 * Sets the state of the Freeze button
+		 *
+		 * @param frozen
+		 *            true if the view is currently frozen
+		 */
+		setFreezeButtonsState : function(frozen) {
+			var button = $("#btPauseMonitoring");
+			var buttonText = button.find(".ui-btn-text");
+			var buttonIcon = button.find(".ui-icon");
+
+			if (frozen) {
+				buttonText.text('<@gx_translate text_id="GX.TOOL.MONITORING.SIGNAL_VIEW.BT_UNFREEZE_VIEW" />');
+				button.data("icon", "check");
+				buttonIcon.addClass("ui-icon-check").removeClass("ui-icon-delete");
+			} else {
+				buttonText.text('<@gx_translate text_id="GX.TOOL.MONITORING.SIGNAL_VIEW.BT_FREEZE_VIEW" />');
+				button.data("icon", "delete");
+				buttonIcon.addClass("ui-icon-delete").removeClass("ui-icon-check");
+			}
+		},
+
+		/**
+		 * Callback from 'start recording button'. This updates the button
+		 * states, pauses the live view and opens the page with the dialog to
+		 * entry the 'start recording' details.
+		 *
+		 * @param btStartRecording
+		 *            the button will be disabled
+		 * @param btStopRecording
+		 *            the stop button - unused
+		 */
+		onStartRecordingButton : function(btStartRecording, btStopRecording) {
+			sessionStorage.setItem(sessionId + 'playbackWasRun',true);
+			GSPlib.hmi.disableButton(btStartRecording);
+			var toUrl = DataLogger.RECORDING_CONFIRM_DIALOG_URL + "#recordingIdInput";
+
+			var attrs = {
+				allowSamePageTransition : false,
+				reload : true,
+				transition : 'none',
+				role : 'page',
+				changeHash : true,
+				dataUrl : toUrl,
+			};
+
+			// pause monitoring to speed up dialog rendering.
+			OTX.hmi.valueChangedInPage(IN_OUT_PARAM_PAUSED_MONITOR, 'true');
+
+			$.mobile.changePage(toUrl, attrs);
+		},
+
+		/**
+		 * Button callback to toggle if a line should be ignored on the live chart.
+		 *
+		 * @param ev
+		 *            event data from button click
+		 */
+		ignoreLine : function(ev) {
+			ignore[ev.data] = !ignore[ev.data];
+			filter = (ignore[ev.data] || (ignore.indexOf(true) != -1));
+		},
+
+		/**
+		 * Initialises the live chart.
+		 *
+		 * @param height
+		 *            the height of the live view chart
+		 * @param width
+		 *            the width of the live view chart
+		 */
+		initChart : function(chartWidth, chartHeight, buttonContainer, useEcuLongName)
+		{
+			OTX.hmi.getParameterValues([IN_PARAM_LIST_OF_SIGNALS], function(values) {
+				modelVars = values[IN_PARAM_LIST_OF_SIGNALS];
+				//for new 2.0.45
+				var EcuVars = OTX.hmi.getArgument(IN_PARAM_LIST_OF_SIGNALECUNAMES);
+				
+				var letters = [ 'a', 'b', 'c', 'd', 'e' ];
+				lineCount = modelVars.length;
+				if (lineCount > 8)
+				{
+					lineCount = 8; // Limit number of lines to 8
+				}
+				var valid = 0;
+				for (var line = 0; line < lineCount; line++)
+				{
+					
+					var yVal = null;
+					var visiblePoint = 0;
+					if ((modelVars[line].VARIABLE.VALUE.dataType === 'VT_STRING')||
+					    (modelVars[line].VARIABLE.VALUE.dataType === 'VT_BYTEFIELD')||
+						(modelVars[line].VARIABLE.VALUE.dataType === 'VT_BOOLEAN'))
+					{
+						// Non-numeric types should be treated separately to ignored lines
+						validSignal[line] = false;
+					}
+					else
+					{
+	                    yVals[line] = [];
+						if (modelVars[line].VARIABLE.VALUE.dataType === 'VT_QUANTITY')
+						{
+							if (modelVars[line].VARIABLE.VALUE.VALUE != null)
+							{
+								yVal = modelVars[line].VARIABLE.VALUE.VALUE.value;
+								yVals[line].push(yVal);
+								visiblePoint = 1;
+							}
+						}
+						else
+						{
+							if (modelVars[line].VARIABLE.VALUE.VALUE != null)
+							{
+								yVal = modelVars[line].VARIABLE.VALUE.VALUE
+								
+								if((typeof yVal) !== 'number'){
+									enumSignal[line] = 1
+									yVal = evaluateEnumeratedValue(yVal, modelVars[line], line)
+								}
+								yVals[line].push(yVal);
+							    visiblePoint = 1;
+							}
+						}
+
+						var pos = ((valid % 2 === 0) ? 0 : 1);
+						var scaling = -5 - 50 * (Math.floor(valid / 2));
+
+						addValue(line, 0, yVal, pos, lineColours[line].rgb, (enumSignal[line] ? 0 : scaling), visiblePoint, enumSignal[line])
+						
+						//var ecuName = modelVars[line].VARIABLE.ECU_NAME;
+						var ecuName = EcuVars[line];
+						
+						
+						ecuName = DataLogger.api.getEcuShortName(ecuName);
+						
+						if(useEcuLongName == true){
+							for(var x = 0; x < ecusData.length; x++) {
+								if(EcuVars[line] == ecusData[x].displayName) {
+									ecuName = ecusData[x].displayDescription;
+									break;
+								}
+							}
+						}
+						
+						
+						valid = enumSignal[line] ? valid : valid + 1;
+						$(buttonContainer).append(
+						//use displayName of the signal as the label (not the variable providing value)
+								' <div class="ui-block-' + letters[line % 3] + '"><input checked="checked" type="checkbox" name="checkbox' + line + '" id="checkbox'
+										+ line + '"><label for="checkbox' + line + '" id="checkbox' + line + 'Label">' + ecuName + " - " + modelVars[line].DISPLAY_NAME
+										+ '<span class="unit-field"></span></label></div>');
+						$('#checkbox' + line).click(line, DataLogger.api.ignoreLine);
+					}
+					// Even though the outer function is called at pagebeforecreate this happens later due to the async
+					// call to getParameterValues, which means we need to do this:
+					$(buttonContainer).trigger('create');
+				}
+
+				vg.parse.spec("/common/liveChart.json", function(chart) {
+					liveChart = chart({
+						el : "#chart",
+						data : {
+							signals : values
+						}
+					}).padding({
+						"left" : 190,
+						"right" : chartHeight + 190,
+						"top" : 10,
+						"bottom" : 70
+					}).height(chartWidth).width(chartHeight - 80).update();
+				});
+			});
+		},
+
+		/**
+		 * Updates the live chart.
+		 *
+		 * @param modelVars
+		 *            the signals to plot
+		 */
+		updateChart : function(modelVars)
+		{
+			if(monitoringCancelled === true) {
+				return;
+			}
+			var valid = 0;
+			var bounds = [];
+			timestamp += interval;
+
+			if (!samplePointsReached)
+			{
+				samplePoints++;
+				if (samplePoints > samplePointsToShow)
+				{
+					samplePointsReached = true;
+				}
+			}
+
+			for (var line = 0; line < lineCount; line++)
+			{
+				
+				if (validSignal[line] === true)
+				{
+					var yVal = DataLogger.api.evalYvalue(modelVars[line], line);
+				
+					var display = (yVal != null ? yVal : "");
+					var pos = ((valid % 2 === 0) ? 0 : 1);
+					var scaling = -5 - 50 * (Math.floor(valid / 2));
+					
+					if((typeof yVal) !== 'number'){
+						yVal = evaluateEnumeratedValue(yVal, modelVars[line], line)
+						
+					}
+				
+					var visiblePoint = (yVal != null ? 1 : 0);
+					
+					addValue(line, timestamp, yVal, pos, lineColours[line].rgb, enumSignal[line] ? 0 : scaling, visiblePoint, enumSignal[line], display)
+				
+					if (samplePointsReached)
+					{
+						// Shifting each value is *much* faster than a single splice in FF
+						values.shift();
+						yVals[line].shift();
+					}
+
+					if(yVal != null)
+					{
+						
+						yVals[line].push(yVal);
+						
+					}
+					else if(yVals[line].length > 0)
+					{
+						yVals[line].push(yVals[line][yVals[line].length-1]);
+					}
+
+					DataLogger.api.createBounds(bounds, line, timestamp, pos, scaling)
+					
+					valid = enumSignal[line] ? valid : valid + 1;
+					
+				}
+			}
+			if (!viewFrozen)
+			{
+				DataLogger.api.populateChartData(bounds)
+			}
+		},
+
+		/**
+		 * evaluates Y value from recieved signal data
+		 */
+		evalYvalue : function(modelVar, line)
+		{
+			var yVal = null;
+
+			if(modelVar.ERROR_STRING.length>0)
+			{
+				var errorString = modelVar.ERROR_STRING;
+				if (errorString === "")
+				{
+					if (modelVar.VARIABLE.VALUE.dataType === 'VT_QUANTITY')
+					{
+						if (modelVar.VARIABLE.VALUE.VALUE != null)
+						{
+							yVal = modelVar.VARIABLE.VALUE.VALUE.value;
+							var unit = modelVar.VARIABLE.VALUE.VALUE.unit
+							if (units[line] != unit)
+							{
+								units[line] = unit;
+								if ((unit != null) && (DataLogger.api.reformatUnit(unit) != ""))
+								{
+									$('#checkbox' + line + 'Label .ui-btn-text' + ' .unit-field').html(' (' + unit + ')');
+								}
+							}
+						}
+					}
+					else
+					{
+						if (modelVar.VARIABLE.VALUE.VALUE != null)
+						{
+							yVal = modelVar.VARIABLE.VALUE.VALUE;
+						}
+					}
+				}
+				else
+				{
+					yVal = DataLogger.ERROR_STR;
+				}
+			}
+			else
+			{
+				
+					
+					if (modelVar.VARIABLE.VALUE.dataType === 'VT_QUANTITY')
+					{
+						if (modelVar.VARIABLE.VALUE.VALUE != null)
+						{
+							yVal = modelVar.VARIABLE.VALUE.VALUE.value;
+							var unit = modelVar.VARIABLE.VALUE.VALUE.unit
+							if (units[line] != unit)
+							{
+								units[line] = unit;
+								if ((unit != null) && (DataLogger.api.reformatUnit(unit) != ""))
+								{
+									$('#checkbox' + line + 'Label .ui-btn-text' + ' .unit-field').html(' (' + unit + ')');
+								}
+							}
+						}
+					}
+					else
+					{
+						
+						if (modelVar.VARIABLE.VALUE.VALUE != null)
+						{
+							yVal = modelVar.VARIABLE.VALUE.VALUE;
+						}
+					}
+			}
+			
+			
+			return yVal;
+		},
+
+		/**
+		 * Populates new comming datea to the live chart
+		 */
+		populateChartData : function(bounds){
+			var valuesAndBounds = values.concat(bounds);
+			if (filter)
+			{
+				var filtered = valuesAndBounds.filter(DataLogger.api.filterSignalData);
+				liveChart.data({
+					signals : filtered
+				}).update();
+			}
+			else
+			{
+				liveChart.data({
+					signals : valuesAndBounds
+				}).update();
+			}
+		},
+
+		/**
+		 * Create not visible bounds for signal
+		 */
+		createBounds : function(bounds, line, timestamp, pos, scaling){
+			if(yVals[line].length > 0)
+			{
+				var max = Math.max.apply(Math, yVals[line]);
+				var min = Math.min.apply(Math, yVals[line]);
+
+				var fixedMax = max + (max-min)/6;
+				var fixedMin = min - (max-min)/6;
+
+				if(fixedMax === fixedMin)
+				{
+					fixedMin = fixedMin - 2 * constantRatio[line];
+					fixedMax = fixedMin + 2;
+				}
+
+				bounds.push({
+					id : line,
+					x : timestamp,
+					y : fixedMin,
+					position : pos,
+					rgb : lineColours[line].rgb,
+					axisScale : scaling,
+					visible:0,
+					enum:enumSignal[line]
+				});
+				bounds.push({
+					id : line,
+					x : timestamp,
+					y : fixedMax,
+					position : pos,
+					rgb : lineColours[line].rgb,
+					axisScale : scaling,
+					visible:0,
+					enum:enumSignal[line]
+				});
+			}
+		},
+
+		/**
+		 * Button callback to toggle if the view is frozen.
+		 *
+		 */
+		onPauseMonitoringButton : function() {
+			viewFrozen = !viewFrozen;
+			DataLogger.api.setFreezeButtonsState(viewFrozen);
+		},
+
+		/**
+		 * Must be called to tidy up before exitting.
+		 *
+		 */
+		onExit : function() {
+			clearTimeoutIntervals();
+		},
+
+		/**
+		 * Filter callback to determine if a line should be displayed.
+		 *
+		 * @param d
+		 *            the data item
+		 *
+		 * @return true if the line item should be displayed
+		 */
+
+		filterSignalData : function(d) {
+			return (!ignore[d.id]);
+		},
+
+		/**
+		 * Set flag to trigger the recording. This is used to share data between 'Start recording' dialog and liveview page.
+		 */
+		setTriggerRecording : function ()
+		{
+		  sessionStorage.dataloggerTriggerRecording = 'true';
+		},
+
+		/**
+     	 * Unset the flag to trigger the recording. This is used to share data between 'Start recording' dialog and liveview page.
+     	 */
+		setRecordingTriggered : function()
+		{
+		  sessionStorage.dataloggerTriggerRecording = 'false';
+		},
+
+		/**
+     	 * Test if the flag to trigger the recording is set.
+     	 */
+		shouldTriggerRecording : function()
+		{
+		  return sessionStorage.dataloggerTriggerRecording === 'true';
+		}
+
+	};// return end
+
+})();

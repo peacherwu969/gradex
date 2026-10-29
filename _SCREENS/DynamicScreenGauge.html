@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dynamic Screen Test</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="common/jquery.mobile-1.3.0.min.css" />
+<link rel="stylesheet" href="busy.css" />
+<link rel="stylesheet" href="common/nv.d3.css" />
+<script src="common/jquery-1.9.1.min.js"></script>
+<script src="common/jquery.mobile-1.3.0.min.js"></script>
+<script src="common/js-url.min.js"></script>
+<script type="text/javascript" src="common/d3.min.js"></script>
+<script type="text/javascript" src="common/barChart.js"></script>
+<script src="common/otx.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=9" />
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="-1"/>
+</head>
+
+<body>
+	<div data-role="page" id="mainPage">
+
+		<div data-role="panel" id="testPanel" data-position="right" data-display="overlay">
+			<ul data-role="listview">
+				<li data-role="divider" data-iconpos="notext" data-theme="e">Actions</li>
+				<li data-icon="delete" id="testAbort"><a href="#">Abort</a></li>
+				<li data-icon="back" data-rel="close"><a href="#mainPage">Back to test</a></li>
+			</ul>
+		</div><!-- /panel -->
+
+		<div data-role="header">
+			<a class="ui-icon-nodisc ui-btn-right" href="#testPanel" data-role="button" data-icon="bars" data-iconpos="notext" data-iconshadow="false" data-inline="true">Actions</a>
+			<h1>Circular Gauge</h1>
+		</div>
+
+		<div data-role="content">
+			<p style="font-size:24px;">Value: <span id="quantityPlaceholder">---</span></p>
+			<div id='gaugeContainer'></div>
+		</div>
+
+		<script type="text/javascript">
+
+			var gauge;
+
+			// gauge configuration
+
+			function createGauge(label, scaleMin, scaleMax, ticks, showGreenZone, greenZoneEnd, yellowZoneEnd, redZoneEnd)
+			{
+				var config =
+				{
+					size: 400,
+					label: label,
+					minorTicks: ticks,
+					min: scaleMin,
+					max: scaleMax,
+					greenColor: "#00FF00",
+					yellowColor: "#FFFF00",
+					redColor: "#FF0000",
+				}
+
+				if (showGreenZone)
+				{
+					config.greenZones = [];
+					config.greenZones.push({ from: scaleMin, to: greenZoneEnd });
+				}
+
+				config.yellowZones = [];
+				config.yellowZones.push({ from: greenZoneEnd, to: yellowZoneEnd });
+				config.redZones = [];
+				config.redZones.push({ from: yellowZoneEnd, to: redZoneEnd });
+
+				gauge = new Gauge("gaugeContainer", config);
+				gauge.render(0);
+
+                // increase the font size for the parameter name - should be controlled by style sheet
+
+				var label = d3.selectAll(".label");
+				label.attr("style", "font-size:24px;");
+			}
+
+			// setup up bar chart for initial display
+
+			$('#mainPage').bind('pagebeforecreate', function(e, data)
+				{
+					label = OTX.hmi.getArgument('label');
+					scaleMin = OTX.hmi.getArgument('scaleMin').value;
+					scaleMax = OTX.hmi.getArgument('scaleMax').value;
+					ticks = OTX.hmi.getArgument('ticks');
+					showGreenZone = OTX.hmi.getArgument('showGreenZone');
+					zoneEndGreen = OTX.hmi.getArgument('zoneEndGreen').value;
+					zoneEndYellow = OTX.hmi.getArgument('zoneEndYellow').value;
+					zoneEndRed = OTX.hmi.getArgument('zoneEndRed').value;
+					createGauge(label, scaleMin, scaleMax, ticks, showGreenZone, zoneEndGreen, zoneEndYellow, zoneEndRed);
+				});
+
+			// polled update due to max refresh rate of gauge
+
+			setInterval( function() {
+				quantity = OTX.hmi.getParameterValue('value');
+				$('#quantityPlaceholder').text(quantity.value + ' ' + quantity.unit);
+				gauge.redraw(quantity.value);
+			}, 100);
+
+				$("#testAbort").click(function(e)
+				{
+					OTX.hmi.closeScreen();
+				});
+
+		</script>
+	</div>
+</body>
+</html>

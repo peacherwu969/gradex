@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<div data-role="page" id="listPage">
+		<div data-role="header">
+			<h1 id="title"><@gx_translate text_id="GX.TOOL.MONITORING.SELECT_RECORDING.HEADING" /></h1>
+		</div>
+		
+		<div data-role="content">
+			<div id='reclistContainer'>
+			    <ul data-role="listview" data-inset="true" id="reclist"></ul>
+			</div>
+		</div>
+		
+	    <div data-role="footer" data-theme="c" data-position="fixed">
+	    	<fieldset class="ui-grid-b">
+			    <div class="ui-block-a"></div>
+			    <div class="ui-block-b"><button id="cancel" data-corners="true" data-mini="false" data-icon="delete" data-iconpos="left"><@gx_translate text_id="GX.COMMON.CANCEL" /></button></div>
+			</fieldset>
+        </div> <!-- footer -->
+
+		<script type="text/javascript">
+
+		$('#listPage').bind('pagebeforecreate', function(e, data) {
+			// Use POST since the response is never cached
+		    $.post("/info/recording/list/" + sessionId, null, function(recList,liststatus) {
+		    	if (recList.length == 0) {
+	  			    $('#reclistContainer').append("<@gx_translate text_id='GX.TOOL.MONITORING.RECORDING_PLAYBACK.NO_RECORDINGS_IN_SESSION_MSG' /> " + sessionId);
+		    	} else {
+			    	for (var rec = 0; rec < recList.length; rec++) {
+			    	
+			    		// Any errors in the AJAX call get meta data are ignored, so that the recording won't be shown in the list.
+				    	$.getJSON("/info/recording/meta/" + sessionId + "/" + recList[rec].target + "/" + recList[rec].timestamp, function(metadata) {
+					    	var recDate = new Date(+metadata['recording'].timestamp);
+					    	var content = $('<li><a href="#"><h3>' + metadata['recording'].target + "<@gx_translate text_id='GX.COMMON.MARK.COLON' /> " + recDate.toLocaleString()
+							    	+ '</h3><p><strong><@gx_translate text_id="GX.COMMON.VIN" /><@gx_translate text_id="GX.COMMON.MARK.COLON" /></strong> ' + metadata['recording'].vin
+							    	+ ', <strong><@gx_translate text_id="GX.COMMON.DURATION" /><@gx_translate text_id="GX.COMMON.MARK.COLON" /></strong> ' + metadata['recording'].duration + 'ms, <strong><@gx_translate text_id="GX.COMMON.USER" /><@gx_translate text_id="GX.COMMON.MARK.COLON" /></strong> '
+							    	+ metadata['recording'].user + '</p><p>' + metadata['recording'].description + '</p></a></li>');
+						// Example code showing how to construct a table of the signals contained in the recording.
+						//  var table = $('<table data-role="table"><tr><th>Signal</th><th>Units</th></tr></table>');
+						//  for (var item in metadata['item']) {
+						//	  if ("displayName" in metadata['item'][item]) {
+						//		$(table).append($('<tr><td>' + metadata['item'][item].displayName + '</td><td>' + metadata['item'][item].units + '</td></tr>'));
+						//	  } else {
+						//		for (var subitem in metadata['item'][item]) {
+						//		  if ("displayName" in metadata['item'][item][subitem]) {
+						//		    $(table).append($('<tr><td>' + metadata['item'][item][subitem].displayName + '</td><td>' + metadata['item'][item][subitem].units + '</td></tr>'));
+						//		  }
+						//		}
+						//	  }
+						//  }
+					    	$("#reclist").append(content).listview("refresh");
+					    	$('a', content).click(metadata['recording'], function(r) {
+					        	OTX.hmi.valueChangedInPage('target', r.data.target);
+						    	OTX.hmi.valueChangedInPage('timestamp', r.data.timestamp);
+						    	OTX.hmi.valueChangedInPage('sessionId', sessionId);
+						    	OTX.hmi.closeScreen();
+					    	});
+	  			    	});
+		  	    	}
+		    	}
+		  	}, "json")
+		  	.fail(function(jqxhr, textStatus, error ) {
+		  		// Show error message if the AJAX call to list recordings fails.
+  			    $('#reclistContainer').append("<@gx_translate text_id='GX.TOOL.MONITORING.RECORDING_PLAYBACK.REQUEST_FAILED_ERR' text_arg0='" + textStatus + "' text_arg1='" + error + "' />");
+  			});
+
+		});
+		
+		$("#cancel").click(function() {
+			OTX.hmi.valueChangedInPage('target', '');
+			OTX.hmi.valueChangedInPage('timestamp', '');
+			OTX.hmi.closeScreen();
+		});
+		</script>
+	</div>
+</body>
+</html>

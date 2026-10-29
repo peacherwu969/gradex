@@ -1,0 +1,41 @@
+<!-- 
+ This screen shows a document on a URL with an OK button to go close after it completes.
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<title>Web Tool</title>
+</head>
+
+<body>
+	<div data-role="page" id="showPage" class="otxDialog"
+		data-overlay-theme="c" data-close-btn="none">
+
+		<div data-role="content">
+			<iframe style="width: 100%; height: 100%; border: 0px;" id="docFrame"></iframe>
+		</div>
+
+		<script type="text/javascript">
+			// Resize the iframe to fill the screen (needed for IE).
+			function resizeIFrame() {
+			    // Not sure why we need the '50' - it is to stop double scroll bars
+				$('#docFrame').height($(window).height() - 50);
+			}
+
+			// Set the page content using the screen arguments.  This will be called just before 
+			// page is displayed as it is bound to the pagebeforeshow event.
+			$('#showPage').bind('pagebeforeshow', function() {
+				tool = OTX.hmi.getArgument('tool');
+
+				$('#docFrame').attr('src', tool.URL);
+				resizeIFrame();
+			});
+
+			// Resize the iframe when the window is resized.
+			$(window).resize(function() {
+				resizeIFrame();
+			});
+		</script>
+	</div>
+</body>
+</html>

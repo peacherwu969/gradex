@@ -1,0 +1,163 @@
+<!--
+ This page is a test page to show how to deal with a single quantity value as an InParameter to a screen.
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dynamic screen test</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="jquery.mobile-1.3.0.min.css" />
+<link rel="stylesheet" href="busy.css" />
+<script src="jquery-1.9.1.min.js"></script>
+<script src="jquery.mobile-1.3.0.min.js"></script>
+<script src="js-url.min.js"></script>
+<script src="otx.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=9" />
+<META http-equiv="Pragma" content="no-cache">
+<META http-equiv="Expires" content="-1">
+</head>
+
+
+<body>
+	<div data-role="page" id="mainPage">
+
+		<div data-role="panel" id="testPanel" data-position="right" data-display="overlay">
+			<ul data-role="listview">
+				<li data-role="divider" data-iconpos="notext" data-theme="e">Actions</li>
+				<li data-icon="delete" id="testAbort"><a href="#">Abort</a></li>
+				<li data-icon="back" data-rel="close"><a href="#mainPage">Back to test</a></li>
+			</ul>
+		</div><!-- /panel -->
+
+		<div data-role="header">
+			<a class="ui-icon-nodisc ui-btn-right" href="#testPanel" data-role="button" data-icon="bars" data-iconpos="notext" data-iconshadow="false" data-inline="true">Actions</a>
+			<h1>Monitoring</h1>
+		</div>
+
+		<div data-role="content">
+			<table data-role="table" id="table-column-toggle" data-mode="columntoggle" class="ui-responsive table-stroke">
+				<thead>
+					<tr>
+						<th data-priority="1" width="400px">Signal</th>
+						<th width="100px">Value</th>
+						<th width="100px">Unit</th>
+					</tr>
+				</thead>
+				<tbody id="tableData">
+				</tbody>
+			</table>
+		</div>
+
+		<script type="text/javascript">
+
+            function encodeBytes(valueCode)
+            {
+                byteArrayStr = valueCode.toString();
+                byteArray = byteArrayStr.split(",")
+                byteArrayStr = "";
+
+                for (var i=0; i<byteArray.length; i++)
+                {
+					u = (256 + parseInt(byteArray[i])) % 256;
+					byteArrayStr = (0x100 + u).toString(16).substr(-2).toUpperCase() + byteArrayStr;
+                }
+
+                byteArrayStr = "0x" + byteArrayStr;
+                return byteArrayStr;
+             }
+
+            function encodeValue(typeCode, valueCode)
+            {
+           		newValue = valueCode;
+
+            	switch (typeCode)
+				{
+				  case "quantity":		break;
+				  case "boolean":		break;
+				  case "string":		break;
+				  case "integer":		break;
+				  case "float":			newValue = valueCode.toPrecision(6); break;
+				  case "byte_array":	newValue = encodeBytes(valueCode); break;
+				  default:				break;
+				}
+
+                return newValue;
+            }
+
+            function reformatUnit(unit)
+            {
+				newValue = unit.replace(".", "");
+                return newValue;
+            }
+
+			function displayModelVars(modelVars)
+			{
+				for (var i = 0; i < modelVars.length; i++)
+				{
+					var isQuantity = modelVars[i].VALUE.dataType == "VT_QUANTITY";
+
+					valueText = isQuantity ? modelVars[i].VALUE.VALUE.value : encodeValue(modelVars[i].type, modelVars[i].VALUE.VALUE);
+
+					var signalId = "signal_" + i;
+
+					if ($("#" +  signalId).length > 0)
+
+					{
+						$("#" +  signalId).text(valueText);
+					}
+
+					else
+
+					{
+						var listTxt = "<tr>";
+
+						if (isQuantity)
+						{
+							listTxt = listTxt + "<td>" + modelVars[i].DISPLAY_NAME + "</td><td id='" + signalId + "'>" + valueText + "</td><td>" + reformatUnit(modelVars[i].VALUE.VALUE.unit) + "</td>";
+						}
+						else
+						{
+
+							listTxt = listTxt + "<td>" + modelVars[i].DISPLAY_NAME + "</td><td id='" + signalId + "'>" + valueText + "</td><td></td>";
+						}
+
+						listTxt = listTxt + "</tr>";
+						$('#tableData').append(listTxt);
+
+					}
+
+				}
+
+			}
+
+			setInterval( function() {
+				modelVars = OTX.hmi.getParameterValue('listOfModelVars');
+				// alert(JSON.stringify(modelVars));
+            	displayModelVars(modelVars);
+			}, 300);
+
+
+            $('#mainPage').on('pagebeforecreate', function(e, data)
+				{
+					modelVars = OTX.hmi.getArgument('listOfModelVars');
+					displayModelVars(modelVars);
+
+
+				$("#testAbort").click(function(e)
+				{
+					OTX.hmi.valueChangedInPage('abort', 'true')
+					OTX.hmi.closeScreen();
+				});
+
+			});
+
+
+
+
+		</script>
+
+	</div>
+
+</body>
+</html>

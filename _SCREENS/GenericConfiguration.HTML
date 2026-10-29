@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Configuration</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="common/jquery.mobile-1.3.0.min.css" />
+<link rel="stylesheet" href="busy.css" />
+<script src="common/jquery-1.9.1.min.js"></script>
+<script src="common/jquery.mobile-1.3.0.min.js"></script>
+<script src="common/js-url.min.js"></script>
+<script src="common/otx.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=9" />
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="-1"/>
+</head>
+
+<body>
+	<div data-role="page" id="mainPage" unselectable="on" onselectstart="return false;" style="-moz-user-select:none; -webkit-user-select:none; -ms-user-select:none; user-select:none;">
+	<div data-role="popup" id="unselectAlert" data-position-to="window" data-history="false"></div>
+
+		<div data-role="header">
+			<h1 id="title"></h1>
+		</div>
+
+		<div data-role="content">
+			<h3 id="subtitle"></h3>
+			<p id="message"></p>
+
+			<table data-role="table" id="table-column-toggle" class="ui-responsive table-stroke" >
+				<thead>
+					<tr>
+						<th data-priority="1" width="300px"><@gx_translate text_id="SAIC_LDV_EV79_UI.MESSAGE.TITLE" /></th>
+						<th width="300px"><@gx_translate text_id="SAIC_LDV_EV79_UI.MESSAGE.CURRENTVALUE" /></th>
+						<th width="300px"><@gx_translate text_id="GX.COMMON.UNIT" /></th>
+						<th width="600px"><@gx_translate text_id="SAIC_LDV_EV79_UI.MESSAGE.CONFIGURABLEVALUE" /></th>
+					</tr>
+				</thead>
+				<tbody id="tableData">
+				</tbody>
+			</table>
+<!--		
+			<table width = "100%" id="table-column-toggle">
+				<thead>
+					<tr>
+						<td width="30%"><h4>Title</h4></td>
+						<td width="20%"><h4>Value</h4></td>
+						<td width="50%"><h4>Changed Value</h4></td>
+					</tr>
+				</thead>
+				<tbody id="tableData">
+				</tbody>
+			</table> 
+-->
+		</div>
+
+	    <div data-role="footer" data-theme="c" data-position="fixed">
+	    	<div>
+				<fieldset class="ui-grid-c">
+					<div class="ui-block-a"></div>
+					<div class="ui-block-b"><button id="response_yes" data-corners="true" data-mini="false" data-icon="check" data-iconpos="left"><@gx_translate text_id="GX.COMMON.YES" /></button></div>
+					<div class="ui-block-c"><button id="response_no" data-corners="true" data-mini="false" data-icon="delete" data-iconpos="left"><@gx_translate text_id="GX.COMMON.NO" /></button></div>					
+				</fieldset>
+			</div>
+        </div> <!-- footer -->
+
+		<script type="text/javascript">
+
+			// setup up screen for initial display
+			var currentList = [];
+				
+			function test(Opt,step)
+			{
+				var str = window.document.getElementById(Opt).value;
+				currentList[step]=str;
+			}			
+
+			function AcceptData(id,min,max)
+			{
+				var step = parseInt(id.substring(6));
+
+				var val=document.getElementById(id).value;
+		    
+				if(val<min)
+				{
+					currentList[step]=min;
+				}
+				else if(val>max)
+				{
+					currentList[step]=max;
+				}
+				else
+				{
+					currentList[step]=document.getElementById(id).value;
+				}
+			}
+
+			$('#mainPage').bind('pagebeforecreate', function()
+			{
+					title = OTX.hmi.getArgument('title');
+					subtitle = OTX.hmi.getArgument('subtitle');
+					message = OTX.hmi.getArgument('message');
+					nameList = OTX.hmi.getArgument('nameList');
+					valueList = OTX.hmi.getArgument('valueList');
+			
+					optionList = OTX.hmi.getArgument('optionList');
+					numberList = OTX.hmi.getArgument('numberList');
+
+					$('#title').text(title);
+					$('#subtitle').text(subtitle);
+					$('#message').text(message);
+
+					var listTxt = "";
+					
+					for (var step=0; step < nameList.length; step++)
+					{					     
+					     OptList = optionList[step];
+
+					     selectTxt = "";
+
+//将valueList赋于currentList					     
+					     currentList.push(valueList[step]);
+					     
+//下拉菜单
+					     if (OptList.length>1)
+					     {
+					     		selectTxt = "<select id = opt"+step
+					     		+" onchange=\"test('opt"
+					    		 + step + "',"+step+")\">";
+					    		 
+					    
+					    		 for(var optIndex=0; optIndex < OptList.length; optIndex++)
+					     			{
+					     				if(valueList[step] == OptList[optIndex])
+					     				{
+					     						selectTxt = selectTxt + "<option value=\"";
+					     						selectTxt = selectTxt + OptList[optIndex];
+					     						selectTxt = selectTxt + "\" selected>" + OptList[optIndex] + "</option>"
+					     				}
+					     				else
+					     				{
+					     						selectTxt = selectTxt + "<option value=\"";
+					     						selectTxt = selectTxt + OptList[optIndex];
+					     						selectTxt = selectTxt + "\">" + OptList[optIndex] + "</option>"
+					     				}					     			
+					     			}
+					     		selectTxt = selectTxt + "</select>";				
+					     		    
+					   	}
+//按钮步进
+					   	else//txtbox
+					   	{
+					   		
+							NumList = numberList[step];
+								     
+							var factorS = 0;
+							var minS=0;
+							var maxS=0;
+								
+							factor = NumList[0];
+							min = NumList[1];
+							max=NumList[2];
+								
+					   		selectTxt= "";
+					  		 		
+//对于string和int					
+							if(valueList[step].unit== undefined)
+					   		{   
+									selectTxt= selectTxt + "<input style=\"width: 30%;margin-left:-20%;\" type=\"range\"";
+					   				selectTxt= selectTxt +"  id = \"slider"+step;
+					   				selectTxt= selectTxt +"\" data-highlight = \"true\"";
+					   				selectTxt= selectTxt + " value= \"" + valueList[step]+ "\"";
+					   				selectTxt= selectTxt + " min= \"" + min+ "\"";
+					   				selectTxt= selectTxt + " max= \"" + max+ "\"";
+					   				selectTxt= selectTxt + " step= \"" + factor+ "\"";
+					   				selectTxt= selectTxt + " onchange=\"AcceptData('slider" + step + "',"+min+","+max+")\"/>";
+					   				
+					   		}
+//对于quantity 
+							else
+					   		{   
+									selectTxt= selectTxt + "<input style=\"width: 30%;margin-left:-20%;\" type=\"range\"";
+					   				selectTxt= selectTxt +"  id = \"slider"+step;
+					   				selectTxt= selectTxt +"\" data-highlight = \"true\"";
+					   				selectTxt= selectTxt + " value= \"" + valueList[step].value+ "\"";
+					   				selectTxt= selectTxt + " min= \"" + min+ "\"";
+					   				selectTxt= selectTxt + " max= \"" + max+ "\"";
+					   				selectTxt= selectTxt + " step= \"" + factor+ "\"";
+					   				selectTxt= selectTxt + " onchange=\"AcceptData('slider" + step + "',"+min+","+max+")\"/>";
+					   				
+					   		}					   		
+
+					  	}
+					  		
+					  	if(step%2==0)
+					  	{
+					  		listTxt = listTxt +"<tr bgcolor=\"#FDFDFD\">";
+					  	}
+						
+					  	else
+					  	{
+					     	listTxt = listTxt +"<tr>";
+					    }
+
+//对于string和int
+						if(valueList[step].unit== undefined)	
+					    {
+							listTxt = listTxt + "<td>" + nameList[step] + "</td><td>"+ valueList[step]
+							+"</td><td>"+"</td><td>"
+							+selectTxt
+							+"</td>";
+						}
+					    
+//对于quantity  
+					    else
+					    {
+							listTxt = listTxt + "<td>" + nameList[step] + "</td><td>"+ valueList[step].value
+							+"</td><td>"+valueList[step].unit+"</td><td>"
+							+selectTxt
+							+"</td>";
+						}
+				     
+					     listTxt = listTxt + "</tr>";
+					}
+					$('#tableData').html(listTxt);
+					
+					
+					var allselect =  $("select");
+					
+					for(var i=0;i<allselect.length;i++){
+						var aselect=allselect[i];
+						var idattr=$(aselect).attr("id");
+						//alert(idattr.substring(3));
+						test(idattr,idattr.substring(3));
+					
+					}
+
+			});
+				
+				$("#response_yes").click(function(e)
+				{
+					OTX.hmi.valueChangedInPage('result', '1')
+					
+					var selectValue="";
+					var unselectValue = [];
+					var unselectFlag = false;
+					
+					for(var i=0;i<currentList.length;i++)
+					{		
+						if(currentList[i].value== undefined)
+						{									
+							if(currentList[i].unit == undefined && currentList[i] === ''){
+								unselectValue.push(nameList[i]);
+								unselectFlag = true;
+							}
+							selectValue = selectValue + currentList[i];
+						}
+						else
+						{	
+							selectValue = selectValue + currentList[i].value;
+						}
+						if(i<(currentList.length-1))
+						{
+							selectValue = selectValue +";";
+						}
+					}
+					if(unselectFlag == true){
+						/*var message = "";
+						for(var i=0;i<unselectValue.length;i++){
+							message += unselectValue[i] + ' is not configured\n';
+						}*/
+						$('#unselectAlert').empty();
+						$('<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right" ><@gx_translate text_id="GX.COMMON.CLOSE" /></a>').appendTo('#unselectAlert');
+						$('#unselectAlert').append('<h1 style="text-align:center;"><@gx_translate text_id="GX.COMMON.CONFIGURATION.ERROR_INFORMATION" /></h1>');
+						for(var i=0;i<unselectValue.length;i++){
+							$('#unselectAlert').append('<p style="font-size:20px;">' + unselectValue[i] + ' <@gx_translate text_id="GX.COMMON.CONFIGURATION.IS_NOT_CONFIGURED" /></p>');
+							//message += unselectValue[i] + ' is not configured\n';
+						}
+						//$('#unselectAlert').append(message);
+						$('#unselectAlert').popup('open');
+						$('#unselectAlert').trigger('create');
+						//alert(message);
+					}
+					else{
+						OTX.hmi.valueChangedInPage('selValue',selectValue);
+						OTX.hmi.closeScreen();
+					}
+				});
+				
+
+				$("#response_no").click(function(e)
+				{
+					OTX.hmi.valueChangedInPage('result', '2')
+					OTX.hmi.closeScreen();
+				});			
+		
+		</script>
+	</div>
+</body>
+</html>

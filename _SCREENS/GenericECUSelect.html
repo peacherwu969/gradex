@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dynamic Screen Test</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="common/jquery.mobile-1.3.0.min.css" />
+<link rel="stylesheet" href="busy.css" />
+<script src="common/jquery-1.9.1.min.js"></script>
+<script src="common/jquery.mobile-1.3.0.min.js"></script>
+<script src="common/js-url.min.js"></script>
+<script src="common/otx.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=9" />
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="-1"/>
+</head>
+
+<body>
+	<div data-role="page" id="mainPage">
+
+		<div data-role="header">
+			<h1>Select ECU</h1>
+		</div>
+
+		<div data-role="content" id="container">
+			<!--
+				<img id="EMS" style="width:128px" src="/images/foton/ecus/ems.png"/>
+				<img id="TCU" style="width:128px" src="/images/foton/ecus/tcu.png"/>
+				<img id="ICM" style="width:128px" src="/images/foton/ecus/icu.png"/>
+				<img id="BCM" style="width:128px" src="/images/foton/ecus/bcm.png"/>
+			
+				<img id="EPS" style="width:128px" src="/images/foton/ecus/eps.png"/>
+    		<img id="ABS" style="width:128px" src="/images/foton/ecus/abs.png"/>
+    		<img id="PEPS" style="width:128px" src="/images/foton/ecus/peps.png"/>
+    		<img id="SRS" style="width:128px" src="/images/foton/ecus/srs.png"/>
+			
+				<img id="TPMS" style="width:128px" src="/images/foton/ecus/tpms.png"/>
+			-->
+			<div style="position:absolute;left:350px;width:115px">
+				<button id="Tester" data-corners="false">Tester</button>
+			</div>
+			<div style="position:absolute;left:850px;width:115px">
+				<button id="SWS" data-corners="false" disabled="true">SWS</button>
+			</div>
+			<br/><br/><br/>
+			<div><button id="CGW" data-corners="false">CGW</button></div>
+			<div style="position:absolute;left:300px;width:115px">
+				<button id="ABS_ESC" data-corners="false" disabled="true">ABS/ESC</button>
+			</div>
+			<div style="position:absolute;left:500px;width:115px">
+				<button id="RVC" data-corners="false" disabled="true">RVC</button>
+			</div>
+			<div style="position:absolute;left:800px;width:200px">
+				<button id="BCM" data-corners="false" disabled="true">BCM</button>
+			</div>
+			<br/><br/><br/>
+			<div style="position:absolute;left:100px;width:115px">
+				<button id="EMS" data-corners="false" disabled="true">EMS</button>
+			</div>
+			<div style="position:absolute;left:300px;width:115px">
+				<button id="EPB" data-corners="false" disabled="true">EPB</button>
+			</div>
+			<div style="position:absolute;left:500px;width:115px">
+				<button id="TPMS" data-corners="false" disabled="true">TPMS</button>
+			</div>
+			<br/><br/><br/>
+			<div style="position:absolute;left:100px;width:115px">
+				<button id="TCM" data-corners="false" disabled="true">TCM</button>
+			</div>
+			<div style="position:absolute;left:300px;width:115px">
+				<button id="EPS_SAS" data-corners="false" disabled="true">EPS/SAS</button>
+			</div>
+			<div style="position:absolute;left:500px;width:115px">
+				<button id="ICM" data-corners="false" disabled="true">ICM</button>
+			</div>
+			<br/><br/><br/>
+			<div style="position:absolute;left:100px;width:115px">
+				<button id="SDM" data-corners="false" disabled="true">SDM</button>
+			</div>
+			<div style="position:absolute;left:300px;width:115px">
+				<button id="PAS" data-corners="false" disabled="true">PAS</button>
+			</div>
+			<div style="position:absolute;left:500px;width:115px">
+				<button id="PLGM" data-corners="false" disabled="true">PLGM</button>
+			</div>
+			<br/><br/><br/>
+			<div style="position:absolute;left:300px;width:115px">
+				<button id="AWD" data-corners="false" disabled="true">AWD</button>
+			</div>
+			<div style="position:absolute;left:500px;width:115px">
+				<button id="AUDIO" data-corners="false" disabled="true">AUDIO</button>
+			</div>
+			<br/><br/><br/>
+			<div style="position:absolute;left:300px;width:115px">
+				<button id="XWD" data-corners="false" disabled="true">XWD</button>
+			</div>
+			<div style="position:absolute;left:500px;width:115px">
+				<button id="AVM_DVR" data-corners="false" disabled="true">AVM/DVR</button>
+			</div>
+			<br/><br/><br/>
+			<div style="position:absolute;left:300px;width:115px">
+				<button id="DAC" data-corners="false" disabled="true">DAC</button>
+			</div>
+			<div style="position:absolute;left:500px;width:115px">
+				<button id="MFS" data-corners="false" disabled="true">MFS</button>
+			</div>
+			<br/><br/><br/>
+			<div style="position:absolute;left:300px;width:115px">
+				<button id="FDC" data-corners="false" disabled="true">FDC</button>
+			</div>
+			<div style="position:absolute;left:700px;width:115px">
+				<button id="PEPS" data-corners="false" disabled="true">PEPS</button>
+			</div>
+			<div style="position:absolute;left:900px;width:115px">
+				<button id="ESCL" data-corners="false" disabled="true">ESCL</button>
+			</div>
+			<br/><br/><br/>
+			<div style="position:absolute;left:700px;width:115px">
+				<button id="CLM" data-corners="false" disabled="true">CLM</button>
+			</div>
+			<br/><br/><br/>
+			<div style="position:absolute;left:10px;width:700px">
+				<button id="TBOX" data-corners="false" disabled="true">TBOX</button>
+			</div>
+			<div style="position:absolute;left:800px;width:115px">
+				<button id="SHM" data-corners="false" disabled="true">SHM</button>
+			</div>
+			<div style="position:absolute;left:950px;width:115px">
+				<button id="RCP" data-corners="false" disabled="true">RCP</button>
+			</div>
+			<br/><br/><br/>
+			<!---------line-------->
+			<!--Tester-->
+			<div style="position:absolute;top:87px;left:465px;width:42px;height:1px;border-bottom:solid 4px #818000"></div>
+			<div style="position:absolute;top:88px;left:507px;width: 1px;height: 39px;border-left:solid 4px #818000"></div>
+			<!--SWS-->
+			<div style="position:absolute;top:87px;left:808px;width:42px;height:1px;border-bottom:solid 4px #00FFFF"></div>
+			<div style="position:absolute;top:88px;left:808px;width: 1px;height: 39px;border-left:solid 4px #00FFFF"></div>
+			<!--3 BUS LINE-->
+			<div style="position:absolute;top:170px;left:257px;width: 1px;height: 557px;border-left:solid 4px #005B00"></div>
+			<div style="position:absolute;top:170px;left:457px;width: 1px;height: 557px;border-left:solid 4px #C266CC"></div>
+			<div style="position:absolute;top:170px;left:657px;width: 1px;height: 557px;border-left:solid 4px #66CCFF"></div>
+			<!--ABS/ESC-->
+			<div style="position:absolute;top:205px;left:416px;width:42px;height:1px;border-bottom:solid 4px #C266CC"></div>
+			<!--RVC-->
+			<div style="position:absolute;top:205px;left:616px;width:184px;height:1px;border-bottom:solid 4px #66CCFF"></div>
+			<!--EMS-->
+			<div style="position:absolute;top:265px;left:216px;width:42px;height:1px;border-bottom:solid 4px #005B00"></div>
+			<!--EPB-->
+			<div style="position:absolute;top:265px;left:416px;width:42px;height:1px;border-bottom:solid 4px #C266CC"></div>
+			<!--TPMS-->
+			<div style="position:absolute;top:265px;left:616px;width:42px;height:1px;border-bottom:solid 4px #66CCFF"></div>
+			<!--TCM-->
+			<div style="position:absolute;top:325px;left:216px;width:42px;height:1px;border-bottom:solid 4px #005B00"></div>
+			<!--EPS/SAS-->
+			<div style="position:absolute;top:325px;left:416px;width:42px;height:1px;border-bottom:solid 4px #C266CC"></div>
+			<!--ICM-->
+			<div style="position:absolute;top:325px;left:616px;width:42px;height:1px;border-bottom:solid 4px #66CCFF"></div>
+			<!--SDM-->
+			<div style="position:absolute;top:385px;left:216px;width:42px;height:1px;border-bottom:solid 4px #005B00"></div>
+			<!--PAS-->
+			<div style="position:absolute;top:385px;left:416px;width:42px;height:1px;border-bottom:solid 4px #C266CC"></div>
+			<!--PLGM-->
+			<div style="position:absolute;top:385px;left:616px;width:42px;height:1px;border-bottom:solid 4px #66CCFF"></div>
+			<!--AWD-->
+			<div style="position:absolute;top:445px;left:416px;width:42px;height:1px;border-bottom:solid 4px #C266CC"></div>
+			<!--AUDIO-->
+			<div style="position:absolute;top:445px;left:616px;width:42px;height:1px;border-bottom:solid 4px #66CCFF"></div>
+			<!--XWD-->
+			<div style="position:absolute;top:505px;left:416px;width:42px;height:1px;border-bottom:solid 4px #C266CC"></div>
+			<!--AVM/DVR-->
+			<div style="position:absolute;top:505px;left:616px;width:42px;height:1px;border-bottom:solid 4px #66CCFF"></div>
+			<!--DAC-->
+			<div style="position:absolute;top:565px;left:416px;width:42px;height:1px;border-bottom:solid 4px #C266CC"></div>
+			<!--MFS-->
+			<div style="position:absolute;top:565px;left:616px;width:42px;height:1px;border-bottom:solid 4px #66CCFF"></div>
+			<!--FDC-->
+			<div style="position:absolute;top:625px;left:416px;width:42px;height:1px;border-bottom:solid 4px #C266CC"></div>
+			<!--PEPS-->
+			<div style="position:absolute;top:625px;left:658px;width:42px;height:1px;border-bottom:solid 4px #66CCFF"></div>
+			<!--ESCL-->
+			<div style="position:absolute;top:625px;left:816px;width:85px;height:1px;border-bottom:solid 4px #9999FF"></div>
+			<!--CLM-->
+			<div style="position:absolute;top:685px;left:658px;width:42px;height:1px;border-bottom:solid 4px #66CCFF"></div>
+			<!--SHM & RCP-->
+			<div style="position:absolute;top:685px;left:816px;width:192px;height:1px;border-bottom:solid 4px #99AE66"></div>
+			<!--SHM-->
+			<div style="position:absolute;top:686px;left:858px;width: 1px;height: 40px;border-left:solid 4px #99AE66"></div>
+			<!--RCP-->
+			<div style="position:absolute;top:686px;left:1008px;width: 1px;height: 40px;border-left:solid 4px #99AE66"></div>
+			<!--DAC & FDC-->
+			<div style="position:absolute;top:565px;left:279px;width:21px;height:1px;border-bottom:solid 4px #9900FF"></div>
+			<div style="position:absolute;top:566px;left:279px;width: 1px;height: 60px;border-left:solid 4px #9900FF"></div>
+			<div style="position:absolute;top:625px;left:279px;width:21px;height:1px;border-bottom:solid 4px #9900FF"></div>
+		</div>
+		<div data-role="footer" data-theme="c" data-position="fixed">
+			<div>
+					<fieldset class="ui-grid-c">
+						<div class="ui-block-a"></div>
+						<div class="ui-block-b"></div>
+						<div class="ui-block-c"></div>
+						<div class="ui-block-d"><button id="response_back" data-corners="true" data-mini="false" data-icon="back" data-iconpos="right" value = "Back"></button></div>
+					</fieldset>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			$('#mainPage').bind('pagebeforecreate', function()
+			{
+				ecus = OTX.hmi.getArgument('ecus');
+				var ecuName;
+
+				$("button").each(function()
+				{
+					buttonId = $(this).attr('id');
+					buttonList = buttonId.split('_');
+					if((buttonId!="response_back")&&(buttonId!="Tester")&&(buttonId!="CGW"))
+					{
+						for(var ecu=0; ecu < ecus.length; ecu++)
+						{
+							if(buttonList.length<=1)//only one ecu in button
+							{
+								if(buttonId==ecus[ecu])
+								{
+									$(this).attr('disabled',false);
+								}
+							}
+							else//two or more ecu in button
+							{
+								for(var i=0;i<buttonList.length;i++)
+								{
+									if(buttonList[i]==ecus[ecu])
+									{
+										$(this).attr('disabled',false);
+									}
+								}
+							}
+						}
+					}
+				});
+			
+				$("button").click(function()
+				{
+					buttonId = $(this).attr('id');
+					if((buttonId=="response_back")||(buttonId=="Tester")||(buttonId=="CGW"))
+					{
+						return;
+					}
+					buttonList = buttonId.split('_');
+					if(buttonList.length<=1)//only one ECU name
+					{
+						OTX.hmi.valueChangedInPage('ecu', buttonId);
+					}
+					else//two or more ECU name
+					{
+						var ECUname="";
+						for(var ecu=0; ecu < ecus.length; ecu++)
+						{
+							for(var i=0;i<buttonList.length;i++)
+								{
+									if(buttonList[i]==ecus[ecu])
+									{
+										if(ECUname=="")
+										{
+											ECUname=buttonList[i];
+										}
+										else
+										{
+											ECUname=ECUname + ";" + buttonList[i];
+										}
+									}
+								}
+						}
+						OTX.hmi.valueChangedInPage('ecu', ECUname);
+						ECUname="";
+					}
+					OTX.hmi.closeScreen();
+				});
+				
+				$("#response_back").click(function(e)
+				{
+					OTX.hmi.valueChangedInPage('back', 'true')
+					OTX.hmi.closeScreen();
+				});
+			});
+			
+		</script>
+	</div>
+</body>
+</html>

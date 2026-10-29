@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dynamic Screen Test</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/common/jquery.mobile-1.3.0.min.css" />
+<link rel="stylesheet" href="busy.css" />
+<link rel="stylesheet" href="/common/nv.d3.css" />
+<script src="/common/jquery-1.9.1.min.js"></script>
+<script src="/common/jquery.mobile-1.3.0.min.js"></script>
+<script src="/common/js-url.min.js"></script>
+<script type="text/javascript" src="/common/d3.min.js"></script>
+<script type="text/javascript" src="/common/nv.d3.min.js"></script>
+<script src="/common/otx.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=9" />
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="-1"/>
+</head>
+
+<body>
+	<div data-role="page" id="mainPage">
+	<style>
+#checkbox0Label.ui-checkbox-on .ui-icon
+{
+  background-color: #1f77b4;
+}
+#checkbox1Label.ui-checkbox-on .ui-icon
+{
+  background-color: #ff7f0e;
+}
+#checkbox2Label.ui-checkbox-on .ui-icon
+{
+  background-color: #2ca02c;
+}
+#checkbox3Label.ui-checkbox-on .ui-icon
+{
+  background-color: #d62728;
+}
+#checkbox4Label.ui-checkbox-on .ui-icon
+{
+  background-color: #9467bd;
+}
+#checkbox5Label.ui-checkbox-on .ui-icon
+{
+  background-color: #8c564b;
+}
+#checkbox6Label.ui-checkbox-on .ui-icon
+{
+  background-color: #e377c2;
+}
+#checkbox7Label.ui-checkbox-on .ui-icon
+{
+  background-color: #7f7f7f;
+}
+</style>
+		<script type="text/javascript" src="/common/vega.min.js"></script>
+		<div data-role="panel" id="testPanel" data-position="right" data-display="overlay">
+			<ul data-role="listview">
+				<li data-role="divider" data-iconpos="notext" data-theme="e">Actions</li>
+				<li data-icon="delete" id="testAbort"><a href="#">Abort</a></li>
+				<li data-icon="back" data-rel="close"><a href="#mainPage">Back to test</a></li>
+			</ul>
+		</div><!-- /panel -->
+
+		<div data-role="header">
+			<a class="ui-icon-nodisc ui-btn-right" href="#testPanel" data-role="button" data-icon="bars" data-iconpos="notext" data-iconshadow="false" data-inline="true">Actions</a>
+			<h1>Strip Chart</h1>
+		</div>
+
+		<div data-role="content">
+			<div id='chart'>
+			</div>
+			<div id="buttons">
+				<form>
+		            <div class="ui-grid-b ui-responsive" id="buttonSet">
+		             </div>
+		        </form>
+			</div>
+			<div id='info'>
+				<div>Time: <span id="timestamp">---</span></div>
+				<div>Value 1: <span id="quantityPlaceholder1">---</span></div>
+				<div>Value 2: <span id="quantityPlaceholder2">---</span></div>
+				<div>Value 3: <span id="quantityPlaceholder3">---</span></div>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			var liveChart;
+			var values = new Array();
+			var filter = false;
+			var ignore = [false, false, false, false, false, false, false, false];
+			var lineCount;
+			var samplePoints = 0;
+			var samplePointsReached = false;
+			var samplePointsToShow = 75;
+			
+			function test(d) {
+				return (!ignore[d.id]);
+			}
+
+			function ignoreLine(ev) {
+				ignore[ev.data] = !ignore[ev.data];
+				filter = (ignore[ev.data] || (ignore.indexOf(true) != -1));
+			}
+
+			$('#mainPage').bind('pagebeforecreate', function(e, data) {
+				var quantities = OTX.hmi.getArgument('values');
+				var labels = OTX.hmi.getArgument('labels');
+				var letters = [ 'a', 'b', 'c', 'd', 'e'];
+				lineCount = labels.length;
+				if (lineCount > 8) {
+					lineCount = 8;  // Limit number of lines to 8
+				}
+		        for (var line = 0; line < lineCount; line++) {
+		        	values.push({id: line, x:0, y:quantities[line].value});
+			        $('#buttonSet').append(' <div class="ui-block-' + letters[ line % 3] + '"><input checked="checked" type="checkbox" name="checkbox' + line + '" id="checkbox' + line + '"><label for="checkbox' + line + '" id="checkbox' + line + 'Label">' + labels[line] + '</label></div>');
+			        $('#checkbox' + line).click(line, ignoreLine);
+		        }
+				vg.parse.spec("/common/liveChart.json", function(chart) {
+					liveChart = chart({el:"#chart", data:{signals:values}})
+						.padding({"left": 50, "right": 60, "top": 10, "bottom": 20})
+						.height(300)
+						.width(600)
+						.update();
+				});
+
+				setInterval(function() {
+				    quantities = OTX.hmi.getParameterValue('values');
+				    timestamp = OTX.hmi.getParameterValue('timestamp');
+
+				    $('#timestamp').text(timestamp.value + ' ' + timestamp.unit);
+				    //$('#quantityPlaceholder1').text(quantities[0].value + ' ' + quantities[0].unit);
+		        	//$('#quantityPlaceholder2').text(quantities[1].value + ' ' + quantities[1].unit);
+		        	//$('#quantityPlaceholder3').text(quantities[2].value + ' ' + quantities[2].unit);
+		        	if (!samplePointsReached) {
+		        		samplePoints++;
+						if (samplePoints > samplePointsToShow) {
+							samplePointsReached = true;
+						}
+		        	}
+		        	for (var line = 0; line < lineCount; line++) {
+		        		values.push({id: line, x:timestamp.value, y:quantities[line].value});
+			        	if (samplePointsReached) {
+							values.shift();  // Shifting each value is *much* faster than a single splice in FF
+			        	}
+		        	}
+		        	if (filter) {
+						var filtered = values.filter(test);
+						liveChart.data({signals:filtered}).update();
+		        	} else {
+						liveChart.data({signals: values}).update();
+		        	}
+				},100);
+			});
+
+			$("#testAbort").click(function(e) {
+				OTX.hmi.closeScreen();
+			});
+		</script>
+	</div>
+</body>
+</html>

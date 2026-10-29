@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ScreenTemplate_Main</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="common/jquery.mobile-1.3.0.min.css" />
+<link rel="stylesheet" href="busy.css" />
+<script src="common/jquery-1.9.1.min.js"></script>
+<script src="common/jquery.mobile-1.3.0.min.js"></script>
+<script src="common/js-url.min.js"></script>
+<script src="common/otx.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=9" />
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="-1"/>
+</head>
+
+<style type="text/css">
+</style>
+
+<body>
+	<div data-role="page" id="mainPage">
+
+		<div data-role="panel" id="testPanel" data-position="right" data-display="overlay">
+			<ul id="testPanelListView" data-role="listview">
+				<li data-role="divider" data-iconpos="notext" data-theme="a">Actions</li>
+				<li data-icon="grid"><a href="#">Images</a></li>
+				<li data-icon="grid"><a href="#">Table</a></li>
+				<li data-icon="delete" id="testAbort"><a href="#">Abort</a></li>
+				<li data-icon="back" data-rel="close"><a href="#mainPage">Back</a></li>
+			</ul>
+		</div><!-- /testPanel -->
+
+		<div data-role="panel" id="imagePanel" data-position="right" data-display="overlay">
+			<ul id="imagePanelList" data-role="listview"></ul>
+		</div><!-- /imagePanel -->
+
+	    <div data-role="popup" id="infoPopup" data-overlay-theme="a" data-theme="c" style="max-width:500px;" class="ui-corner-all">
+	      <div data-role="header" data-theme="b" class="ui-corner-top">
+	        <h1>Information</h1>
+	      </div>
+	      <div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
+	        <h3 id="info" class="ui-title"></h3>
+	      </div>
+	    </div><!-- /infoPopup -->
+
+		<div data-role="popup" id="dialogPopup" data-overlay-theme="a" data-theme="c" style="max-width:500px;" class="ui-corner-all">
+			<div data-role="header" data-theme="b" class="ui-corner-top">
+				<h1>Information</h1>
+			</div>
+			<div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
+				<h3 id="message" class="ui-title"></h3>
+				<h3 id="question" class="ui-title"></h3>
+				<a id="cancelButton" href="#" data-role="button" data-inline="true" data-rel="back" data-theme="c">Cancel</a>    
+				<a id="okButton" href="#" onclick="" data-role="button" data-inline="true" data-rel="back" data-theme="b">OK</a>  
+			</div>
+		</div><!-- /dialogPopup -->
+
+		<div data-role="popup" id="imagePopup" class="photopopup" data-theme="a" data-corners="false" data-tolerance="30,15" >
+			<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right" >Close</a>
+			<h2 id="imageName" data-theme="a" style="text-align:center"></h2>
+			<div id="dvImage" style="padding: auto;"></div>
+		</div><!-- /imagePopup -->
+
+		<div data-role="header">
+			<a class="ui-icon-nodisc ui-btn-left"  href="" data-transition="slidedown" data-rel="popup" data-role="button" data-icon="info" data-iconpos="notext" data-iconshadow="false" data-inline="true">Info</a>
+			<a class="ui-icon-nodisc ui-btn-right" href="#testPanel" data-role="button" data-icon="bars" data-iconpos="notext" data-iconshadow="false" data-inline="true">Actions</a>
+			<h1 id="title"></h1>
+		</div>
+
+		<div data-role="content">
+		    <ul id="mainContent" data-role="listview" data-inset="true" data-divider-theme="b"></ul>
+		</div>
+
+	    <div data-role="footer" data-theme="c" data-position="fixed">
+	    	<div>
+	    	<fieldset class="ui-grid-b">
+			    <div class="ui-block-a"></div>
+			    <div class="ui-block-b"><button id="nextStep" data-corners="true" data-mini="false" data-icon="forward" data-iconpos="left">Next Step</button></div>
+			    <div class="ui-block-c"></div>
+			</fieldset>
+        </div> <!-- footer -->
+
+		<script type="text/javascript">
+
+      		// The key "Enter" will be disabled when the critical is set to true.
+			var critical = false;
+
+	      	// Call next step when the key "Enter" was pressed.
+	      	$(document).bind('keypress',pressed);
+	      
+		    function pressed(e)
+		    {		    	
+		        if(!critical && e.keyCode === 13)
+		        {
+		        	nextStep();
+		        }
+		    }
+
+			var imageNameList = [];
+			var imageUrlList = [];
+			var imageCountList = [];
+			var content = "";
+
+			var maxWidth = $( window ).width() - 100;
+		  var maxHeight = $( window ).height() - 60;
+
+
+			$('#mainPage').bind('pageshow', function()
+			{
+				title = OTX.hmi.getArgument('title');
+				sections = OTX.hmi.getArgument('sections');
+				inputField1 = OTX.hmi.getArgument('inputField1');
+				inputField2 = OTX.hmi.getArgument('inputField2');
+				inputField3 = OTX.hmi.getArgument('inputField3');
+				inputField4 = OTX.hmi.getArgument('inputField4');
+				inputField5 = OTX.hmi.getArgument('inputField5');
+				inputField6 = OTX.hmi.getArgument('inputField6');
+
+				$('#title').text(title);
+
+				for (var i = 0; i < sections.length; i++)
+				{
+					var section = sections[i];
+					var sectionTitle = section[0];
+					var sectionSteps = section[1];
+					var sectionImages = section[2];
+					var counts = [];
+
+					if (sectionImages instanceof Array)
+					{
+						for (var j = 0; j < sectionImages.length; j++)
+						{
+							var imageList = sectionImages[j];						
+							var imageId = getImageId(imageList);
+							if (imageId != -1)
+								counts.push(imageId);
+						}
+						updateImageCountList(counts);
+					}
+	
+					content = content + createSectionTitle(sectionTitle, counts);
+
+					for (var k = 0; k < sectionSteps.length; k++)
+					{
+						var sectionStep = sectionSteps[k];
+
+						// Step item could be the plain text (string) or an input field (list).
+						if (sectionStep instanceof Array)
+						{
+							content = content + createInputField(k + 1, sectionStep);
+						}
+						else
+						{
+							content = content + createStepInformation(k + 1, sectionStep);
+						}
+					}
+				}
+
+				$('#mainContent').html(content);
+				$('#mainContent').listview('refresh');
+
+				// Focus the first input field if it exists.
+				var inputs = document.getElementsByName("inputOne");
+				if (inputs.length > 0)
+					inputs[0].focus();
+			});
+
+			// Update the image count list.
+			function updateImageCountList(counts)
+			{
+				if (counts.length > 0)
+					imageCountList.push(counts);
+			}
+
+			// Get the image id, all the information about the image names and image urls will be stored in two arrays separately.
+			function getImageId(imageItem)
+			{
+				// Image item should be an array where the first place is the image name and the second place is the image url.
+				if (imageItem instanceof Array)
+				{
+					var imageName = imageItem[0];
+					var imageUrl = imageItem[1];
+
+					if (isNotEmptyString(imageName) && isNotEmptyString(imageUrl))
+					{
+						imageNameList.push(imageName);
+						imageUrlList.push(imageUrl);
+						return imageNameList.length - 1;
+					}
+				}
+				return -1;
+			}
+
+			// Create the title for one section. Add the button "Pictures" if the customer want to attach some images in this section.
+			// If there is only one image, pop up the image with the button directly.
+			// If there is more than one image, use a image panel instead.
+			function createSectionTitle(title, counts)
+			{
+				var string = "<li data-role=\"list-divider\" data-theme=\"b\">" + title;
+
+				// If there is only one image, popup it directly. Otherwise display the image panel.
+				if (counts.length == 1)
+				{
+					string = string + "<a href=\"#\"><span class=\"ui-li-count\" onclick=\"openImage(" + counts[0] + ")\">Pictures</span></a>";
+				}
+				else if (counts.length > 1)
+				{
+					var index = imageCountList.length - 1;
+					string = string + "<a href=\"#\"><span class=\"ui-li-count\" onclick=\"openImagePanel(imageCountList[" + index + "])\">Pictures</span></a>";
+				}
+
+				return string + "</li>";
+			}
+
+			// Create the step information in the section.
+			function createStepInformation(index, sectionStep)
+			{
+				return "<li>" + index + ". " + sectionStep + "</li>";
+			}
+
+			// Create the input fields in the section.
+			function createInputField(index, sectionStep)
+			{
+				var inputDescription = sectionStep[0];
+				var inputUnit = sectionStep[1];
+
+				if (isNotEmptyString(inputDescription) && isNotEmptyString(inputUnit))
+				{
+					var string = "<li>" + index + ". " + inputDescription + " ";
+
+					var inputImages = sectionStep[2];
+					var counts = [];
+					if (inputImages instanceof Array)
+					{
+						for (var j = 0; j < inputImages.length; j++)
+						{
+							var imageList = inputImages[j];						
+							var imageId = getImageId(imageList);
+							if (imageId != -1)
+								counts.push(imageId);
+						}
+						updateImageCountList(counts);
+
+						if (counts.length > 0)
+						{
+							var index = imageCountList.length - 1;
+							string = string + "<br>&nbsp;&nbsp;&nbsp;&nbsp;<input type=\"number\" name=\"inputOne\" id=\"inputOne\" onmousedown=\"openImagePanel(imageCountList[" + index + "])\" onkeypress=\"return event.charCode <= 57\" /> (" + inputUnit + ")</li>";
+							return string;
+						}
+					}
+
+					string = string + "<br>&nbsp;&nbsp;&nbsp;&nbsp;<input type=\"number\" name=\"inputOne\" id=\"inputOne\" onkeypress=\"return event.charCode <= 57\" /> (" + inputUnit + ")</li>";
+					return string;
+				}
+				return "";
+			}
+
+			// Pop up an image directly.
+			function openImage(index)
+			{
+				var imageName = imageNameList[index];
+				var imageUrl = imageUrlList[index];
+
+				$('#dvImage').attr("display", "none");
+        		$('#dvImage').empty();
+
+				$('#imageName').html(imageName);
+        		var img = $('<img />');
+		        img.attr("src", imageUrl);
+		        img.css("max-height", maxHeight);
+		        img.bind("load", function()
+		        {
+		        	$('#dvImage').attr("display", "inherit");
+		        	$('#imagePopup').popup("open");
+		        });
+		        $('#dvImage').prepend(img);
+			}
+
+			// Open the image panel.
+		    function openImagePanel(array) 
+		    {
+		    	createImagePanel(array);
+   				$("#imagePanel").panel("open");
+			}
+
+			// Create the image panel contents.
+			function createImagePanel(array)
+			{
+				var string = "<li data-role=\"divider\" data-iconpos=\"notext\" data-theme=\"a\">Images</li>";
+				for (var i = 0; i < array.length; i++)
+				{
+					var index = array[i];
+					var imageName = "<li data-role=\"divider\" data-iconpos=\"notext\" data-theme=\"b\">" + imageNameList[index] + "</li>";
+					var imageUrl = "<a href=\"#\" onclick=\"openImage(" + index + ")\" ><img src=\"" + imageUrlList[index] + "\" width=\"100%\"/></a>";
+					string = string + imageName + imageUrl;
+				}
+				var backButton = "<li id=\"back\" data-icon=\"back\" data-rel=\"close\"><a href=\"#\" onclick=\"closeImagePanel()\">Back</a></li>";
+				string = string + backButton;
+
+				$('#imagePanelList').html(string);
+				$('#imagePanelList').listview('refresh');
+			}
+
+			// Close the image panel.
+			function closeImagePanel() 
+		    {
+   				$("#imagePanel").panel("close");
+			}
+
+			// Pop up a dialg.
+			function popupDialog(message, question, okEvent, cancelEvent)
+			{
+				$('#message').text(message);
+				if(isNotEmptyString(question))
+				{
+					$('#question').text(question);
+				}
+				$('#okButton').attr('onclick', okEvent);
+				$('#cancelButton').attr('onclick', cancelEvent);
+				$('#dialogPopup').popup("open");
+			}
+
+			// Pop up an info dialog and close it automatically.
+			// Key "Enter" will be disabled after the popup is displayed and reabled after the popup is closed.
+			function popupInfo(message)
+			{
+				$('#info').text(message);
+				$('#infoPopup').popup("open");
+
+				critical = true;
+				window.setTimeout(function ()
+				{
+					closePopup();
+					critical = false;
+				}, 1500);
+			}
+
+			// Close the info dialog.
+			function closePopup(message)
+			{
+				$('#infoPopup').popup("close");
+			}
+
+			$("#testAbort").click(function(e)
+			{
+				popupDialog("This action cannot be undone!", "Do you want to continue?", "closeScreen()", "");
+			});
+
+			// Check whether all the input fields get the valid values. If not, pop up an info dialog for the customer. Otherwise, do the next step.
+			function inputFieldsPassed()
+			{
+				var inputfields = document.getElementsByName("inputOne");
+				var values = [];
+
+				// Ensure that all the input fields get the valid values.
+				for (var i = 0; i < inputfields.length ; i++)
+				{
+					var value = inputfields[i].value;
+					value = value.replace(",", ".");
+					if (!isNumber(value))
+					{
+						popupInfo("Input fields are empty or input values are not correct!");
+						// inputfields[i].focus();
+						return false;
+					}
+					values.push(value);								
+				}
+
+				// Write the input values back to GradeX.
+				for (var i = 0; i < values.length ; i++)
+				{
+					var index = i + 1;
+					OTX.hmi.valueChangedInPage('inputField' + index, values[i]);			
+				}
+
+				return true;
+			}
+
+			function isNumber(n) 
+			{
+				return !isNaN(parseFloat(n)) && isFinite(n);
+			}
+
+			$("#nextStep").click(function(e)
+			{
+				nextStep();
+			});
+
+			// Check the input fields and then close the screen.
+			function nextStep()
+			{
+				if (inputFieldsPassed())
+				{
+					closeScreen();
+				}
+			}
+
+			function closeScreen()
+			{
+				OTX.hmi.closeScreen();
+			}
+
+			// Check whether the string is empty.
+			function isNotEmptyString(value)
+			{
+				return (typeof value == "string") && !isEmpty(value);
+			}
+
+			// Check whehter the value is empty.
+			function isEmpty(value)
+			{
+			  return (value == null || value == undefined || value.length === 0);
+			}
+
+		</script>
+	</div>
+</body>
+</html>

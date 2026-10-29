@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Diagnostic Test Passed</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="common/jquery.mobile-1.3.0.min.css" />
+    <link rel="stylesheet" href="busy.css" />
+    <script src="common/jquery-1.9.1.min.js"></script>
+    <script src="common/jquery.mobile-1.3.0.min.js"></script>
+    <script src="common/js-url.min.js"></script>
+    <script src="common/otx.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="-1" />
+
+</head>
+
+<body>
+    <div data-role="page" id="mainPage">
+
+        <style type="text/css">
+            .tTable {
+                width: 100%;
+                margin-bottom: 20px;
+                border-collapse: collapse;
+                max-width: 100%;
+                background-color: transparent;
+                border-spacing: 0px;
+                border: 1px solid #DDD;
+            }
+
+            .tTable th:nth-child(1),
+            .tTable td:nth-child(1) {
+                width: 3%;
+            }
+
+            .tTable th:nth-child(2),
+            .tTable td:nth-child(2) {
+                width: 7%;
+            }
+
+            .tTable th:nth-child(3),
+            .tTable td:nth-child(3) {
+                width: 55%;
+            }
+
+            .tTable th:nth-child(4),
+            .tTable td:nth-child(4) {
+                width: 20%;
+            }
+
+            .tTable th:nth-child(5),
+            .tTable td:nth-child(5) {
+                width: 20%;
+            }
+
+            /* .tTable thead tr {
+                color: #707070;
+                font-weight: normal;
+                background: #DDD;
+            } */
+
+            .tTable thead tr th {
+                border: 1px solid #DDD;
+                text-align: left;
+                text-indent: 20px;
+                padding: 10px 8px;
+                font-size: 14px;
+                /* color: #707070; */
+                font-weight: 700;
+            }
+
+            .tTable tbody tr:nth-child(2n+1) {
+                background-color: #F5F5F5;
+            }
+
+            .tTable tbody tr td {
+                border: 1px solid #DDD;
+                text-indent: 20px;
+                text-align: left;
+                padding: 10px 8px;
+                font-size: 14px;
+            }
+        </style>
+        <div data-role="header">
+            <h1 id="title">Did Check</h1>
+        </div>
+
+        <div data-role="content">
+            <h4 id="subtitle"></h4>
+            <div>
+                <table class="tTable">
+                    <thead>
+                        <tr>
+                            <th>
+                                No.
+                            </th>
+                            <th>
+                                <@gx_translate text_id="SAIC_LDV_EV79_SV51_EMS_B3.DS_PARAM.PARAM_DID" />
+                            </th>
+                            <th>
+                                <@gx_translate text_id="GX.COMMON.NAME" />
+                            </th>
+                            <th>
+                                <@gx_translate text_id="GX.COMMON.VALUE" />
+                            </th>
+                            <th id="writeTitle">
+                                <@gx_translate text_id="GX.COMMON.UNIT" />
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="tBody">
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <div data-role="footer" data-theme="c" data-position="fixed">
+            <div>
+                <fieldset class="ui-grid-b">
+                    <div class="ui-block-a"></div>
+                    <div class="ui-block-b"><button id="ok" data-corners="true" data-mini="false" data-icon="check"
+                            data-iconpos="left">
+                            <@gx_translate text_id="GX.COMMON.OK" />
+                        </button></div>
+                </fieldset>
+            </div> <!-- footer -->
+
+
+            <script type="text/javascript">
+
+                // setup up screen for initial display
+
+                $('#mainPage').bind('pageshow', function () {
+                    subtitle = OTX.hmi.getArgument('title1');
+                    $('#title').text(subtitle);
+                    infoMessage = OTX.hmi.getArgument('infoMessage');
+                    $('#subtitle').text(infoMessage);
+                    //获取所有ECU的LIST
+                    var AllDidList = OTX.hmi.getArgument('IDLIST');
+                    var ConfigNameList = OTX.hmi.getArgument('ConfigNameList');
+                    var ConfigReadResult = OTX.hmi.getArgument('ConfigReadResult');
+                    var ConfigWriteResult = OTX.hmi.getArgument('ConfigWriteResult');
+                    console.dir(AllDidList);
+                    console.dir(ConfigNameList);
+                    console.dir(ConfigReadResult);
+                    console.dir(ConfigWriteResult);
+
+                    for (i = 0; i < AllDidList.length; i++) {
+                        $('#writeTitle').hide();
+                        let readResuld = ConfigReadResult[i];
+                        let resultHtml = "";
+                        if (readResuld.toLowerCase().indexOf("failed") !== -1 || readResuld.indexOf('\u5931\u8d25') !== -1) {
+                            resultHtml += '<td style="color:red;">' + readResuld + '</td>';
+                        } else {
+                            resultHtml += '<td>' + readResuld + '</td>';
+                        }
+                        if (ConfigWriteResult.length > 0) {
+                            let writeResult = ConfigWriteResult[i];
+                            if (writeResult.toLowerCase().indexOf("failed") !== -1 || writeResult.indexOf('\u5931\u8d25') !== -1) {
+                                resultHtml += '<td style="color:red;">' + writeResult + '</td>';
+                            } else {
+                                resultHtml += '<td>' + writeResult + '</td>';
+                            }
+                            $('#writeTitle').show();
+                        }
+                        let new_tr = '<tr><td>' + (i + 1) + '</td><td>' + AllDidList[i] + '</td><td>' + ConfigNameList[i] + '</td>' + resultHtml + '</tr>';
+
+                        $('#tBody').append(new_tr).trigger('create');
+                    }
+                });
+
+                $("#ok").click(function (e) {
+                    OTX.hmi.closeScreen();
+                });
+
+
+            </script>
+        </div>
+</body>
+
+</html>

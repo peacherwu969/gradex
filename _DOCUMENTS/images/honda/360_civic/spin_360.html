@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Spin360</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+</head>
+<body>
+
+
+   <div id="main" data-role="page">
+
+	    <div data-role="header">
+	    	<h1>Spin 360</h1>
+        </div> <!-- header -->
+
+        <div data-role="content">
+			<img id="vehicle" src="civic_50.png"/>
+			<input id="rotate_vehicle" name="rotate_vehicle" type="range" min="0" max="360" value="0" data-mini="true" data-theme="a" data-track-theme="b" />
+		</div> <!-- content -->
+
+        <div data-role="footer" data-position="fixed">
+		</div> <!-- footer  -->
+
+	</div> <!-- page:main -->
+
+	<script type="text/javascript">
+
+        var rotation = 0;
+        var slider;
+        var imageIndex;
+        const MAX_INDEX = 49;
+
+		$("#main").on("pagebeforeshow", function(event)
+		{
+		    slider = $("#rotate_vehicle")
+			slider.on("change", function(event, ui)
+			{
+				rotation = slider.val();
+				imageIndex = parseInt(rotation/360 * MAX_INDEX) + 1;
+
+				if (imageIndex < 10)
+				{
+					$("#vehicle").attr("src","civic_0" + imageIndex + ".png");
+				}
+				else
+				{
+					$("#vehicle").attr("src","civic_" + imageIndex + ".png");
+				}
+			});
+		});
+	</script>
+
+</body>
+</html>
+
+
+
+
+
+

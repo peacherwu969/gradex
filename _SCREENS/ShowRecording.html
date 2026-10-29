@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<div data-role="page" id="mainPage">
+		<script src="/common/jquery.flot.js"></script>
+		<script src="/common/recording.jsftl"></script>
+        <div data-role="panel" id="playbackPanel" data-position="right" data-display="overlay">
+            <ul data-role="listview">
+                <li data-role="divider" data-iconpos="notext" data-theme="e"><@gx_translate text_id="GX.COMMON.ACTIONS" /></li>
+                <li data-icon="delete" id="pbDelete"><a href="#"><@gx_translate text_id="GX.COMMON.DELETE" /></a></li>
+                <li data-icon="delete" id="pbAbort"><a href="#"><@gx_translate text_id="GX.COMMON.CLOSE" /></a></li>
+            </ul>
+        </div>
+
+        <div data-role="popup" id="deleteRecorConfirm" data-overlay-theme="a" data-theme="c" data-dismissible="false" style="max-width:400px;" class="ui-corner-all">
+        	<div data-role="header" data-theme="a" class="ui-corner-top">
+        		<h1><@gx_translate text_id="GX.TOOL.MONITORING.SHOW_RECORDING.DELETE"/></h1>
+        	</div>
+        	<div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
+        		<h3 class="ui-title"><@gx_translate text_id="GX.TOOL.MONITORING.SHOW_RECORDING.DELETE" /></h3>
+        		<p><@gx_translate text_id="GX.TOOL.MONITORING.SHOW_RECORDING.DELETE.MESSAGE" /></p>
+        		<fieldset class="ui-grid-a">
+        			<div class="ui-block-a"><a href="#" id="deleteConfirmed" data-role="button" data-icon="check" data-iconpos="left"><@gx_translate text_id="GX.COMMON.YES" /></a></div>
+        			<div class="ui-block-b"><a href="#" onclick="GSPlib.page.doClose(false)" data-role="button" data-icon="delete" data-iconpos="left" data-rel="back"><@gx_translate text_id="GX.COMMON.NO" /></a></div>
+        		</fieldset>
+        	</div>
+        </div>
+
+		<div data-role="header">
+            <a class="ui-icon-nodisc ui-btn-right" href="#playbackPanel" data-role="button" data-icon="bars" data-iconpos="notext" data-iconshadow="false" data-inline="true"><@gx_translate text_id="GX.COMMON.ACTIONS" /></a>
+			<h1 id="title"><@gx_translate text_id="GX.TOOL.MONITORING.SHOW_RECORDING.HEADING" />: <span id='info'></span></h1>
+		</div>
+
+		<div data-role="content">
+			<div id='values' style="width:20%; float: right;"></div>
+			<div id="flot-chart" style="width:80%; height:400px;"></div>
+			<div id="buttons">
+				<form>
+					<div class="ui-grid-b ui-responsive" id="buttonSet"></div>
+				</form>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			var timestamp = OTX.hmi.getArgument('timestamp');
+			var target = OTX.hmi.getArgument('target');
+			var sessionId = OTX.hmi.getArgument('sessionId');
+
+			$('#mainPage').bind('pagebeforeshow', function(e, data) {
+				Recording.api.initChart(sessionId, target, timestamp, "#flot-chart", function(success, errMsg) {
+					if (success) {
+						$('#info').append(Recording.api.getTarget() + ", " + Recording.api.getDateTime());
+						Recording.api.createButtons('#buttonSet');
+						Recording.api.createValuesTable('#values');
+					} else {
+						$('#info').append(errMsg);
+					}
+				});
+				window.onresize = function(event) {
+					Recording.api.initChart(sessionId, target, timestamp, "#flot-chart", function(success, errMsg) {
+						if (success) {
+							$('#info').text(Recording.api.getTarget() + ", " + Recording.api.getDateTime());
+							// retain existing buttons
+							Recording.api.createValuesTable('#values');
+						} else {
+							$('#info').text(errMsg);
+						}
+					});
+				}
+			});		
+			$('#mainPage').bind('pagebeforecreate', function(e, data) {
+				$("#pbAbort").click(function(e) {
+					Recording.api.abort();
+				});
+				
+				$("#pbDelete").click(function(e) {
+					$('#deleteRecorConfirm').popup('open');
+				});
+
+				$("#deleteConfirmed").click(function(e) {
+					$('#deleteRecorConfirm').popup('close');
+
+					$.get("/info/recording/delete/"+sessionId + "/" + target + "/" + timestamp).done(function () {
+						Recording.api.abort(); 
+					});
+				});
+			});		
+		</script>
+	</div>
+</body>
+</html>

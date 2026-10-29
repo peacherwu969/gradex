@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Ecu Function List</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="common/jquery.mobile-1.3.0.min.css" />
+	<link rel="stylesheet" href="busy.css" />
+	<link rel="stylesheet" href="common/nv.d3.css" />
+	<script src="common/jquery-1.9.1.min.js"></script>
+	<script src="common/jquery.mobile-1.3.0.min.js"></script>
+	<script src="common/js-url.min.js"></script>
+	<script type="text/javascript" src="common/d3.min.js"></script>
+	<script type="text/javascript" src="common/nv.d3.min.js"></script>
+	<script src="common/otx.js"></script>
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="-1" />
+</head>
+
+<body>
+	<div data-role="page" id="mainPage">
+		<p style="text-align:center; font-size: 18px;" id="ecuFunListTitle"></p>
+		<style>
+			table {
+				border-collapse: collapse;
+				border: none;
+				width: 700px;
+				padding: 0;
+				margin: 0;
+			}
+
+			th {
+				font: bold 11px;
+				color: #4f6b72;
+				border-right: 1px solid #C1DAD7;
+				border-bottom: 1px solid #C1DAD7;
+				border-top: 1px solid #C1DAD7;
+				border-left: 1px solid #C1DAD7;
+				letter-spacing: 2px;
+				text-transform: uppercase;
+				text-align: center;
+				padding: 3px 3px 3px 6px;
+			}
+
+			th.nobg {
+				border-top: 0;
+				border-left: 0;
+				border-right: 1px solid #C1DAD7;
+				background: none;
+			}
+
+			td {
+				border-left: 1px solid #C1DAD7;
+				border-right: 1px solid #C1DAD7;
+				border-bottom: 1px solid #C1DAD7;
+				background: #fff;
+				font-size: 18px;
+				padding: 3px 3px 3px 6px;
+				color: #4f6b72;
+			}
+
+			td.alt {
+				background: #F5FAFA;
+				color: #797268;
+			}
+
+			th.spec {
+				border-left: 1px solid #C1DAD7;
+				border-top: 0;
+				font: bold 10px;
+			}
+
+			th.specalt {
+				border-left: 1px solid #C1DAD7;
+				border-top: 0;
+				font: bold 10px;
+				color: #797268;
+			}
+
+			.rad_la {
+				position: relative;
+				border: 1px solid #3b3b3e;
+				border-radius: 8px;
+				text-align: center;
+				line-height: 30px;
+				width: 30px;
+				margin: 3px auto;
+				height: 30px;
+			}
+
+			.rad_la:hover {
+				#background-color: #00f;
+				cursor: pointer;
+			}
+
+			.ui-grid-b {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			/* 模态对话框样式 */
+			.modal {
+				display: none;
+				position: fixed;
+				z-index: 1;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0, 0, 0, 0.4);
+			}
+
+			.modal-content {
+				background-color: #fff;
+				margin: 15% auto;
+				padding: 20px;
+				border: 1px solid #888;
+				width: 30%;
+				text-align: center;
+				box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+			}
+
+			.modal-header {
+				padding: 10px;
+				border-bottom: 1px solid #ddd;
+			}
+
+			.modal-title {
+				font-weight: bold;
+				font-size: 20px;
+			}
+
+			.modal-body {
+				text-align: left;
+			}
+
+			.modal-footer {
+				display: flex;
+				justify-content: center;
+				align-items: flex-end;
+			}
+
+			.close {
+				float: right;
+				cursor: pointer;
+				font-size: 24px;
+			}
+		</style>
+
+		<table style="width: 90%; align: center; margin:auto; border-collapse: collapse;" id="ecufuntable">
+			<tr height="30px">
+				<th scope="col" width="5%">
+					<@gx_translate text_id="GX.COMMON.SELECT" />
+				</th>
+				<th scope="col" width="75%">
+					<@gx_translate text_id="GX.COMMON.ECU_FUN_ITEMNAME" />
+				</th>
+			</tr>
+		</table>
+
+		<div style="width:100%; height:30px; text-align:center;" id="errorDetailInfo"></div>
+
+		<div data-role="footer" data-theme="c" data-position="fixed">
+			<div>
+				<fieldset class="ui-grid-b">
+					<div class="ui-block-a" style="width: 180px;">
+						<button id="cancel" data-corners="true" data-mini="false" data-icon="check" data-iconpos="left">
+							<@gx_translate text_id="GX.COMMON.CLOSE" />
+						</button>
+					</div>
+					<div class="ui-block-d" style="width: 180px;">
+						<button id="deleHandBtn" data-corners="true" data-mini="false" data-icon="check"
+							data-iconpos="left">
+							<@gx_translate text_id="GX.COMMON.DELETE" />
+						</button>
+					</div>
+					<div class="ui-block-b" style="width: 180px;">
+						<button id="reTryBtn" data-corners="true" data-mini="false" data-icon="check"
+							data-iconpos="left">
+							<@gx_translate text_id="GX.COMMON.BTN.RETRY" />
+						</button>
+					</div>
+					<div class="ui-block-c" style="width: 180px;">
+						<button id="confirm" data-corners="true" data-mini="false" data-icon="check"
+							data-iconpos="left">
+							<@gx_translate text_id="GX.TOOL.ECUREFLASHING.NAME" />
+						</button>
+					</div>
+				</fieldset>
+			</div>
+		</div><!-- footer -->
+
+		<!-- 模态对话框容器 -->
+		<div id="myModal" class="modal">
+			<div class="modal-content">
+				<div class="modal-header">
+					<span class="modal-title">
+						<@gx_translate text_id="GX.COMMON.DELETE" />?
+					</span>
+					<span class="close" id="closeModal">&times;</span>
+				</div>
+				<div class="modal-body">
+					<p>
+						<@gx_translate text_id="GX.TOOL.MONITORING.SHOW_RECORDING.DELETE.MESSAGE" />
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button id="confirmButton">
+						<@gx_translate text_id="GX.COMMON.BTN.CONFIRM" />
+					</button>
+					<button id="cancelButton">
+						<@gx_translate text_id="GX.COMMON.CANCEL" />
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+
+			var modelStr = '';
+			var curEcuStr = '';
+			var curEcuFunId = '';
+			var selFileStr = '';
+			var textKeyMap = new Map([
+				["-1", "<@gx_translate text_id='GX.COMMON.PROGRAM_INTERNAL_ERROR'/>"],
+				["401", "<@gx_translate text_id='GX.COMMON.INVALID_REQUEST_PARAMETER'/>"],
+				["406", "<@gx_translate text_id='GX.COMMON.LOSS.RESOURCE'/>"],
+				["402", "<@gx_translate text_id='GX.COMMON.SOFTWARE_NOT_LOGIN'/>"],
+				["400", "<@gx_translate text_id='GX.COMMON.NETWORK_ERROR'/>"],
+				["405", "<@gx_translate text_id='GX.COMMON.NOT.HAVE.LOCAL.MENU'/>"], //获取菜单权限失败, 请检查本地是否存在离线刷写菜单！
+				["406", "<@gx_translate text_id='GX.COMMON.NOT.HAVE.LOCAL.MENU'/>"], //获取菜单权限失败, 请检查本地是否存在离线刷写菜单！
+				["00", "<@gx_translate text_id='GX.COMMON.NOCACHEDDATA'/>"],
+			]);
+
+			function getTextKeyValue(textKey) {
+
+				if (textKeyMap.has(textKey)) {
+					return textKeyMap.get(textKey);
+				}
+				else {
+					return textKey;
+				}
+			}
+
+			$('#mainPage').bind('pageshow', function () {
+				var serverResultStr = OTX.hmi.getArgument('serverResult');
+				var ecuFunListStr = OTX.hmi.getArgument('ecuFunListJson');
+				var curLangStr = OTX.hmi.getArgument('curLang');
+				modelStr = OTX.hmi.getArgument('model');
+				curEcuStr = OTX.hmi.getArgument('curEcu');
+				var ecuFunListJson = null;
+				var ecuFunList = [];
+				//alert(modelStr)
+
+				//[result=20000, msg=[{"ecuFunItemId":2,"ecuFunItemNameCn":"发布菜单中文","ecuFunItemNameEn":"发布菜单英文"}], sessionName=]
+
+				var n = 0;
+				var ecuFunIdTemp = "";
+				var ecuFunListString = "";
+				//alert("serverResultStr: " + serverResultStr + ", ecuFunListStr: " + ecuFunListStr)
+
+				// $("#reTryBtn").attr('disabled', true);
+				if (serverResultStr === '20000') {
+
+					ecuFunListJson = JSON.parse(ecuFunListStr);
+					//ecuFunList = ecuFunListJson.data;
+					var count = ecuFunListJson.length;
+					var funMenuName = '';
+					if (count <= 0) {
+
+						ecuFunListString = "<tr height=\"60px\"><td scope=\"row\" align=\"center\" colspan=\"2\"><font color=red>" + getTextKeyValue("00") + "</font></td></tr>";
+					} else {
+						for (var i = 0; i < count; i++) {
+
+							ecuFunIdTemp = ecuFunListJson[i].ecuFunItemId;
+							funMenuName = curLangStr === 'en' ? ecuFunListJson[i].ecuFunItemNameEn : ecuFunListJson[i].ecuFunItemNameCn;
+							ecuFunListString = ecuFunListString + "<tr height=\"30px\"><td scope=\"row\" class=\"alt\"><div id=\"" + ecuFunIdTemp + "\" class=\"rad_la\" onclick=\"changeEcuId('" + ecuFunIdTemp + "')\"></div></td><td class=\"alt\">" + funMenuName + "</td></tr>";
+						}
+
+					}
+				} else if (serverResultStr == '-1' || serverResultStr == '401' || serverResultStr == '406' || serverResultStr == '402' || serverResultStr == '400' || serverResultStr === '405') {
+
+					ecuFunList = [];
+					ecuFunListString = "<tr height=\"60px\"><td scope=\"row\" align=\"center\" colspan=\"2\"><font color=red>" + getTextKeyValue("00") + "</font></td></tr>";
+					// $("#reTryBtn").removeAttr("disabled");
+				} else {
+
+					ecuFunList = [];
+					ecuFunListString = "<tr height=\"60px\"><td scope=\"row\" align=\"center\" colspan=\"2\"><font color=red>" + ecuFunListStr + "</font></td></tr>";
+				}
+
+				$("#ecufuntable").append(ecuFunListString);
+				curEcuFunId = '';
+
+				$("#ecuFunListTitle").html(curEcuStr + ' ' + '<@gx_translate text_id="GX.COMMON.ECU_FUN_LIST" />');
+				// $("#confirm").attr('disabled', true);
+				$("#errorDetailInfo").hide();
+			});
+
+			$("#confirm").click(function (e) {
+				if (curEcuFunId === '') {
+					$("#errorDetailInfo").html('<font color=red>pls select ecu fun item!</font>');
+					$("#errorDetailInfo").show();
+					return;
+				}
+
+				$("#errorDetailInfo").html('')
+				$.ajax({
+					url: 'http://127.0.0.1:7777/copyLocalFlashFile?modelName=' + modelStr + '&ecuName=' + curEcuStr + '&funId=' + curEcuFunId,
+					type: "GET",
+					contentType: false,
+					processData: false,
+					complete: function (data) {
+debugger
+						var resultObj = JSON.parse(JSON.stringify(data.responseText));
+						//alert("doCopyFlashFile, resultObj: " + JSON.stringify(resultObj)) 
+						if (data.readyState == 4 && data.status == 200) {
+
+							var resultJsonObj = JSON.parse(resultObj);
+							code = resultJsonObj.code;
+							selFileStr = resultJsonObj.selFile;
+
+							if (code === "1") {
+								OTX.hmi.valueChangedInPage('ecuFunId', curEcuFunId);
+								OTX.hmi.valueChangedInPage('result', '1');
+								OTX.hmi.valueChangedInPage('selFlashFile', selFileStr);
+
+								OTX.hmi.closeScreen();
+							} else {
+
+								$("#closeBtn").removeAttr("disabled");
+								$("#errorDetailInfo").html('<font size="4" color=red>' + getTextKeyValue(code) + '</font>');
+								$("#errorDetailInfo").show();
+							}
+						} else {
+
+							result = false;
+							$("#errorDetailInfo").html('<font color=\"red\"><@gx_translate text_id="GX.COMMON.PROGRAM_INTERNAL_ERROR"/></font>');
+							$("#errorDetailInfo").show();
+						}
+
+						$("#confirm").removeAttr("disabled");
+						$("#cancel").removeAttr("disabled");
+					}
+				});
+			});
+
+			$("#cancel").click(function (e) {
+
+				OTX.hmi.valueChangedInPage('result', '0');
+				OTX.hmi.closeScreen();
+			});
+
+			$("#reTryBtn").click(function (e) {
+				OTX.hmi.valueChangedInPage('result', '2');
+				OTX.hmi.closeScreen();
+			});
+
+
+			function changeEcuId(ecufunid) {
+				// var divs = document.getElementsByTagName("div");
+				var tableElement = document.getElementById("ecufuntable");
+				var divs = tableElement.getElementsByTagName("div");
+				if (curEcuFunId === '') {
+					for (var i = 0; i < divs.length; i++) {
+						var d = divs[i];
+						if (ecufunid == d.id) {
+							d.style.backgroundColor = "#5d50dd";
+							curEcuFunId = ecufunid;
+							$("#errorDetailInfo").hide();
+							break
+						} else {
+							d.style.backgroundColor = "";
+						}
+					}
+				} else {
+					for (var i = 0; i < divs.length; i++) {
+						var d = divs[i];
+						d.style.backgroundColor = "";
+					}
+					if (curEcuFunId == ecufunid) {
+						curEcuFunId = "";
+					} else {
+						var divId = document.getElementById(ecufunid);
+						divId.style.backgroundColor = "#5d50dd";
+						curEcuFunId = ecufunid;
+					}
+
+				}
+
+			}
+			// 获取模态对话框和关闭按钮元素
+			var modal = document.getElementById("myModal");
+			var closeModal = document.getElementById("closeModal");
+
+			$("#deleHandBtn").click(function (e) {
+				// OTX.hmi.valueChangedInPage('result', '0');
+				// OTX.hmi.closeScreen();
+				if (curEcuFunId === '') {
+					$("#errorDetailInfo").html('<font color=red>pls select ecu fun item!</font>');
+					$("#errorDetailInfo").show();
+					return;
+				}
+
+				modal.style.display = "block";
+			});
+			// 添加点击事件监听器来关闭模态对话框
+			closeModal.addEventListener("click", function () {
+				modal.style.display = "none";
+			});
+
+			// 获取确认和取消按钮元素
+			var confirmButton = document.getElementById("confirmButton");
+			var cancelButton = document.getElementById("cancelButton");
+
+			// 添加点击事件监听器来执行操作或关闭模态对话框
+			confirmButton.addEventListener("click", function () {
+				modal.style.display = "none";
+				OTX.hmi.valueChangedInPage('ecuFunId', curEcuFunId);
+				// 在这里执行确认操作
+				OTX.hmi.valueChangedInPage('result', '3');
+				OTX.hmi.closeScreen();
+
+			});
+
+			cancelButton.addEventListener("click", function () {
+				// 在这里执行取消操作或什么都不执行
+				// alert("NO?");
+				modal.style.display = "none";
+			});
+
+
+		</script>
+	</div>
+</body>
+
+</html>

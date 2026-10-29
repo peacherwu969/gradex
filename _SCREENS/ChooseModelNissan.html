@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dynamic Screen Test</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="common/jquery.mobile-1.3.0.min.css" />
+<link rel="stylesheet" href="busy.css" />
+<link rel="stylesheet" href="common/nv.d3.css" />
+<script src="common/jquery-1.9.1.min.js"></script>
+<script src="common/jquery.mobile-1.3.0.min.js"></script>
+<script src="common/js-url.min.js"></script>
+<script type="text/javascript" src="common/d3.min.js"></script>
+<script type="text/javascript" src="common/nv.d3.min.js"></script>
+<script src="common/otx.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=9" />
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="-1"/>
+</head>
+
+<body>
+	<div data-role="page" id="mainPage">
+
+		<div data-role="header">
+			<h1>Select Model</h1>
+		</div>
+
+		<div data-role="panel" id="modelPanel" data-position="right" data-display="overlay" data-theme="e">
+		        <h2>Selected Model</h2>
+		        <h3 id="modelSelectedName">----</h3>
+		        <p  id="modelSelectedDescription">----</p>
+		        <img id="modelSelectedImage" src="" width="100%" />
+				<div data-role="controlgroup" data-type="horizontal">
+					<a id="modelConfirm" href="#" data-role="button" data-icon="check">Yes</a>
+					<a href="#" data-role="button" data-icon="delete" data-rel="close">No</a>
+				</div>
+		</div><!-- /panel -->
+
+		<div data-role="content">
+			<div class="ui-grid-c">
+    			<div class="ui-block-a"><div class="ui-bar"><h1 id="imgHeading_leaf">#</h1><img id="leaf" src="/images/nissan/leaf.png"/></div></div>
+    			<div class="ui-block-b"><div class="ui-bar"><h1 id="imgHeading_micra">#</h1><img id="micra" src="/images/nissan/micra.png"/></div></div>
+    			<div class="ui-block-c"><div class="ui-bar"><h1 id="imgHeading_note">#</h1><img id="note" src="/images/nissan/note.png"/></div></div>
+    			<div class="ui-block-d"><div class="ui-bar"><h1 id="imgHeading_juke">#</h1><img id="juke" src="/images/nissan/juke.png"/></div></div>
+			</div><!-- /grid-a -->
+			<div class="ui-grid-c">
+    			<div class="ui-block-a"><div class="ui-bar"><h1 id="imgHeading_qashqai">#</h1><img id="qashqai" src="/images/nissan/qashqai.png"/></div></div>
+    			<div class="ui-block-b"><div class="ui-bar"><h1 id="imgHeading_qashqai_plus_2">#</h1><img id="qashqai_plus_2"  src="/images/nissan/qashqai_plus_2.png"/></div></div>
+    			<div class="ui-block-c"><div class="ui-bar"><h1 id="imgHeading_xtrail">#</h1><img id="xtrail" src="/images/nissan/xtrail.png"/></div></div>
+    			<div class="ui-block-d"><div class="ui-bar"><h1 id="imgHeading_pathfinder">#</h1><img id="pathfinder" src="/images/nissan/pathfinder.png"/></div></div>
+			</div><!-- /grid-a -->
+			<div class="ui-grid-c">
+    			<div class="ui-block-a"><div class="ui-bar"><h1 id="imgHeading_navara">#</h1><img id="navara" src="/images/nissan/navara.png"/></div></div>
+    			<div class="ui-block-b"><div class="ui-bar"><h1 id="imgHeading_z370">#</h1><img id="z370" src="/images/nissan/z370.png"/></div></div>
+    			<div class="ui-block-c"><div class="ui-bar"><h1 id="imgHeading_z370_roadster">#</h1><img id="z370_roadster" src="/images/nissan/z370_roadster.png"/></div></div>
+    			<div class="ui-block-d"><div class="ui-bar"><h1 id="imgHeading_gtr">#</h1><img id="gtr" src="/images/nissan/gtr.png"/></div></div>
+			</div><!-- /grid-a -->
+			<div class="ui-grid-c">
+    			<div class="ui-block-a"><div class="ui-bar"><h1 id="imgHeading_nv200">#</h1><img id="nv200" src="/images/nissan/nv200.png"/></div></div>
+    			<div class="ui-block-b"><div class="ui-bar"></div></div>
+    			<div class="ui-block-c"><div class="ui-bar"></div></div>
+    			<div class="ui-block-d"><div class="ui-bar"></div></div>
+			</div><!-- /grid-a -->
+		</div>
+
+		<script type="text/javascript">
+
+		    var modelNames = {
+		    					leaf:			{model:"Leaf",          desc:"Nissan Leaf Electric Vehicle - all variants"},
+		    					micra:			{model:"Micra",         desc:"Nissan Micra - all variants"},
+		    					note:			{model:"Note",          desc:"Nissan Note - all variants"},
+		    					juke:			{model:"Juke",          desc:"Nissan Juke - all variants"},
+								qashqai:		{model:"Qashqai",       desc:"Nissan Qashqai - all variants"},
+								qashqai_plus_2:	{model:"Qashqai+2",     desc:"Nissan Qashqai+2  - all variants"},
+								xtrail:			{model:"X-Trail",       desc:"Nissan X-Trail - all variants"},
+								pathfinder:		{model:"Pathfinder",    desc:"Nissan Pathfinder - all variants"},
+								navara:			{model:"Navara",    	desc:"Nissan Navara - all variants"},
+								z370:			{model:"370Z",    		desc:"Nissan 370Z - all variants"},
+								z370_roadster:	{model:"370Z Roadster", desc:"Nissan 370Z Roadster - all variants"},
+								gtr:			{model:"GT-R",    		desc:"Nissan GT-R - all variants"},
+								nv200:			{model:"NV200 Combi",   desc:"Nissan NV200 Combi - all variants"},
+		    				};
+
+		    selectedModel = "";
+
+			$(document).ready(function()
+			{
+
+			    var key;
+			    for (key in modelNames)
+			    {
+			    	$("#imgHeading_" + key).text(modelNames[key].model);
+			    	$("#imgHeading_" + key).css("padding", "4px");
+			    	$("#imgHeading_" + key).css("border", "1px solid #e0e0e0");
+			    	$("#imgHeading_" + key).css("float", "left");
+			    	$("#imgHeading_" + key).addClass("ui-corner-all ui-shadow");
+
+			    	$("#" + key).click(function()
+						{
+							imageId = $(this).attr('id');
+							selectedModel = imageId;
+							modelSelectecImgSrc = $(this).attr('src');
+							$("#modelSelectedName").text(modelNames[imageId].model);
+							$("#modelSelectedDescription").text(modelNames[imageId].desc);
+							$("#modelSelectedImage").attr('src', '/images/nissan/' + imageId + '.png');
+							$("#modelPanel").panel('open');
+						});
+			    };
+
+				$("#modelConfirm").click(function()
+				{
+					// alert(selectedModel);
+					OTX.hmi.valueChangedInPage('model', imageId);
+					OTX.hmi.closeScreen();
+				});
+			});
+		</script>
+	</div>
+</body>
+</html>

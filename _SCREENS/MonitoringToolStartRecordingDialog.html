@@ -1,0 +1,124 @@
+<!--
+ This is a page navigated from DisplayMonitoring.html screen.
+ This screen implements Dialog for entering 'Start recording' target ID and description.
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+</head>
+<body>
+	<div data-role="page" id="recordingIdInput" class="otxDialog" data-overlay-theme="c" data-close-btn="none">
+      <div data-role="header">
+        <h2 id="dialogHeading"><@gx_translate text_id="GX.TOOL.MONITORING.START_RECORDING.HEADING" /></h2>
+      </div>
+      <div data-role="content">
+            <div data-role="fieldcontain">
+                <label for="inputRecordingId"><span style="color: #ff0000">*</span><@gx_translate text_id="GX.TOOL.MONITORING.START_RECORDING.LB_TARGET_ID" /><@gx_translate text_id="GX.COMMON.MARK.COLON" /></label><input type="text" id="inputRecordingId" name="inputRecordingId" />
+                <label for="inputRecordingDescription"><@gx_translate text_id="GX.COMMON.DESCRIPTION" /><@gx_translate text_id="GX.COMMON.MARK.COLON" /></label><textarea id="inputRecordingDescription" style="resize: none" name="inputRecordingDescription"></textarea>
+                <p id="recordingTargetIdDescription"><@gx_translate text_id="GX.TOOL.MONITORING.START_RECORDING.TARGET_ID_DESCRIPTION" /></p>
+            </div><!-- fieldcontain -->
+      </div><!-- content -->
+      <div data-role="footer" data-position="fixed" data-theme="c">
+        <fieldset id="buttons" class="ui-grid-a">
+            <div class="ui-block-a"><a data-role="button" id="btConfirmStartRecording" data-mini="false" type="submit" data-icon="check" data-iconpos="left"><@gx_translate text_id="GX.COMMON.START" /></a></div>
+            <div class="ui-block-b"><a data-role="button" id="btCancelStartRecording" data-mini="false" type="submit" data-icon="delete" data-iconpos="left"><@gx_translate text_id="GX.COMMON.CANCEL" /></a></div>
+         </fieldset>
+      </div><!-- footer -->
+      
+      <script type="text/javascript">
+        var IN_OUT_PARAM_RECORDING_ID = "recordingId";
+        var OUT_PARAM_RECORDING_DESCRIPTION = "recordingDescription";  
+        var IN_OUT_PARAM_START_RECORDING_MONITOR = 'startRecordingMonitor';
+        var IN_OUT_PARAM_PAUSED_MONITOR = 'pausedMonitor';
+        
+        //At least one not space and not dots only window file name allowed followed by none or more window file name allowed:
+        //Starts with: ^[^\\\\/:\\t\\n\\*\\?\"<>\\|]* any windows allowed, none tab, no return. anytimes 
+        //In the middle: [^\\\\/:\\*\\?\"<>\\|\\t\\n\\s\\.]{1,} any windows allowed, none tab, no return no space, no dot at leas one 
+        //Ends with: [^\\\\/:\\t\\n\\*\\?\"<>\\|]*$ any windows allowed, none tab, no return. anytimes
+        var RECORDING_ID_REG_EXP = "^[^\\\\/:\\t\\n\\*\\?\"<>\\|]*[^\\\\/:\\*\\?\"<>\\|\\t\\n\\s\\.]{1,}[^\\\\/:\\t\\n\\*\\?\"<>\\|]*$";
+        
+        var restrictionValue = new RegExp(RECORDING_ID_REG_EXP);
+      
+        /**
+         * Callback for 'btConfirmStartRecording'.
+         * Updates GRADE-X control variables and navigates back to the monitoring screen.
+         */
+        function onConfirmStartRecording()
+        {
+           GSPlib.hmi.disableButton($("#btConfirmStartRecording"));
+           if (restrictionValue.test($('#inputRecordingId').val())&&$('#inputRecordingId').val().indexOf("<@gx_translate text_id='GX.COMMON.MARK.CHINESECOLON' />")==-1)
+           {
+             OTX.hmi.valueChangedInPage(IN_OUT_PARAM_RECORDING_ID , $('#inputRecordingId').val());
+             OTX.hmi.valueChangedInPage(OUT_PARAM_RECORDING_DESCRIPTION , $('#inputRecordingDescription').val());
+             DataLogger.api.setTriggerRecording(); 
+             //just return to the monitoring screen by history.back() so the 'closeScreen' actions work!
+             //the recording will be triggered from the monitoring screen so any uncaught exception raised from the OTX will 
+             //correctly fall back to the 'signal selection' and will be handled by the signal selection page.
+             history.back();
+           }
+           else
+           {
+             
+              GSPlib.hmi.enableButton($("#btConfirmStartRecording"), function()
+                {
+                  onConfirmStartRecording();
+                });
+                var warningDailog = "<div id='wrongFilenamePopup' data-role='popup' data-theme='d' data-overlay-theme='b' class='ui-content' style='max-width:340px; padding-bottom:2em;' >"
+                    + "<a href='#' data-rel='back' data-role='button' data-theme='a' data-icon='delete' data-iconpos='notext' class='ui-btn-right'><@gx_translate text_id='GX.COMMON.CLOSE' /></a>"
+                    + "<p><@gx_translate text_id='GX.TOOL.MONITORING.START_RECORDING.TARGET_ID_FORMAT_WARN' /></p>"
+                    + "<a id='bt-test-changeConfirmed' data-mini='true' data-inline='true' data-icon='check' data-role='button' data-rel='back'><@gx_translate text_id='GX.COMMON.OK' /></a>"
+                    + "</div>";
+
+                $.mobile.activePage.append(warningDailog).trigger("create");
+                //show the popup to the user
+                $("#wrongFilenamePopup").popup("open", {
+                  positionTo : "window"
+                });
+              }
+            }
+
+              /**
+               * Callback for 'btCancellStartRecording'.
+               * Just navigates back to the monitoring screen.
+               */
+              function onCancelStartRecording()
+              {
+                //just return to the monitoring screen by history.back() so the 'closeScreen' actions work! 
+                history.back();
+              }
+
+              // Close the dialog when the close button is clicked and set the current result.
+              $('#btConfirmStartRecording').click(function()
+              {
+                onConfirmStartRecording();
+              });
+
+              $('#btCancelStartRecording').click(function()
+              {
+                onCancelStartRecording();
+              });
+
+              //Set the page content using the screen arguments.  This will be called just before 
+              //page is displyed as it is bound to the pagebeforeshow event.
+              $('#recordingIdInput').bind('pagebeforeshow', function(e, data)
+              {
+                $('#inputRecordingId').val(OTX.hmi.getArgument(IN_OUT_PARAM_RECORDING_ID));
+              });
+				
+			  //always set the pausedMonitor parameter to false when the page is first showed.
+              $(document).on('pageshow', "#recordingIdInput", function()
+              {
+            	//always set the pausedMonitor parameter to false when the page is first showed
+				var parameters = window.location.href.split("?");
+				if (!(parameters.length > 1 && parameters[1].indexOf('keepPaused=true')>=0))
+					{
+            	  	OTX.hmi.valueChangedInPage(IN_OUT_PARAM_PAUSED_MONITOR, 'false');
+					}
+              });
+				
+            </script>
+    </div><!-- dialog page -->
+</body>
+</html>

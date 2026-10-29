@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>LoadingData</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="common/jquery.mobile-1.3.0.min.css" />
+<link rel="stylesheet" href="busy.css" />
+<link rel="stylesheet" href="common/nv.d3.css" />
+<script src="common/jquery-1.9.1.min.js"></script>
+<script src="common/jquery.mobile-1.3.0.min.js"></script>
+<script src="common/js-url.min.js"></script>
+<script type="text/javascript" src="common/d3.min.js"></script>
+<script type="text/javascript" src="common/barChart.js"></script>
+<script src="common/otx.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=9" />
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="-1"/>
+</head>
+
+<body>
+<div>Wait for the DownLoading!</div>
+<div><h1 id="title">Wait for me to close</h1></div>
+	 <div id="testDemo"  data-role="page">
+                <header data-role="header">
+			<h1 id="title">Wait for me to close</h1>
+		</header>
+	
+		<div data-role="content">
+			<p id="s1_Container"></p>
+		</div>
+		
+		<div data-role="footer" data-theme="a" data-position="fixed">
+			<div>
+				<fieldset class="ui-grid-b">
+					<div class="ui-block-a">&nbsp;</div>
+					<div class="ui-block-b">&nbsp;</div>
+					<div class="ui-block-c">&nbsp;</div>
+				</fieldset>
+			</div>
+		</div>
+
+<div>
+<script>
+var s2 =OTX.hmi.getArgument('s2');
+$(document).on("pageshow",function(event){
+
+	$(".datacontent2").width($(document).width()-30).height($(document).height()-130);
+	//$(".datacontent2").css({"background":"url(/images/Foton/background/BX7_bg.jpg) no-repeat","background-size":"100% 100%"});
+   
+              var s1 =OTX.hmi.getArgument('s1');  //s1  means the title.
+              var s2 =OTX.hmi.getArgument('s2');  //s2 means the content of detail .
+              var s3 =OTX.hmi.getArgument('s3'); //s3  means  the content of Msg.  
+              $("p").html(s2);
+              $("#title").html(s1);
+              $.mobile.loadingMessageTextVisible = true;//whether the text should be visible when a message is show 
+              $.mobile.loadingMessageTheme = 'a';
+              $.mobile.showPageLoadingMsg("a",s3); 
+              
+});  
+
+// add a listener to get called when the "value" variable changes - updates the text and bar chart
+			// note - it is also possible to construct a polled version to refresh the data at a fixed cadence
+
+			OTX.hmi.addValueListener('s3', function(quantity)
+			{
+				$.mobile.showPageLoadingMsg("a",quantity); 
+			});
+
+
+</script>	
+<div>
+</body>
+</html>

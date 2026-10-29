@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ecu Flash Or Brand Select</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="common/jquery.mobile-1.3.0.min.css" />
+<link rel="stylesheet" href="busy.css" />
+<link rel="stylesheet" href="common/nv.d3.css" />
+<script src="common/jquery-1.9.1.min.js"></script>
+<script src="common/jquery.mobile-1.3.0.min.js"></script>
+<script src="common/js-url.min.js"></script>
+<script type="text/javascript" src="common/d3.min.js"></script>
+<script type="text/javascript" src="common/nv.d3.min.js"></script>
+<script src="common/otx.js"></script>
+<meta http-equiv="Access-Control-Allow-Origin" content="*">
+<meta http-equiv="X-UA-Compatible" content="IE=9" />
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="-1"/>
+</head>
+<body>
+	<div data-role="page" id="mainPage">	 
+ 		<p style="text-align:center"><font size=9><@gx_translate text_id="GX.COMMON.CPLF.PLS.SEL.BRANDORFLASH"/></font></p>
+			
+			<style type="text/css" scoped>
+				#selectContainer {
+					margin: 0 auto; 
+					width: 450px;
+					height: 170px;  
+					#border: 1px solid #00F;
+					margin-top: 10%;
+				}
+				#selbrand{
+					float: left;
+					width: 200px;
+					height: 130px; 
+					line-height: 130px;
+					border: 1px solid #00F; 
+					text-align: center;
+					background: url('/images/vid.png') no-repeat center;
+				}
+				#selbrand:hover{
+					#background: #C0C0C0;
+					cursor: pointer;
+				}
+				
+				#sellocalflash{
+					float: right;
+					width: 200px;
+					height: 130px; 
+					line-height: 130px;
+					border: 1px solid #00F; 
+					text-align: center;
+					background: url('/images/ECUFlashing.png') no-repeat center;
+				}
+				#sellocalflash:hover{
+					#background: #C0C0C0;
+					cursor: pointer;
+				}
+			</style>
+		<div data-role="content" id="selectContainer"> 
+			<div id="selbrand"><div style="text-align: center; padding-top: 50px;"><@gx_translate text_id="GX.COMMON.CPLF.BRAND"/></div></div>
+			<div id="sellocalflash"><div style="text-align: center; padding-top: 50px;"><@gx_translate text_id="GX.COMMON.CPLF.FLASH"/></div></div>
+		</div>
+	 
+	 <!--
+		<div data-role="footer" data-theme="c" data-position="fixed">		 
+			<div>
+				<fieldset class="ui-grid-c">
+					<div class="ui-block-a"></div>
+					<div class="ui-block-b">
+						<button id="confirm" data-corners="true" data-mini="false" data-icon="check" data-iconpos="left"><@gx_translate text_id="GX.COMMON.BTN.CONFIRM" /></button> 
+					</div>
+					<div class="ui-block-c">
+						<button id="cancel" data-corners="true" data-mini="false" data-icon="check" data-iconpos="left"><@gx_translate text_id="GX.COMMON.CANCEL" /></button> 
+					</div>
+					
+				</fieldset>
+			</div>
+		</div>
+		-->
+		<!-- footer --> 
+ 
+		<script type="text/javascript">	
+			
+			var g_model = '', g_ecu = '';
+			var uploadFileList = [];
+			$('#mainPage').bind('pageshow', function() { 				
+				 			
+			});  
+												
+			$("#selbrand").click(function(e) {
+			 
+				OTX.hmi.valueChangedInPage('selType', '1');//brand
+				OTX.hmi.closeScreen(); 
+			});
+			
+			$("#sellocalflash").click(function(e) {
+			 
+				OTX.hmi.valueChangedInPage('selType', '2');//flash
+				OTX.hmi.closeScreen();
+			});
+						
+		</script>
+	</div>
+</body>
+</html>

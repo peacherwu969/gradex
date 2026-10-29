@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>LoadingData</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="common/jquery.mobile-1.3.0.min.css" />
+<link rel="stylesheet" href="busy.css" />
+
+<script src="common/jquery-1.9.1.min.js"></script>
+<script src="common/jquery.mobile-1.3.0.min.js"></script>
+<script src="common/js-url.min.js"></script>
+<script src="common/otx.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=9" />
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="-1"/>
+</head>
+
+<body >
+	<div data-role="page" id="mainPage">
+		<div data-role="header" >
+			<h1 id="title"></h1>
+		</div>
+		<input type="hidden" name="message1" id="message1" value="<@gx_translate text_id='SAIC_LDV_EV79_UI.MESSAGE.SELECTONEECU' />" />
+		<div id ="TableDiv" data-role="content" style="padding:6px;margin:3px;">
+			<table id="CarTable" style="width:100%;height:100%">
+				<tr style="height:10%;">
+					<th colspan="3" style="text-align:center;">
+						<input name="ECU" type="checkbox" id="GAW" value="GAW" />
+						<Label id="ecuLabel" for="GAW" style="background:#FF0000;margin:0px;text-align:center;">GAW(Central Gateway)&nbsp;&nbsp;<img src="/images/warn.png"></img>2</Label>		
+					</th>
+				</tr>
+				<tr style="height:90%;">
+					<td style="width:33%;text-align:center;vertical-align:top;">
+						<table id="CarTableBCn" style="width:100%;">
+							<tr>
+								<th style="text-align:center;background:#FFA54F;color: #000;">B-Can</th>
+							</tr>
+							<tr>
+								<td >
+									<input name="ECU" type="checkbox" id="AFS" value="AFS" />
+									<Label id="ecuLabel" for="AFS" style="width:93%;background:#32CD32;color: #000;margin:0px;">AFS</Label>
+								</td>
+							</tr>
+							<tr>
+								<td>	
+									<input name="ECU" type="checkbox" id="ABS" value="ABS" />
+									<Label id="ecuLabel" for="ABS" style="width:93%;background:#FF0000;margin:0px;">ABS&nbsp;&nbsp;<img src="/images/warn.png"></img>34</Label>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td style="width:33%;text-align:center;vertical-align:top;">
+						<table id="CarTableCCn" style="width:100%">
+							<tr >
+								<th style="text-align:center;background:#FFA54F;color: #000;">C-Can</th>
+							</tr>
+							<tr >
+								<td >	
+									<input name="ECU" type="checkbox" id="VMS" value="VMS" />
+									<Label id="ecuLabel" for="VMS" style="width:93%;background:#32CD32;color: #000;margin:0px;">VMS</Label>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input name="ECU" type="checkbox" id="HCM" value="HCM" />
+									<Label id="ecuLabel" for="HCM" style="width:93%;background:#BEBEBE;color: #000;margin:0px;">HCM</Label>
+								</td>
+							</tr>
+							<tr >
+								<td ">	
+									<input name="ECU" type="checkbox" id="TPMS" value="TPMS" />
+									<Label id="ecuLabel" for="TPMS" style="width:93%;background:#32CD32;color: #000;margin:0px;">TPMS</Label>
+								</td>
+							</tr>
+							<tr>
+								<td>	
+									<input name="ECU" type="checkbox" id="TBOX" value="TBOX" />
+									<Label id="ecuLabel" for="TBOX" style="width:93%;background:#FF0000;margin:0px;">TBOX&nbsp;&nbsp;<img src="/images/warn.png"></img>3</Label>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input name="ECU" type="checkbox" id="SRS" value="SRS" />
+									<Label id="ecuLabel" for="SRS" style="width:93%;background:#32CD32;color: #000;margin:0px;">SRS</Label>
+								</td>
+							</tr>
+						</table>
+					
+					</td>
+					<td style="width:33%;text-align:center;vertical-align:top;">
+						<table id="CarTablePCn" style="width:100%;">
+							<tr >
+								<th style="text-align:center;background:#FFA54F;color: #000;">P-Can</th>
+							</tr>
+							<tr>
+								<td>
+									<input name="ECU" type="checkbox" id="BMS" value="BMS" />
+									<Label id="ecuLabel" for="BMS" style="width:93%;background:#BEBEBE;color: #000;margin:0px;">BMS</Label>
+								</td>
+							</tr>
+							<tr >
+								<td >	
+									<input name="ECU" type="checkbox" id="BCM" value="BCM" />
+									<Label id="ecuLabel" for="BCM" style="width:93%;width:93%;background:#32CD32;color: #000;margin:0px;">BCM</Label>
+								</td>
+							</tr>
+							<tr>
+								<td>	
+									<input name="ECU" type="checkbox" id="DCDC" value="DCDC" />
+									<Label id="ecuLabel" for="DCDC" style="width:93%;background:#FF0000;margin:0px;">DCDC&nbsp;&nbsp;<img src="/images/warn.png"></img>6</Label>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input name="ECU" type="checkbox" id="EHPS" value="EHPS" />
+									<Label id="ecuLabel" for="EHPS" style="width:93%;background:#BEBEBE;color: #000;margin:0px;">EHPS</Label>
+								</td>
+							</tr>
+							<tr>
+								<td>	
+									<input name="ECU" type="checkbox" id="MC" value="MC" />
+									<Label id="ecuLabel" for="MC" style="width:93%;background:#32CD32;color: #000;margin:0px;">MC</Label>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input name="ECU" type="checkbox" id="IPK" value="IPK" />
+									<Label id="ecuLabel" for="IPK" style="width:93%;background:#32CD32;color: #000;margin:0px;">IPK</Label>
+								</td>
+							</tr>
+							<tr>
+								<td>	
+									<input name="ECU" type="checkbox" id="LCA" value="LCA" />
+									<Label id="ecuLabel" for="LCA" style="width:93%;background:#FF0000;margin:0px;">LCA&nbsp;&nbsp;<img src="/images/warn.png"></img>3</Label>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input name="ECU" type="checkbox" id="PEPS" value="PEPS" />
+									<Label id="ecuLabel" for="PEPS" style="width:93%;background:#32CD32;color: #000;margin:0px;">PEPS</Label>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>			
+			
+			
+			
+			</table>
+		</div>
+		<div data-role="footer" data-position="fixed" >
+				<div data-role="controlgroup" data-type="horizontal" style="text-align:center">
+					<button id="ok" data-transition="slide" data-corners="true" data-mini="false" data-icon="check" data-inline="true"><@gx_translate text_id="GX.COMMON.OK" /></button>
+					<button id="cancel" data-transition="slide" data-corners="true" data-mini="false" data-icon="back" data-inline="true"><@gx_translate text_id="GX.COMMON.CANCEL" /></button>
+				</div>
+        </div> <!-- footer -->
+		<script>
+		var color="";
+		var ecuNames="";
+		var message=document.getElementById("message1").value;
+		
+		$(document).ready(function()
+		{
+			$("Label").mouseover(function(){
+				color=$(this).css("background-color");
+				$(this).css("background-color","#ADD8E6");
+			});
+			$("Label").mouseout(function(){
+				$(this).css("background-color",color);
+			});
+		});
+		
+		
+		
+		$('#mainPage').bind('pagebeforecreate', function(e, data)
+		{
+			//label = OTX.hmi.getArgument('label');
+			//scaleMin = OTX.hmi.getArgument('scaleMin').value;
+			//scaleMax = OTX.hmi.getArgument('scaleMax').value;
+			//scaleOrigin = OTX.hmi.getArgument('scaleOrigin').value;
+			//ticks = OTX.hmi.getArgument('ticks');
+			//createBarCharts(label, scaleMin, scaleMax, scaleOrigin, ticks);
+			//$(#CarTable).css("background-image","url(/images/SAIC/0028573004.png)");
+			//$(#CarTable).css("center","center");
+			//$(#CarTable).css("background-size","cover");
+			$("#title").html("ECU identification.");
+			
+			$("#TableDiv").width($(document).width()-38).height($(document).height()-130);
+			//$("#CarTableBCn").width($("#TableDiv").width()/4).height($("#TableDiv").height()/4);
+			//$("#CarTableCCn").width($("#TableDiv").width()/4).height($("#TableDiv").height()/4);
+			//$("#CarTablePCn").width($("#TableDiv").width()/4).height($("#TableDiv").height()/4);
+			
+
+			$("#CarTable").css({"background":"url(/images/SAIC/0028573005.png) no-repeat","background-size":"100% 100%"});
+			//$("#CarTableButton").width($("#TableDiv").width()/4).height($("#TableDiv").height()/4);
+			
+		}); 
+		
+		
+		$("#ok").bind("click", function () {
+
+               $('input[name="ECU"]:checked').each(function(){ 
+				ecuNames=ecuNames+","+$(this).val();
+				
+				}); 
+		
+			if(0!=ecuNames.length) 
+			{
+				ecuNames=ecuNames.substr(1);
+			}
+			else
+			{
+				alert(message);
+				return;
+			}
+
+			OTX.hmi.valueChangedInPage('ecuNames', ecuNames);
+			OTX.hmi.valueChangedInPage('result', "1");
+			OTX.hmi.closeScreen();
+
+            });
+			
+			
+		$("#cancel").bind("click", function () {
+            OTX.hmi.valueChangedInPage('result', "2");
+			OTX.hmi.closeScreen();   
+        });
+		
+		
+		</script>	
+	<div/>
+</body>
+</html>

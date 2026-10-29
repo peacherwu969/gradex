@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+</head>
+
+<body>
+  <h2 id="heading_id_1">诊断功能概况</h2>
+  <p>诊断程序主界面是框架式显示，左边是功能选择区，依次为车辆信息、故障码、数据流、执行器测试、配置、特殊功能、刷写、测试报告,右边是内容显示区</p>
+  <p>点击左侧菜单选择不同的诊断功能。</p>
+	<div>
+    <img src="../images/mainpage05.png" width="550" height="350"/><br/>
+  </div>
+  
+	<h2 id="heading_id_2">车辆信息功能介绍</h2>
+	<p>诊断程序的主界面进入后就默认进入车辆信息功能。画面右边显示的是车辆的基本信息。靠上的部分显示制造商、车型以及VIN码。在画面中间部分显示的是该车的车辆信息，例如品牌、车身长度、方向盘位置、产地、动力类型、生产年份等信息。</p>
+	<div>
+    <img src="../images/mainpage02.png" width="550" height="350"/><br/>
+  </div>
+	<p>在底部有2个按钮，默认选择左边的车辆信息按钮。而点击右边的ECU信息按钮，系统自动读取各个ECU的版本信息并显示各ECU的零部件的号码，包括硬件号，软件号，VIN码等。</p>
+	<div>
+    <img src="../images/identification.png" width="550" height="350"/><br/>
+  </div>
+  <h2 id="heading_id_3">故障码功能介绍</h2>
+  <p>选择故障码菜单后，系统默认自动读取故障码。点击界面底部功能按钮可以实现全部ECU的故障码清除及刷新故障码。</p><br />功能从左往右依次为：
+  <ul>
+  	<li>1. 清除全部ECU故障码</li>
+  	<li>2. 清除全部ECU故障码后再次刷新当前所有ECU故障码状态</li>
+  	<li>3. 刷新全部ECU故障码状态</li>
+  	<li>4. 取消 </li>
+  </ul>
+  <div>
+    <img src="../images/ReadDTC.png" width="550" height="350"/><br/>
+  </div>
+  
+  <p>读故障码界面中每个ECU名称的最右侧会显示当前ECU的故障码数量</p>
+  <div>
+    <img src="../images/ReadDTC05.png" width="550" height="350"/><br/>
+  </div>
+  <p>点击故障码数量右侧的圆形按钮会显示当前ECU的故障码清除及刷新故障码功能。</p>
+  <div>
+    <img src="../images/ReadDTC01.png" width="550" height="350"/><br/>
+  </div>
+ 
+     <p>当故障码有冻结帧时会显示冻结帧的图标（照相机图标）</p>
+	 <div>
+    <img src="../images/ReadDTC04.png" width="550" height="350"/><br/>
+  </div>
+  <p>点击（照相机图标）右侧的圆形按钮后会显示该故障码的冻结帧功能，点击后即显示冻结帧数据。</p>
+  <div>
+    <img src="../images/ReadDTC02.png" width="550" height="350"/><br/>
+  </div>
+  <div>
+     <p>点击冻结帧数据，读取该故障码的冻结帧。</p>
+  </div>
+  <div>
+    <img src="../images/ReadDTC03.png" width="550" height="350"/><br/>
+  </div>
+ 
+  <h2 id="heading_id_4">数据流功能介绍 </h2>
+  <p>数据流是显示ECU当前的状态值，比如测试时的发动机转速，电池电压、水温以及车窗车门开关的状态。是维修人员进行车辆诊断及故障判断的重要依据。通过读取当前状态值，维修人员判断车辆的故障。</p>
+  <p>点击左侧读数据流按钮，右侧该车包含的ECU，点击ECU菜单会显示该ECU包含的数据流项目。选择项目后点击开始监测，诊断仪就会获取所选数据项的信息。</p>
+  <p>数据流选择界面下方的功能按钮依次为：</p>
+  <ul>
+  <li>1. 数据监控 </li>
+  <li>2. 监控数据回放</li>
+  <li>3. 开始监控。</li>
+  </ul>
+   <div>
+    <img src="../images/mornitoring00.png" width="550" height="350"/><br/>
+  </div>
+  <p>数据流项选择可以使用搜索功能来实现快速定位需要选择的数据流项。如图：</p>
+    <img src="../images/mornitoring03.png" width="550" height="350"/><br/>
+  <p>数据流监控时可以选择最多8条数据流来进行动态波形图显示，所显示的数据流波形图为开始监控时最先选择的前8条，并且分别以不同颜色来表示。</p>
+  <p>数据流显示界面的下方有3个按钮，从左往右依次为：</p>
+  <ul>
+  <li>1. 开始记录按钮</li>
+  <li>2. 停止记录按钮</li>
+  <li>3. 冻结画面。</li>
+  </ul>
+  <p>1. 开始记录按钮：点击记录按钮后，会让用户输入记录数据名称，点击确认后就开始记录数据。</p>
+  <p>2. 停止记录按钮：停止记录按钮即停止记录当前数据。</p>
+  <p>3. 冻结画面：冻结按钮将会让画面暂停，再点击该按钮，画面将继续显示。</p>
+  <div>
+    <img src="../images/mornitoring01.png" width="550" height="350"/><br/>
+  </div>
+  <p>如图：监控数据流</p>
+  <div>
+    <img src="../images/mornitoring02.png" width="550" height="350"/><br/>
+  </div>
+  <p>如图：监控数据流中点击开始记录，对记录文件进行描述，方便查找。</p>
+  <div>
+    <img src="../images/recordMonitor05.png" width="550" height="350"/><br/>
+  </div>
+  <div>
+    <img src="../images/recordMonitor.png" width="550" height="350"/><br/>
+  </div>
+  <p>退出数据流监控请点击上方数据流监控标题最右侧的圆形按钮。</p>
+  <div>
+    <img src="../images/recordMonitor03.png" width="550" height="350"/><br/>
+  </div>
+  <div>
+    <img src="../images/recordMonitor04.png" width="550" height="350"/><br/>
+  </div>
+  <p>若要回放记录的数据流，请回退到数据流选择界面，在底部点击数据流回放按钮。随后选择要回放的数据记录即可。</p>
+  <div>
+    <img src="../images/recordMonitorPlayback00.png" width="550" height="350"/><br/><br/>
+  </div>
+  <p>如图：数据流回放。</p>
+  <div>
+    <img src="../images/recordMonitorPlayback02.png" width="550" height="350"/><br/>
+  </div>
+  <p><b>注意：若要退出数据流监测画面。请点击右上角圆形按钮，然后选择关闭</b></p>
+  <div>
+    <img src="../images/recordMonitorPlayback01.png" width="550" height="350"/><br/>
+  </div>
+    <p><b>数据流录制文件</b></p>
+    <p>文件存放目录</p>
+    <p>当您录制完数据流后并正常退出SAIC GRADE-X 诊断软件，您可以在C:\temp目录下查找到录制文件，如下图所示：</p>
+  <div>
+    <img src="../images/recordFile1.png" width="550" height="350"/><br/>
+  </div>
+  <p>提交数据流录制文件</p>
+    <p>当您要将文件提供给SAIC时，您需要提交以下2个文件：</p>
+    <p>C:\temp目录下测试车辆相对应的VIN码session文件，如下图所示：</p>
+  <div>
+    <img src="../images/recordFile2.png" width="550" height="350"/><br/>
+  </div>
+   <p>C:\temp\GRADE-X_storage目录下所测试车辆相对应的VIN码文件夹，如下图所示：</p>
+  <div>
+    <img src="../images/recordFile3.png" width="550" height="350"/><br/>
+  </div>
+  <p>注意：以上两个文件的文件名必须相同。</p>
+  <br/><br/> 
+    <h2 id="heading_id_5">执行器测试</h2>
+  <p>执行器测试可以用于对车辆进行一系列动作测试，从而检测相关部件是否可以正常工作。</p>
+  <p>点击左侧动作测试按钮，展开右侧的ECU菜单选择要进行测试的项目。点击右边的箭头。</p>
+  <div>
+    <img src="../images/IOControl01.png" width="550" height="350"/><br/>
+  </div>
+  
+  
+  
+  <p>如图：对LED灯打开/关闭的测试</p>
+  <div>
+    <img src="../images/IOControl02.png" width="550" height="350"/><br/>
+  </div>
+  <div>
+    <img src="../images/IOControl03.png" width="550" height="350"/><br/>
+  </div>
+	
+	
+	
+	
+  <br/><br/>
+  <h2 id="heading_id_6">配置功能介绍</h2>
+  <p>点击左侧配置按钮，展开右侧的ECU菜单选择要进行配置的项目。点击右边的箭头进入到具体功能</p>
+    <p>
+	<b>注意：ECU配置功能是对ECU进行状态修改，写入VIN码、最大钥匙数，写入安装日期等有永久影响的操作。如果操作不当会对车辆造成不可预见的后果。所以在执行时候请遵循安全指导或请有资质的人员进行操作。该功能需要安全访问。</b>
+	</p>
+
+  <div>
+    <img src="../images/configuration01.png" width="550" height="350"/><br/>
+  </div>
+
+  
+   <p>例如：写车辆识别号，请按照实际车辆信息写入VIN码，注意：要正确写入VIN码， 否则软件会提示错误信息。</p>
+  <div>
+    <img src="../images/configuration02.png" width="550" height="350"/><br/>
+  </div>
+   <div>
+    <img src="../images/configuration03.png" width="550" height="350"/><br/>
+  </div>
+  
+
+  
+  
+  
+  
+  
+	<h2 id="heading_id_7">特殊功能介绍</h2>
+	<p>特殊功能是一种集成于电控单元与电控单元或电控单元与传感器之间的配置及学习过程，主要用于防盗配置的相关功能，传感器的校验与学习等。</p>
+	<div>
+    <img src="../images/routineControl02.png" width="550" height="350"/><br/>
+  </div>
+  	
+	<p>例如：删除所有钥匙，请按照流程的提示进行操作。</p>
+	<div>
+    <img src="../images/routineControl.png" width="550" height="350"/><br/>
+  </div>
+  	<div>
+    <img src="../images/routineControl01.png" width="550" height="350"/><br/>
+  </div>
+    	<div>
+    <img src="../images/routineControl04.png" width="550" height="350"/><br/>
+  </div>
+    	<div>
+    <img src="../images/routineControl05.png" width="550" height="350"/><br/>
+  </div>
+ 
+  <h2 id="heading_id_8">刷写功能介绍</h2>
+	<p>ECU刷新是指改写ECU内部程序，通过此方法可以将供油及点火的在原厂数据基础上进行精细调整，优化参数以达到增加输出马力、提升扭矩或降低油耗的目的。</p>
+	<p>本功能包含ECU（本地）刷写，点击ECU刷写右边的箭头进行刷写。</p>
+	<div>
+    <img src="../images/ECUFlash01.png" width="550" height="350"/><br/>
+  </div>
+  <!--<p>刷写前注意事项和准备工作</p>
+  <div>
+    <img src="../images/ECUFlash02.png" /><br/>
+  </div>
+  <p>选择要刷写的Hex文件</p>
+  <div>
+    <img src="../images/ECUFlash03.png" /><br/>
+  </div>
+   <p>正在刷写，以及进度显示</p>
+  <div>
+    <img src="../images/ECUFlash04.png" /><br/>
+  </div>
+  <p>刷写结束，关闭点火开关然后再打开点火开关</p>
+   <div>
+    <img src="../images/ECUFlash05.png" /><br/>
+  </div>
+  <p>等待40秒，系统将重新连接</p>
+    <div>
+    <img src="../images/ECUFlash06.png" /><br/>
+  </div>
+  <p>刷写流程结束</p>
+    <div>
+    <img src="../images/ECUFlash07.png" /><br/>
+  </div>  -->
+  <h2 id="heading_id_11">测试报告功能介绍</h2>
+  <p>测试报告将汇总用户之前做过的所有操作以及操作的结果。可以使用打印功能打印出结果。</p>
+  <div>
+    <img src="../images/report.png" width="550" height="350"/><br/>
+  </div>
+</body>
+</html>

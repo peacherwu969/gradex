@@ -1,0 +1,8 @@
+<machine>
+	<id>SAIC_EV31_C1</id>
+	<context>
+		<id>BASE/MODEL</id>
+		<value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">SAIC_EV31_C1</value>
+	</context>	
+</machine>

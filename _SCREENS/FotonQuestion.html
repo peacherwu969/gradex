@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Diagnostic Question</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="common/jquery.mobile-1.3.0.min.css" />
+<link rel="stylesheet" href="busy.css" />
+<script src="common/jquery-1.9.1.min.js"></script>
+<script src="common/jquery.mobile-1.3.0.min.js"></script>
+<script src="common/js-url.min.js"></script>
+<script src="common/otx.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=9" />
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="-1"/>
+</head>
+
+<body>
+	<div data-role="page" id="mainPage" unselectable="on" onselectstart="return false;" style="-moz-user-select:none; -webkit-user-select:none; -ms-user-select:none; user-select:none;">
+
+
+		<div data-role="header">
+			<h1 id="title"></h1>
+		</div>
+
+		<div data-role="content">
+			<h3 id="subtitle"></h3>
+			<div><ul id="conditionList"></ul><div>
+			<h4 id="question"></h4>
+		</div>
+
+	    <div data-role="footer" data-theme="c" data-position="fixed">
+	    	<div>
+				<fieldset class="ui-grid-c">
+					<div class="ui-block-a"></div>
+					<div class="ui-block-b"><button id="response_yes" data-corners="true" data-mini="false" data-icon="check" data-iconpos="left">Yes</button></div>
+					<div class="ui-block-c"><button id="response_no" data-corners="true" data-mini="false" data-icon="delete" data-iconpos="left">No</button></div>
+				</fieldset>
+			</div>
+        </div> <!-- footer -->
+
+		<script type="text/javascript">
+
+			// setup up screen for initial display
+
+			$('#mainPage').bind('pageshow', function()
+				{
+
+					title = OTX.hmi.getArgument('title');
+					subtitle = OTX.hmi.getArgument('subtitle');
+					conditionList = OTX.hmi.getArgument('conditionList');
+					question = OTX.hmi.getArgument('question');
+
+
+					$('#title').text(title);
+					$('#subtitle').text(subtitle);
+					$('#question').text(question);
+
+
+					var itemsString = "";
+
+					for (var item=0; item < conditionList.length; item++)
+					{
+					     itemsString = itemsString + "<li>" + conditionList[item] + "</li>";
+					}
+
+					$('#conditionList').html(itemsString);
+
+
+				});
+
+				// ********** MORNA **********
+
+				OTX.hmi.addValueListener('subtitle', function(titleText)
+				{
+					$('#subtitle').text(titleText);
+				});
+
+				// ***************************
+
+
+				$("#response_yes").click(function(e)
+				{
+					OTX.hmi.valueChangedInPage('result', '1')
+					OTX.hmi.closeScreen();
+				});
+
+				$("#response_no").click(function(e)
+				{
+					OTX.hmi.valueChangedInPage('result', '2')
+					OTX.hmi.closeScreen();
+				});
+
+		</script>
+	</div>
+</body>
+</html>
