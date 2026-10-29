@@ -8550,7 +8550,6 @@
 /_DOCUMENTS/GTS/SV63/EMS/en/P175DF9_P175DFA_files/image020.png
 /_SAIC/SV52EV52/InputOutputControl/LL_SCM_PRR_SPC1_A1_EPC1_B1_UDS/BitMap/Heat_Low_indication_light_STAUSIO03Req.gmf
 /_DOCUMENTS/GTS/SV63/EMS/zh-CN/U046C29_files/image009.png
-/bin/CheckToolLog.xsl
 /_SAIC/GST/Configuration/LL_ZCU_PR_GST_UDS/CF10IMMOInformation3_0xCF10.gmf
 /_DOCUMENTS/_HELP/zh_CN/GX.COMMON.HELP/images/mainpage01.png
 /_DOCUMENTS/_HELP/zh_CN/GX.COMMON.HELP/images/addusermenu.png
@@ -14145,7 +14144,6 @@
 /_SAIC/PHEV_MIFA/Configuration/LL_FVCM_UDS/RegionCodeDefaultValue_0xC005.gmf
 /_DOCUMENTS/GTS/SV63/EMS/th/P24DB13_P24DB12_files/image015.png
 /_SAIC/PHEV_51/InputOutputControl/PV51_IBDU_D2/Linear/Right_brake_light_CHMSL_AD.gmf
-/bin/34896.ini.xml
 /_SAIC/SV52EV52/Configuration/LL_DRM_SV65_EV65_UDS/LL_DRM_SV65_EV65_UDS_READ_ALL_CONFIG_DATA.gmf
 /_DOCUMENTS/GTS/SV63/EMS/en/P175DF9_P175DFA_files/image021.png
 /_CommsServerData/SAIC_LDV/DLC_ECU_SV61_TCU.csdf
@@ -14522,7 +14520,6 @@
 /_SAIC/SV63EV63/Configuration/LL_iCGM_Secure_63_UDS/bCallCallBackTimer_0xCA22.gmf
 /_SAIC/GST/Configuration/LL_ICGM_GST_UDS/C014AudioVideoNavigation_TYPE_0xC014.gmf
 /_SAIC/SV65EV65/RoutineControl/LL_iBDU_SV65_EV65_UDS/Anntena Self Test_AddSec.gmf
-/bin/UnitSpec.odx
 /_DATA/_ECU/FlashData/D71506AE1K_DS0.hex
 /_DATA/_ECU/FlashData/C00216888MT_Project.abs.s19
 /_DATA/_ECU/FlashData/C00302524_NEW_ABS.HEX
@@ -23251,7 +23248,6 @@
 /_DATA/_ECU/LL_iBDU_MILA.gmf
 /_SAIC/EV69_2018/InputOutputControl/IPK/BitMap/TPMS_Lamp.gmf
 /_DATA/_ECU/FlashData/SNMX021E31_ETS.s19
-/bin/.project
 /_SAIC/SV63EV63/Configuration/LL_FVCM_SV65_UDS/LL_FVCM_SV65_UDS_WRITE_ALL_CONFIG_DATA.gmf
 /_DOCUMENTS/GTS/EV90/PEU/th/P1A67.pdf
 /_DOCUMENTS/GTS/SV63/EMS/en/P009B13_files/image006.png

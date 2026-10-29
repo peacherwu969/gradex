@@ -1,0 +1,3058 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ODX MODEL-VERSION="2.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="odx.xsd">
+	<DIAG-LAYER-CONTAINER ID="UNIT-SPEC-DLC">
+		<SHORT-NAME>DLC_UnitSpec</SHORT-NAME>
+		<LONG-NAME>DLCUnitSpec</LONG-NAME>
+		<ECU-SHARED-DATAS>
+			<ECU-SHARED-DATA ID="UNIT-SPEC-ESD">
+				<SHORT-NAME>ESD_UnitSpec</SHORT-NAME>
+				<DIAG-DATA-DICTIONARY-SPEC>
+					<UNIT-SPEC>
+						<UNIT-GROUPS>
+							<UNIT-GROUP OID="Country_All">
+								<SHORT-NAME>All</SHORT-NAME>
+								<CATEGORY>COUNTRY</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Acceleration-m_s_squared"/>
+									<UNIT-REF ID-REF="Angle-rad"/>
+									<UNIT-REF ID-REF="Angle-mrad"/>
+									<UNIT-REF ID-REF="Angle-deg"/>
+									<UNIT-REF ID-REF="AngularMomentum-Nms"/>
+									<UNIT-REF ID-REF="AngularVelocity-rad_s"/>
+									<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>		<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>
+									<UNIT-REF ID-REF="Charge-Ah"/>
+									<UNIT-REF ID-REF="Current-A"/>
+									<UNIT-REF ID-REF="Current-uA"/>
+									<UNIT-REF ID-REF="Current-mA"/>
+									<UNIT-REF ID-REF="Curvature-per_m"/>
+									<UNIT-REF ID-REF="Curvature-per_km"/>
+									<UNIT-REF ID-REF="Density-kg_m_cubed"/>
+									<UNIT-REF ID-REF="Dimensionless-noUnits"/>
+									<UNIT-REF ID-REF="Dimensionless-bin"/>
+									<UNIT-REF ID-REF="Dimensionless-pu"/>
+									<UNIT-REF ID-REF="Dimensionless-pct"/>
+									<UNIT-REF ID-REF="Dimensionless-hex"/>
+									<UNIT-REF ID-REF="Dimensionless-int"/>
+									<UNIT-REF ID-REF="Dimensionless-long"/>
+									<UNIT-REF ID-REF="Dimensionless-dB"/>
+									<UNIT-REF ID-REF="Dimensionless-dBmicroV"/>
+									<UNIT-REF ID-REF="Economy-L_m"/>
+									<UNIT-REF ID-REF="Economy-L_km"/>
+									<UNIT-REF ID-REF="Economy-L_mm"/>
+									<UNIT-REF ID-REF="Economy-galUS_mi"/>
+									<UNIT-REF ID-REF="Economy-galUK_mi"/>
+									<UNIT-REF ID-REF="Economy-L_100km"/>
+									<UNIT-REF ID-REF="Economy-mi_galUS"/>
+									<UNIT-REF ID-REF="Economy-mi_galUK"/>
+									<UNIT-REF ID-REF="Economy-m_l"/>
+									<UNIT-REF ID-REF="Economy-km_l"/>
+									<UNIT-REF ID-REF="EconomyRate-galUS_h"/>
+									<UNIT-REF ID-REF="EconomyRate-galUK_h"/>
+									<UNIT-REF ID-REF="EconomyRate-ml_t"/>
+									<UNIT-REF ID-REF="EconomyRate-ml_h"/>
+									<UNIT-REF ID-REF="Energy-J"/>
+									<UNIT-REF ID-REF="Energy-kJ"/>
+									<UNIT-REF ID-REF="Energy-MJ"/>
+									<UNIT-REF ID-REF="FieldStrength-V_m"/>
+									<UNIT-REF ID-REF="Flow-M3PerSec"/>
+									<UNIT-REF ID-REF="Flow-L_s"/>
+									<UNIT-REF ID-REF="Flow-L_h"/>
+									<UNIT-REF ID-REF="Flow-l_min"/>
+									<UNIT-REF ID-REF="Flow-galUS_h"/>
+									<UNIT-REF ID-REF="Flow-galUK_h"/>
+									<UNIT-REF ID-REF="Force-N"/>
+									<UNIT-REF ID-REF="Force-kN"/>
+									<UNIT-REF ID-REF="Frequency-Hz"/>
+									<UNIT-REF ID-REF="Frequency-mHz"/>
+									<UNIT-REF ID-REF="Frequency-kHz"/>
+									<UNIT-REF ID-REF="Frequency-MHz"/>
+									<UNIT-REF ID-REF="Frequency-pctPerSec"/>
+									<UNIT-REF ID-REF="Frequency-per_min"/>
+									<UNIT-REF ID-REF="Frequency-rpm"/>
+									<UNIT-REF ID-REF="Inductance-H"/>
+									<UNIT-REF ID-REF="Inductance-uH"/>
+									<UNIT-REF ID-REF="Inductance-mH"/>
+									<UNIT-REF ID-REF="Length-m"/>
+									<UNIT-REF ID-REF="Length-mm"/>
+									<UNIT-REF ID-REF="Length-cm"/>
+									<UNIT-REF ID-REF="Length-km"/>
+									<UNIT-REF ID-REF="Length-mi"/>
+									<UNIT-REF ID-REF="Length-ft"/>
+									<UNIT-REF ID-REF="Length-in"/>
+									<UNIT-REF ID-REF="Luminosity-cd"/>
+									<UNIT-REF ID-REF="luminous-emittance-lux"/>
+									<UNIT-REF ID-REF="luminous-flux-lumen"/>
+									<UNIT-REF ID-REF="magneticFlux-weber"/>
+									<UNIT-REF ID-REF="magneticFluxDensity-T"/>
+									<UNIT-REF ID-REF="Mass-kg"/>
+									<UNIT-REF ID-REF="Mass-g"/>
+									<UNIT-REF ID-REF="Mass-tonne"/>
+									<UNIT-REF ID-REF="Mass-ton"/>
+									<UNIT-REF ID-REF="Mass-lb"/>
+									<UNIT-REF ID-REF="Mass-oz"/>
+									<UNIT-REF ID-REF="Massflow-kg_s"/>
+									<UNIT-REF ID-REF="Massflow-g_s"/>
+									<UNIT-REF ID-REF="Massflow-kg_min"/>
+									<UNIT-REF ID-REF="Massflow-lb_min"/>
+									<UNIT-REF ID-REF="Massflow-kg_h"/>
+									<UNIT-REF ID-REF="MomentOfInertia-Nms_squared"/>
+									<UNIT-REF ID-REF="Power-W"/>
+									<UNIT-REF ID-REF="Power-mW"/>
+									<UNIT-REF ID-REF="Power-kW"/>
+									<UNIT-REF ID-REF="Pressure-Pa"/>
+									<UNIT-REF ID-REF="Pressure-mPa"/>
+									<UNIT-REF ID-REF="Pressure-kPa"/>
+									<UNIT-REF ID-REF="Pressure-MPa"/>
+									<UNIT-REF ID-REF="Pressure-atm"/>
+									<UNIT-REF ID-REF="Pressure-bar"/>
+									<UNIT-REF ID-REF="Pressure-mbar"/>
+									<UNIT-REF ID-REF="Pressure-psi"/>
+									<UNIT-REF ID-REF="Pressure-inHg"/>
+									<UNIT-REF ID-REF="Pressure-hPa"/>
+									<UNIT-REF ID-REF="Resistance-R"/>
+									<UNIT-REF ID-REF="Resistance-mR"/>
+									<UNIT-REF ID-REF="Resistance-kR"/>
+									<UNIT-REF ID-REF="Resistance-MR"/>
+									<UNIT-REF ID-REF="Solid-Angle-sr"/>
+									<UNIT-REF ID-REF="Strings-Error"/>
+									<UNIT-REF ID-REF="Strings-STRING"/>
+									<UNIT-REF ID-REF="Substance-mol"/>
+									<UNIT-REF ID-REF="Temperature-K"/>
+									<UNIT-REF ID-REF="Temperature-degC"/>
+									<UNIT-REF ID-REF="Temperature-degF"/>
+									<UNIT-REF ID-REF="ThrashingPerformance-ha_h"/>
+									<UNIT-REF ID-REF="Time-s"/>
+									<UNIT-REF ID-REF="Time-ms"/>
+									<UNIT-REF ID-REF="Time-min"/>
+									<UNIT-REF ID-REF="Time-h"/>
+									<UNIT-REF ID-REF="Time-d"/>
+									<UNIT-REF ID-REF="Torque-Nm"/>
+									<UNIT-REF ID-REF="Torque-Lbft"/>
+									<UNIT-REF ID-REF="Torque-Lbin"/>
+									<UNIT-REF ID-REF="Velocity-m_s"/>
+									<UNIT-REF ID-REF="Velocity-kph"/>
+									<UNIT-REF ID-REF="Velocity-mph"/>
+									<UNIT-REF ID-REF="Velocity-mm_s"/>
+									<UNIT-REF ID-REF="Velocity-km_h"/>
+									<UNIT-REF ID-REF="Voltage-V"/>
+									<UNIT-REF ID-REF="Voltage-mV"/>
+									<UNIT-REF ID-REF="Voltage-kV"/>
+									<UNIT-REF ID-REF="Volume-m_cubed"/>
+									<UNIT-REF ID-REF="Volume-L"/>
+									<UNIT-REF ID-REF="Volume-mL"/>
+									<UNIT-REF ID-REF="Volume-cc"/>
+									<UNIT-REF ID-REF="Volume-galUK"/>
+									<UNIT-REF ID-REF="Volume-galUS"/>
+									<UNIT-REF ID-REF="Volume-cm_cubed"/>
+									<UNIT-REF ID-REF="Volume-mm_cubed"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="Country_EU_Metric">
+								<SHORT-NAME>EU_Metric</SHORT-NAME>
+								<CATEGORY>COUNTRY</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Acceleration-m_s_squared"/>
+									<UNIT-REF ID-REF="Angle-rad"/>
+									<UNIT-REF ID-REF="Angle-mrad"/>
+									<UNIT-REF ID-REF="Angle-deg"/>
+									<UNIT-REF ID-REF="AngularMomentum-Nms"/>
+									<UNIT-REF ID-REF="AngularVelocity-rad_s"/>
+									<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>
+									<UNIT-REF ID-REF="Charge-Ah"/>
+									<UNIT-REF ID-REF="Current-A"/>
+									<UNIT-REF ID-REF="Current-uA"/>
+									<UNIT-REF ID-REF="Current-mA"/>
+									<UNIT-REF ID-REF="Curvature-per_m"/>
+									<UNIT-REF ID-REF="Curvature-per_km"/>
+									<UNIT-REF ID-REF="Density-kg_m_cubed"/>
+									<UNIT-REF ID-REF="Dimensionless-noUnits"/>
+									<UNIT-REF ID-REF="Dimensionless-bin"/>
+									<UNIT-REF ID-REF="Dimensionless-pu"/>
+									<UNIT-REF ID-REF="Dimensionless-pct"/>
+									<UNIT-REF ID-REF="Dimensionless-hex"/>
+									<UNIT-REF ID-REF="Dimensionless-int"/>
+									<UNIT-REF ID-REF="Dimensionless-long"/>
+									<UNIT-REF ID-REF="Dimensionless-dB"/>
+									<UNIT-REF ID-REF="Dimensionless-dBmicroV"/>
+									<UNIT-REF ID-REF="Economy-L_m"/>
+									<UNIT-REF ID-REF="Economy-L_km"/>
+									<UNIT-REF ID-REF="Economy-L_mm"/>
+									<UNIT-REF ID-REF="Economy-L_100km"/>
+									<UNIT-REF ID-REF="Economy-m_l"/>
+									<UNIT-REF ID-REF="Economy-km_l"/>
+									<UNIT-REF ID-REF="EconomyRate-ml_t"/>
+									<UNIT-REF ID-REF="EconomyRate-ml_h"/>
+									<UNIT-REF ID-REF="Energy-J"/>
+									<UNIT-REF ID-REF="Energy-kJ"/>
+									<UNIT-REF ID-REF="Energy-MJ"/>
+									<UNIT-REF ID-REF="FieldStrength-V_m"/>
+									<UNIT-REF ID-REF="Flow-M3PerSec"/>
+									<UNIT-REF ID-REF="Flow-L_s"/>
+									<UNIT-REF ID-REF="Flow-L_h"/>
+									<UNIT-REF ID-REF="Flow-l_min"/>
+									<UNIT-REF ID-REF="Force-N"/>
+									<UNIT-REF ID-REF="Force-kN"/>
+									<UNIT-REF ID-REF="Frequency-Hz"/>
+									<UNIT-REF ID-REF="Frequency-mHz"/>
+									<UNIT-REF ID-REF="Frequency-kHz"/>
+									<UNIT-REF ID-REF="Frequency-MHz"/>
+									<UNIT-REF ID-REF="Frequency-pctPerSec"/>
+									<UNIT-REF ID-REF="Frequency-per_min"/>
+									<UNIT-REF ID-REF="Frequency-rpm"/>
+									<UNIT-REF ID-REF="Inductance-H"/>
+									<UNIT-REF ID-REF="Inductance-uH"/>
+									<UNIT-REF ID-REF="Inductance-mH"/>
+									<UNIT-REF ID-REF="Length-m"/>
+									<UNIT-REF ID-REF="Length-mm"/>
+									<UNIT-REF ID-REF="Length-cm"/>
+									<UNIT-REF ID-REF="Length-km"/>
+									<UNIT-REF ID-REF="Luminosity-cd"/>
+									<UNIT-REF ID-REF="luminous-emittance-lux"/>
+									<UNIT-REF ID-REF="luminous-flux-lumen"/>
+									<UNIT-REF ID-REF="magneticFlux-weber"/>
+									<UNIT-REF ID-REF="magneticFluxDensity-T"/>
+									<UNIT-REF ID-REF="Mass-kg"/>
+									<UNIT-REF ID-REF="Mass-g"/>
+									<UNIT-REF ID-REF="Mass-tonne"/>
+									<UNIT-REF ID-REF="Massflow-kg_s"/>
+									<UNIT-REF ID-REF="Massflow-g_s"/>
+									<UNIT-REF ID-REF="Massflow-kg_min"/>
+									<UNIT-REF ID-REF="Massflow-kg_h"/>
+									<UNIT-REF ID-REF="MomentOfInertia-Nms_squared"/>
+									<UNIT-REF ID-REF="Power-W"/>
+									<UNIT-REF ID-REF="Power-mW"/>
+									<UNIT-REF ID-REF="Power-kW"/>
+									<UNIT-REF ID-REF="Pressure-Pa"/>
+									<UNIT-REF ID-REF="Pressure-mPa"/>
+									<UNIT-REF ID-REF="Pressure-kPa"/>
+									<UNIT-REF ID-REF="Pressure-MPa"/>
+									<UNIT-REF ID-REF="Pressure-bar"/>
+									<UNIT-REF ID-REF="Pressure-mbar"/>
+									<UNIT-REF ID-REF="Pressure-hPa"/>
+									<UNIT-REF ID-REF="Resistance-R"/>
+									<UNIT-REF ID-REF="Resistance-mR"/>
+									<UNIT-REF ID-REF="Resistance-kR"/>
+									<UNIT-REF ID-REF="Resistance-MR"/>
+									<UNIT-REF ID-REF="Solid-Angle-sr"/>
+									<UNIT-REF ID-REF="Strings-Error"/>
+									<UNIT-REF ID-REF="Strings-STRING"/>
+									<UNIT-REF ID-REF="Substance-mol"/>
+									<UNIT-REF ID-REF="Temperature-K"/>
+									<UNIT-REF ID-REF="Temperature-degC"/>
+									<UNIT-REF ID-REF="ThrashingPerformance-ha_h"/>
+									<UNIT-REF ID-REF="Time-s"/>
+									<UNIT-REF ID-REF="Time-ms"/>
+									<UNIT-REF ID-REF="Time-min"/>
+									<UNIT-REF ID-REF="Time-h"/>
+									<UNIT-REF ID-REF="Time-d"/>
+									<UNIT-REF ID-REF="Torque-Nm"/>
+									<UNIT-REF ID-REF="Velocity-m_s"/>
+									<UNIT-REF ID-REF="Velocity-kph"/>
+									<UNIT-REF ID-REF="Velocity-mm_s"/>
+									<UNIT-REF ID-REF="Velocity-km_h"/>
+									<UNIT-REF ID-REF="Voltage-V"/>
+									<UNIT-REF ID-REF="Voltage-mV"/>
+									<UNIT-REF ID-REF="Voltage-kV"/>
+									<UNIT-REF ID-REF="Volume-m_cubed"/>
+									<UNIT-REF ID-REF="Volume-L"/>
+									<UNIT-REF ID-REF="Volume-mL"/>
+									<UNIT-REF ID-REF="Volume-cc"/>
+									<UNIT-REF ID-REF="Volume-cm_cubed"/>
+									<UNIT-REF ID-REF="Volume-mm_cubed"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="Country_UK_All">
+								<SHORT-NAME>UK_All</SHORT-NAME>
+								<CATEGORY>COUNTRY</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Acceleration-m_s_squared"/>
+									<UNIT-REF ID-REF="Angle-rad"/>
+									<UNIT-REF ID-REF="Angle-mrad"/>
+									<UNIT-REF ID-REF="Angle-deg"/>
+									<UNIT-REF ID-REF="AngularMomentum-Nms"/>
+									<UNIT-REF ID-REF="AngularVelocity-rad_s"/>
+									<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>
+									<UNIT-REF ID-REF="Charge-Ah"/>
+									<UNIT-REF ID-REF="Current-A"/>
+									<UNIT-REF ID-REF="Current-uA"/>
+									<UNIT-REF ID-REF="Current-mA"/>
+									<UNIT-REF ID-REF="Curvature-per_m"/>
+									<UNIT-REF ID-REF="Curvature-per_km"/>
+									<UNIT-REF ID-REF="Density-kg_m_cubed"/>
+									<UNIT-REF ID-REF="Dimensionless-noUnits"/>
+									<UNIT-REF ID-REF="Dimensionless-bin"/>
+									<UNIT-REF ID-REF="Dimensionless-pu"/>
+									<UNIT-REF ID-REF="Dimensionless-pct"/>
+									<UNIT-REF ID-REF="Dimensionless-hex"/>
+									<UNIT-REF ID-REF="Dimensionless-int"/>
+									<UNIT-REF ID-REF="Dimensionless-long"/>
+									<UNIT-REF ID-REF="Dimensionless-dB"/>
+									<UNIT-REF ID-REF="Dimensionless-dBmicroV"/>
+									<UNIT-REF ID-REF="Economy-L_m"/>
+									<UNIT-REF ID-REF="Economy-L_km"/>
+									<UNIT-REF ID-REF="Economy-L_mm"/>
+									<UNIT-REF ID-REF="Economy-L_100km"/>
+									<UNIT-REF ID-REF="Economy-m_l"/>
+									<UNIT-REF ID-REF="Economy-km_l"/>
+									<UNIT-REF ID-REF="Economy-galUK_mi"/>
+									<UNIT-REF ID-REF="Economy-mi_galUK"/>
+									<UNIT-REF ID-REF="EconomyRate-ml_t"/>
+									<UNIT-REF ID-REF="EconomyRate-ml_h"/>
+									<UNIT-REF ID-REF="EconomyRate-galUK_h"/>
+									<UNIT-REF ID-REF="Energy-J"/>
+									<UNIT-REF ID-REF="Energy-kJ"/>
+									<UNIT-REF ID-REF="Energy-MJ"/>
+									<UNIT-REF ID-REF="FieldStrength-V_m"/>
+									<UNIT-REF ID-REF="Flow-M3PerSec"/>
+									<UNIT-REF ID-REF="Flow-L_s"/>
+									<UNIT-REF ID-REF="Flow-L_h"/>
+									<UNIT-REF ID-REF="Flow-l_min"/>
+									<UNIT-REF ID-REF="Flow-galUK_h"/>
+									<UNIT-REF ID-REF="Force-N"/>
+									<UNIT-REF ID-REF="Force-kN"/>
+									<UNIT-REF ID-REF="Frequency-Hz"/>
+									<UNIT-REF ID-REF="Frequency-mHz"/>
+									<UNIT-REF ID-REF="Frequency-kHz"/>
+									<UNIT-REF ID-REF="Frequency-MHz"/>
+									<UNIT-REF ID-REF="Frequency-pctPerSec"/>
+									<UNIT-REF ID-REF="Frequency-per_min"/>
+									<UNIT-REF ID-REF="Frequency-rpm"/>
+									<UNIT-REF ID-REF="Inductance-H"/>
+									<UNIT-REF ID-REF="Inductance-uH"/>
+									<UNIT-REF ID-REF="Inductance-mH"/>
+									<UNIT-REF ID-REF="Length-m"/>
+									<UNIT-REF ID-REF="Length-mm"/>
+									<UNIT-REF ID-REF="Length-cm"/>
+									<UNIT-REF ID-REF="Length-km"/>
+									<UNIT-REF ID-REF="Length-mi"/>
+									<UNIT-REF ID-REF="Length-ft"/>
+									<UNIT-REF ID-REF="Length-in"/>
+									<UNIT-REF ID-REF="Luminosity-cd"/>
+									<UNIT-REF ID-REF="luminous-emittance-lux"/>
+									<UNIT-REF ID-REF="luminous-flux-lumen"/>
+									<UNIT-REF ID-REF="magneticFlux-weber"/>
+									<UNIT-REF ID-REF="magneticFluxDensity-T"/>
+									<UNIT-REF ID-REF="Mass-kg"/>
+									<UNIT-REF ID-REF="Mass-g"/>
+									<UNIT-REF ID-REF="Mass-tonne"/>
+									<UNIT-REF ID-REF="Mass-ton"/>
+									<UNIT-REF ID-REF="Mass-lb"/>
+									<UNIT-REF ID-REF="Mass-oz"/>
+									<UNIT-REF ID-REF="Massflow-kg_s"/>
+									<UNIT-REF ID-REF="Massflow-g_s"/>
+									<UNIT-REF ID-REF="Massflow-kg_min"/>
+									<UNIT-REF ID-REF="Massflow-lb_min"/>
+									<UNIT-REF ID-REF="Massflow-kg_h"/>
+									<UNIT-REF ID-REF="MomentOfInertia-Nms_squared"/>
+									<UNIT-REF ID-REF="Power-W"/>
+									<UNIT-REF ID-REF="Power-mW"/>
+									<UNIT-REF ID-REF="Power-kW"/>
+									<UNIT-REF ID-REF="Pressure-Pa"/>
+									<UNIT-REF ID-REF="Pressure-mPa"/>
+									<UNIT-REF ID-REF="Pressure-kPa"/>
+									<UNIT-REF ID-REF="Pressure-MPa"/>
+									<UNIT-REF ID-REF="Pressure-atm"/>
+									<UNIT-REF ID-REF="Pressure-bar"/>
+									<UNIT-REF ID-REF="Pressure-mbar"/>
+									<UNIT-REF ID-REF="Pressure-psi"/>
+									<UNIT-REF ID-REF="Pressure-inHg"/>
+									<UNIT-REF ID-REF="Pressure-hPa"/>
+									<UNIT-REF ID-REF="Resistance-R"/>
+									<UNIT-REF ID-REF="Resistance-mR"/>
+									<UNIT-REF ID-REF="Resistance-kR"/>
+									<UNIT-REF ID-REF="Resistance-MR"/>
+									<UNIT-REF ID-REF="Solid-Angle-sr"/>
+									<UNIT-REF ID-REF="Strings-Error"/>
+									<UNIT-REF ID-REF="Strings-STRING"/>
+									<UNIT-REF ID-REF="Substance-mol"/>
+									<UNIT-REF ID-REF="Temperature-K"/>
+									<UNIT-REF ID-REF="Temperature-degC"/>
+									<UNIT-REF ID-REF="Temperature-degF"/>
+									<UNIT-REF ID-REF="ThrashingPerformance-ha_h"/>
+									<UNIT-REF ID-REF="Time-s"/>
+									<UNIT-REF ID-REF="Time-ms"/>
+									<UNIT-REF ID-REF="Time-min"/>
+									<UNIT-REF ID-REF="Time-h"/>
+									<UNIT-REF ID-REF="Time-d"/>
+									<UNIT-REF ID-REF="Torque-Nm"/>
+									<UNIT-REF ID-REF="Torque-Lbft"/>
+									<UNIT-REF ID-REF="Torque-Lbin"/>
+									<UNIT-REF ID-REF="Velocity-m_s"/>
+									<UNIT-REF ID-REF="Velocity-kph"/>
+									<UNIT-REF ID-REF="Velocity-mph"/>
+									<UNIT-REF ID-REF="Velocity-mm_s"/>
+									<UNIT-REF ID-REF="Velocity-km_h"/>
+									<UNIT-REF ID-REF="Voltage-V"/>
+									<UNIT-REF ID-REF="Voltage-mV"/>
+									<UNIT-REF ID-REF="Voltage-kV"/>
+									<UNIT-REF ID-REF="Volume-m_cubed"/>
+									<UNIT-REF ID-REF="Volume-L"/>
+									<UNIT-REF ID-REF="Volume-mL"/>
+									<UNIT-REF ID-REF="Volume-cc"/>
+									<UNIT-REF ID-REF="Volume-galUK"/>
+									<UNIT-REF ID-REF="Volume-cm_cubed"/>
+									<UNIT-REF ID-REF="Volume-mm_cubed"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="Country_UK_Imperial">
+								<SHORT-NAME>UK_Imperial</SHORT-NAME>
+								<CATEGORY>COUNTRY</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Acceleration-m_s_squared"/>
+									<UNIT-REF ID-REF="Angle-rad"/>
+									<UNIT-REF ID-REF="Angle-mrad"/>
+									<UNIT-REF ID-REF="Angle-deg"/>
+									<UNIT-REF ID-REF="AngularMomentum-Nms"/>
+									<UNIT-REF ID-REF="AngularVelocity-rad_s"/>
+									<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>
+									<UNIT-REF ID-REF="Charge-Ah"/>
+									<UNIT-REF ID-REF="Current-A"/>
+									<UNIT-REF ID-REF="Current-uA"/>
+									<UNIT-REF ID-REF="Current-mA"/>
+									<UNIT-REF ID-REF="Curvature-per_m"/>
+									<UNIT-REF ID-REF="Curvature-per_km"/>
+									<UNIT-REF ID-REF="Density-kg_m_cubed"/>
+									<UNIT-REF ID-REF="Dimensionless-noUnits"/>
+									<UNIT-REF ID-REF="Dimensionless-bin"/>
+									<UNIT-REF ID-REF="Dimensionless-pu"/>
+									<UNIT-REF ID-REF="Dimensionless-pct"/>
+									<UNIT-REF ID-REF="Dimensionless-hex"/>
+									<UNIT-REF ID-REF="Dimensionless-int"/>
+									<UNIT-REF ID-REF="Dimensionless-long"/>
+									<UNIT-REF ID-REF="Dimensionless-dB"/>
+									<UNIT-REF ID-REF="Dimensionless-dBmicroV"/>
+									<UNIT-REF ID-REF="Economy-L_m"/>
+									<UNIT-REF ID-REF="Economy-L_km"/>
+									<UNIT-REF ID-REF="Economy-L_mm"/>
+									<UNIT-REF ID-REF="Economy-L_100km"/>
+									<UNIT-REF ID-REF="Economy-m_l"/>
+									<UNIT-REF ID-REF="Economy-km_l"/>
+									<UNIT-REF ID-REF="Economy-galUK_mi"/>
+									<UNIT-REF ID-REF="Economy-mi_galUK"/>
+									<UNIT-REF ID-REF="EconomyRate-ml_t"/>
+									<UNIT-REF ID-REF="EconomyRate-ml_h"/>
+									<UNIT-REF ID-REF="EconomyRate-galUK_h"/>
+									<UNIT-REF ID-REF="Energy-J"/>
+									<UNIT-REF ID-REF="Energy-kJ"/>
+									<UNIT-REF ID-REF="Energy-MJ"/>
+									<UNIT-REF ID-REF="FieldStrength-V_m"/>
+									<UNIT-REF ID-REF="Flow-M3PerSec"/>
+									<UNIT-REF ID-REF="Flow-L_s"/>
+									<UNIT-REF ID-REF="Flow-L_h"/>
+									<UNIT-REF ID-REF="Flow-l_min"/>
+									<UNIT-REF ID-REF="Flow-galUK_h"/>
+									<UNIT-REF ID-REF="Force-N"/>
+									<UNIT-REF ID-REF="Force-kN"/>
+									<UNIT-REF ID-REF="Frequency-Hz"/>
+									<UNIT-REF ID-REF="Frequency-mHz"/>
+									<UNIT-REF ID-REF="Frequency-kHz"/>
+									<UNIT-REF ID-REF="Frequency-MHz"/>
+									<UNIT-REF ID-REF="Frequency-pctPerSec"/>
+									<UNIT-REF ID-REF="Frequency-per_min"/>
+									<UNIT-REF ID-REF="Frequency-rpm"/>
+									<UNIT-REF ID-REF="Inductance-H"/>
+									<UNIT-REF ID-REF="Inductance-uH"/>
+									<UNIT-REF ID-REF="Inductance-mH"/>
+									<UNIT-REF ID-REF="Length-mi"/>
+									<UNIT-REF ID-REF="Length-ft"/>
+									<UNIT-REF ID-REF="Length-in"/>
+									<UNIT-REF ID-REF="Luminosity-cd"/>
+									<UNIT-REF ID-REF="luminous-emittance-lux"/>
+									<UNIT-REF ID-REF="luminous-flux-lumen"/>
+									<UNIT-REF ID-REF="magneticFlux-weber"/>
+									<UNIT-REF ID-REF="magneticFluxDensity-T"/>
+									<UNIT-REF ID-REF="Mass-ton"/>
+									<UNIT-REF ID-REF="Mass-lb"/>
+									<UNIT-REF ID-REF="Mass-oz"/>
+									<UNIT-REF ID-REF="Massflow-lb_min"/>
+									<UNIT-REF ID-REF="MomentOfInertia-Nms_squared"/>
+									<UNIT-REF ID-REF="Power-W"/>
+									<UNIT-REF ID-REF="Power-mW"/>
+									<UNIT-REF ID-REF="Power-kW"/>
+									<UNIT-REF ID-REF="Pressure-atm"/>
+									<UNIT-REF ID-REF="Pressure-psi"/>
+									<UNIT-REF ID-REF="Pressure-inHg"/>
+									<UNIT-REF ID-REF="Resistance-R"/>
+									<UNIT-REF ID-REF="Resistance-mR"/>
+									<UNIT-REF ID-REF="Resistance-kR"/>
+									<UNIT-REF ID-REF="Resistance-MR"/>
+									<UNIT-REF ID-REF="Solid-Angle-sr"/>
+									<UNIT-REF ID-REF="Strings-Error"/>
+									<UNIT-REF ID-REF="Strings-STRING"/>
+									<UNIT-REF ID-REF="Substance-mol"/>
+									<UNIT-REF ID-REF="Temperature-K"/>
+									<UNIT-REF ID-REF="Temperature-degF"/>
+									<UNIT-REF ID-REF="ThrashingPerformance-ha_h"/>
+									<UNIT-REF ID-REF="Time-s"/>
+									<UNIT-REF ID-REF="Time-ms"/>
+									<UNIT-REF ID-REF="Time-min"/>
+									<UNIT-REF ID-REF="Time-h"/>
+									<UNIT-REF ID-REF="Time-d"/>
+									<UNIT-REF ID-REF="Torque-Lbft"/>
+									<UNIT-REF ID-REF="Torque-Lbin"/>
+									<UNIT-REF ID-REF="Velocity-mph"/>
+									<UNIT-REF ID-REF="Voltage-V"/>
+									<UNIT-REF ID-REF="Voltage-mV"/>
+									<UNIT-REF ID-REF="Voltage-kV"/>
+									<UNIT-REF ID-REF="Volume-m_cubed"/>
+									<UNIT-REF ID-REF="Volume-L"/>
+									<UNIT-REF ID-REF="Volume-mL"/>
+									<UNIT-REF ID-REF="Volume-cc"/>
+									<UNIT-REF ID-REF="Volume-galUK"/>
+									<UNIT-REF ID-REF="Volume-cm_cubed"/>
+									<UNIT-REF ID-REF="Volume-mm_cubed"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="Country_US_All">
+								<SHORT-NAME>US_All</SHORT-NAME>
+								<CATEGORY>COUNTRY</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Acceleration-m_s_squared"/>
+									<UNIT-REF ID-REF="Angle-rad"/>
+									<UNIT-REF ID-REF="Angle-mrad"/>
+									<UNIT-REF ID-REF="Angle-deg"/>
+									<UNIT-REF ID-REF="AngularMomentum-Nms"/>
+									<UNIT-REF ID-REF="AngularVelocity-rad_s"/>
+									<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>
+									<UNIT-REF ID-REF="Charge-Ah"/>
+									<UNIT-REF ID-REF="Current-A"/>
+									<UNIT-REF ID-REF="Current-uA"/>
+									<UNIT-REF ID-REF="Current-mA"/>
+									<UNIT-REF ID-REF="Curvature-per_m"/>
+									<UNIT-REF ID-REF="Curvature-per_km"/>
+									<UNIT-REF ID-REF="Density-kg_m_cubed"/>
+									<UNIT-REF ID-REF="Dimensionless-noUnits"/>
+									<UNIT-REF ID-REF="Dimensionless-bin"/>
+									<UNIT-REF ID-REF="Dimensionless-pu"/>
+									<UNIT-REF ID-REF="Dimensionless-pct"/>
+									<UNIT-REF ID-REF="Dimensionless-hex"/>
+									<UNIT-REF ID-REF="Dimensionless-int"/>
+									<UNIT-REF ID-REF="Dimensionless-long"/>
+									<UNIT-REF ID-REF="Dimensionless-dB"/>
+									<UNIT-REF ID-REF="Dimensionless-dBmicroV"/>
+									<UNIT-REF ID-REF="Economy-L_m"/>
+									<UNIT-REF ID-REF="Economy-L_km"/>
+									<UNIT-REF ID-REF="Economy-L_mm"/>
+									<UNIT-REF ID-REF="Economy-galUS_mi"/>
+									<UNIT-REF ID-REF="Economy-L_100km"/>
+									<UNIT-REF ID-REF="Economy-mi_galUS"/>
+									<UNIT-REF ID-REF="Economy-m_l"/>
+									<UNIT-REF ID-REF="Economy-km_l"/>
+									<UNIT-REF ID-REF="EconomyRate-galUS_h"/>
+									<UNIT-REF ID-REF="EconomyRate-ml_t"/>
+									<UNIT-REF ID-REF="EconomyRate-ml_h"/>
+									<UNIT-REF ID-REF="Energy-J"/>
+									<UNIT-REF ID-REF="Energy-kJ"/>
+									<UNIT-REF ID-REF="Energy-MJ"/>
+									<UNIT-REF ID-REF="FieldStrength-V_m"/>
+									<UNIT-REF ID-REF="Flow-M3PerSec"/>
+									<UNIT-REF ID-REF="Flow-L_s"/>
+									<UNIT-REF ID-REF="Flow-L_h"/>
+									<UNIT-REF ID-REF="Flow-l_min"/>
+									<UNIT-REF ID-REF="Flow-galUS_h"/>
+									<UNIT-REF ID-REF="Force-N"/>
+									<UNIT-REF ID-REF="Force-kN"/>
+									<UNIT-REF ID-REF="Frequency-Hz"/>
+									<UNIT-REF ID-REF="Frequency-mHz"/>
+									<UNIT-REF ID-REF="Frequency-kHz"/>
+									<UNIT-REF ID-REF="Frequency-MHz"/>
+									<UNIT-REF ID-REF="Frequency-pctPerSec"/>
+									<UNIT-REF ID-REF="Frequency-per_min"/>
+									<UNIT-REF ID-REF="Frequency-rpm"/>
+									<UNIT-REF ID-REF="Inductance-H"/>
+									<UNIT-REF ID-REF="Inductance-uH"/>
+									<UNIT-REF ID-REF="Inductance-mH"/>
+									<UNIT-REF ID-REF="Length-m"/>
+									<UNIT-REF ID-REF="Length-mm"/>
+									<UNIT-REF ID-REF="Length-cm"/>
+									<UNIT-REF ID-REF="Length-km"/>
+									<UNIT-REF ID-REF="Length-mi"/>
+									<UNIT-REF ID-REF="Length-ft"/>
+									<UNIT-REF ID-REF="Length-in"/>
+									<UNIT-REF ID-REF="Luminosity-cd"/>
+									<UNIT-REF ID-REF="luminous-emittance-lux"/>
+									<UNIT-REF ID-REF="luminous-flux-lumen"/>
+									<UNIT-REF ID-REF="magneticFlux-weber"/>
+									<UNIT-REF ID-REF="magneticFluxDensity-T"/>
+									<UNIT-REF ID-REF="Mass-kg"/>
+									<UNIT-REF ID-REF="Mass-g"/>
+									<UNIT-REF ID-REF="Mass-tonne"/>
+									<UNIT-REF ID-REF="Mass-ton"/>
+									<UNIT-REF ID-REF="Mass-lb"/>
+									<UNIT-REF ID-REF="Mass-oz"/>
+									<UNIT-REF ID-REF="Massflow-kg_s"/>
+									<UNIT-REF ID-REF="Massflow-g_s"/>
+									<UNIT-REF ID-REF="Massflow-kg_min"/>
+									<UNIT-REF ID-REF="Massflow-lb_min"/>
+									<UNIT-REF ID-REF="Massflow-kg_h"/>
+									<UNIT-REF ID-REF="MomentOfInertia-Nms_squared"/>
+									<UNIT-REF ID-REF="Power-W"/>
+									<UNIT-REF ID-REF="Power-mW"/>
+									<UNIT-REF ID-REF="Power-kW"/>
+									<UNIT-REF ID-REF="Pressure-Pa"/>
+									<UNIT-REF ID-REF="Pressure-mPa"/>
+									<UNIT-REF ID-REF="Pressure-kPa"/>
+									<UNIT-REF ID-REF="Pressure-MPa"/>
+									<UNIT-REF ID-REF="Pressure-atm"/>
+									<UNIT-REF ID-REF="Pressure-bar"/>
+									<UNIT-REF ID-REF="Pressure-mbar"/>
+									<UNIT-REF ID-REF="Pressure-psi"/>
+									<UNIT-REF ID-REF="Pressure-inHg"/>
+									<UNIT-REF ID-REF="Pressure-hPa"/>
+									<UNIT-REF ID-REF="Resistance-R"/>
+									<UNIT-REF ID-REF="Resistance-mR"/>
+									<UNIT-REF ID-REF="Resistance-kR"/>
+									<UNIT-REF ID-REF="Resistance-MR"/>
+									<UNIT-REF ID-REF="Solid-Angle-sr"/>
+									<UNIT-REF ID-REF="Strings-Error"/>
+									<UNIT-REF ID-REF="Strings-STRING"/>
+									<UNIT-REF ID-REF="Substance-mol"/>
+									<UNIT-REF ID-REF="Temperature-K"/>
+									<UNIT-REF ID-REF="Temperature-degC"/>
+									<UNIT-REF ID-REF="Temperature-degF"/>
+									<UNIT-REF ID-REF="ThrashingPerformance-ha_h"/>
+									<UNIT-REF ID-REF="Time-s"/>
+									<UNIT-REF ID-REF="Time-ms"/>
+									<UNIT-REF ID-REF="Time-min"/>
+									<UNIT-REF ID-REF="Time-h"/>
+									<UNIT-REF ID-REF="Time-d"/>
+									<UNIT-REF ID-REF="Torque-Nm"/>
+									<UNIT-REF ID-REF="Torque-Lbft"/>
+									<UNIT-REF ID-REF="Torque-Lbin"/>
+									<UNIT-REF ID-REF="Velocity-m_s"/>
+									<UNIT-REF ID-REF="Velocity-kph"/>
+									<UNIT-REF ID-REF="Velocity-mph"/>
+									<UNIT-REF ID-REF="Velocity-mm_s"/>
+									<UNIT-REF ID-REF="Velocity-km_h"/>
+									<UNIT-REF ID-REF="Voltage-V"/>
+									<UNIT-REF ID-REF="Voltage-mV"/>
+									<UNIT-REF ID-REF="Voltage-kV"/>
+									<UNIT-REF ID-REF="Volume-m_cubed"/>
+									<UNIT-REF ID-REF="Volume-L"/>
+									<UNIT-REF ID-REF="Volume-mL"/>
+									<UNIT-REF ID-REF="Volume-cc"/>
+									<UNIT-REF ID-REF="Volume-galUS"/>
+									<UNIT-REF ID-REF="Volume-cm_cubed"/>
+									<UNIT-REF ID-REF="Volume-mm_cubed"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="Country_US_Imperial">
+								<SHORT-NAME>US_Imperial</SHORT-NAME>
+								<CATEGORY>COUNTRY</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Acceleration-m_s_squared"/>
+									<UNIT-REF ID-REF="Angle-rad"/>
+									<UNIT-REF ID-REF="Angle-mrad"/>
+									<UNIT-REF ID-REF="Angle-deg"/>
+									<UNIT-REF ID-REF="AngularMomentum-Nms"/>
+									<UNIT-REF ID-REF="AngularVelocity-rad_s"/>
+									<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>
+									<UNIT-REF ID-REF="Charge-Ah"/>
+									<UNIT-REF ID-REF="Current-A"/>
+									<UNIT-REF ID-REF="Current-uA"/>
+									<UNIT-REF ID-REF="Current-mA"/>
+									<UNIT-REF ID-REF="Curvature-per_m"/>
+									<UNIT-REF ID-REF="Curvature-per_km"/>
+									<UNIT-REF ID-REF="Density-kg_m_cubed"/>
+									<UNIT-REF ID-REF="Dimensionless-noUnits"/>
+									<UNIT-REF ID-REF="Dimensionless-bin"/>
+									<UNIT-REF ID-REF="Dimensionless-pu"/>
+									<UNIT-REF ID-REF="Dimensionless-pct"/>
+									<UNIT-REF ID-REF="Dimensionless-hex"/>
+									<UNIT-REF ID-REF="Dimensionless-int"/>
+									<UNIT-REF ID-REF="Dimensionless-long"/>
+									<UNIT-REF ID-REF="Dimensionless-dB"/>
+									<UNIT-REF ID-REF="Dimensionless-dBmicroV"/>
+									<UNIT-REF ID-REF="Economy-galUS_mi"/>
+									<UNIT-REF ID-REF="Economy-mi_galUS"/>
+									<UNIT-REF ID-REF="EconomyRate-galUS_h"/>
+									<UNIT-REF ID-REF="Energy-J"/>
+									<UNIT-REF ID-REF="Energy-kJ"/>
+									<UNIT-REF ID-REF="Energy-MJ"/>
+									<UNIT-REF ID-REF="FieldStrength-V_m"/>
+									<UNIT-REF ID-REF="Flow-M3PerSec"/>
+									<UNIT-REF ID-REF="Flow-L_s"/>
+									<UNIT-REF ID-REF="Flow-L_h"/>
+									<UNIT-REF ID-REF="Flow-l_min"/>
+									<UNIT-REF ID-REF="Flow-galUS_h"/>
+									<UNIT-REF ID-REF="Force-N"/>
+									<UNIT-REF ID-REF="Force-kN"/>
+									<UNIT-REF ID-REF="Frequency-Hz"/>
+									<UNIT-REF ID-REF="Frequency-mHz"/>
+									<UNIT-REF ID-REF="Frequency-kHz"/>
+									<UNIT-REF ID-REF="Frequency-MHz"/>
+									<UNIT-REF ID-REF="Frequency-pctPerSec"/>
+									<UNIT-REF ID-REF="Frequency-per_min"/>
+									<UNIT-REF ID-REF="Frequency-rpm"/>
+									<UNIT-REF ID-REF="Inductance-H"/>
+									<UNIT-REF ID-REF="Inductance-uH"/>
+									<UNIT-REF ID-REF="Inductance-mH"/>
+									<UNIT-REF ID-REF="Length-mi"/>
+									<UNIT-REF ID-REF="Length-ft"/>
+									<UNIT-REF ID-REF="Length-in"/>
+									<UNIT-REF ID-REF="Luminosity-cd"/>
+									<UNIT-REF ID-REF="luminous-emittance-lux"/>
+									<UNIT-REF ID-REF="luminous-flux-lumen"/>
+									<UNIT-REF ID-REF="magneticFlux-weber"/>
+									<UNIT-REF ID-REF="magneticFluxDensity-T"/>
+									<UNIT-REF ID-REF="Mass-ton"/>
+									<UNIT-REF ID-REF="Mass-lb"/>
+									<UNIT-REF ID-REF="Mass-oz"/>
+									<UNIT-REF ID-REF="Massflow-lb_min"/>
+									<UNIT-REF ID-REF="MomentOfInertia-Nms_squared"/>
+									<UNIT-REF ID-REF="Power-W"/>
+									<UNIT-REF ID-REF="Power-mW"/>
+									<UNIT-REF ID-REF="Power-kW"/>
+									<UNIT-REF ID-REF="Pressure-atm"/>
+									<UNIT-REF ID-REF="Pressure-psi"/>
+									<UNIT-REF ID-REF="Pressure-inHg"/>
+									<UNIT-REF ID-REF="Resistance-R"/>
+									<UNIT-REF ID-REF="Resistance-mR"/>
+									<UNIT-REF ID-REF="Resistance-kR"/>
+									<UNIT-REF ID-REF="Resistance-MR"/>
+									<UNIT-REF ID-REF="Solid-Angle-sr"/>
+									<UNIT-REF ID-REF="Strings-Error"/>
+									<UNIT-REF ID-REF="Strings-STRING"/>
+									<UNIT-REF ID-REF="Substance-mol"/>
+									<UNIT-REF ID-REF="Temperature-K"/>
+									<UNIT-REF ID-REF="Temperature-degF"/>
+									<UNIT-REF ID-REF="ThrashingPerformance-ha_h"/>
+									<UNIT-REF ID-REF="Time-s"/>
+									<UNIT-REF ID-REF="Time-ms"/>
+									<UNIT-REF ID-REF="Time-min"/>
+									<UNIT-REF ID-REF="Time-h"/>
+									<UNIT-REF ID-REF="Time-d"/>
+									<UNIT-REF ID-REF="Torque-Lbft"/>
+									<UNIT-REF ID-REF="Torque-Lbin"/>
+									<UNIT-REF ID-REF="Velocity-mph"/>
+									<UNIT-REF ID-REF="Voltage-V"/>
+									<UNIT-REF ID-REF="Voltage-mV"/>
+									<UNIT-REF ID-REF="Voltage-kV"/>
+									<UNIT-REF ID-REF="Volume-m_cubed"/>
+									<UNIT-REF ID-REF="Volume-cc"/>
+									<UNIT-REF ID-REF="Volume-galUS"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="Country_US_Metric">
+								<SHORT-NAME>US_Metric</SHORT-NAME>
+								<CATEGORY>COUNTRY</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Acceleration-m_s_squared"/>
+									<UNIT-REF ID-REF="Angle-rad"/>
+									<UNIT-REF ID-REF="Angle-mrad"/>
+									<UNIT-REF ID-REF="Angle-deg"/>
+									<UNIT-REF ID-REF="AngularMomentum-Nms"/>
+									<UNIT-REF ID-REF="AngularVelocity-rad_s"/>
+									<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+									<UNIT-REF ID-REF="Charge-C"/>
+									<UNIT-REF ID-REF="Charge-Ah"/>
+									<UNIT-REF ID-REF="Current-A"/>
+									<UNIT-REF ID-REF="Current-uA"/>
+									<UNIT-REF ID-REF="Current-mA"/>
+									<UNIT-REF ID-REF="Curvature-per_m"/>
+									<UNIT-REF ID-REF="Curvature-per_km"/>
+									<UNIT-REF ID-REF="Density-kg_m_cubed"/>
+									<UNIT-REF ID-REF="Dimensionless-noUnits"/>
+									<UNIT-REF ID-REF="Dimensionless-bin"/>
+									<UNIT-REF ID-REF="Dimensionless-pu"/>
+									<UNIT-REF ID-REF="Dimensionless-pct"/>
+									<UNIT-REF ID-REF="Dimensionless-hex"/>
+									<UNIT-REF ID-REF="Dimensionless-int"/>
+									<UNIT-REF ID-REF="Dimensionless-long"/>
+									<UNIT-REF ID-REF="Dimensionless-dB"/>
+									<UNIT-REF ID-REF="Dimensionless-dBmicroV"/>
+									<UNIT-REF ID-REF="Economy-L_m"/>
+									<UNIT-REF ID-REF="Economy-L_km"/>
+									<UNIT-REF ID-REF="Economy-L_mm"/>
+									<UNIT-REF ID-REF="Economy-L_100km"/>
+									<UNIT-REF ID-REF="Economy-m_l"/>
+									<UNIT-REF ID-REF="Economy-km_l"/>
+									<UNIT-REF ID-REF="EconomyRate-galUS_h"/>
+									<UNIT-REF ID-REF="EconomyRate-ml_t"/>
+									<UNIT-REF ID-REF="EconomyRate-ml_h"/>
+									<UNIT-REF ID-REF="Energy-J"/>
+									<UNIT-REF ID-REF="Energy-kJ"/>
+									<UNIT-REF ID-REF="Energy-MJ"/>
+									<UNIT-REF ID-REF="FieldStrength-V_m"/>
+									<UNIT-REF ID-REF="Flow-M3PerSec"/>
+									<UNIT-REF ID-REF="Flow-L_s"/>
+									<UNIT-REF ID-REF="Flow-L_h"/>
+									<UNIT-REF ID-REF="Flow-l_min"/>
+									<UNIT-REF ID-REF="Force-N"/>
+									<UNIT-REF ID-REF="Force-kN"/>
+									<UNIT-REF ID-REF="Frequency-Hz"/>
+									<UNIT-REF ID-REF="Frequency-mHz"/>
+									<UNIT-REF ID-REF="Frequency-kHz"/>
+									<UNIT-REF ID-REF="Frequency-MHz"/>
+									<UNIT-REF ID-REF="Frequency-pctPerSec"/>
+									<UNIT-REF ID-REF="Frequency-per_min"/>
+									<UNIT-REF ID-REF="Frequency-rpm"/>
+									<UNIT-REF ID-REF="Inductance-H"/>
+									<UNIT-REF ID-REF="Inductance-uH"/>
+									<UNIT-REF ID-REF="Inductance-mH"/>
+									<UNIT-REF ID-REF="Length-m"/>
+									<UNIT-REF ID-REF="Length-mm"/>
+									<UNIT-REF ID-REF="Length-cm"/>
+									<UNIT-REF ID-REF="Length-km"/>
+									<UNIT-REF ID-REF="Luminosity-cd"/>
+									<UNIT-REF ID-REF="luminous-emittance-lux"/>
+									<UNIT-REF ID-REF="luminous-flux-lumen"/>
+									<UNIT-REF ID-REF="magneticFlux-weber"/>
+									<UNIT-REF ID-REF="magneticFluxDensity-T"/>
+									<UNIT-REF ID-REF="Mass-kg"/>
+									<UNIT-REF ID-REF="Mass-g"/>
+									<UNIT-REF ID-REF="Mass-tonne"/>
+									<UNIT-REF ID-REF="Massflow-kg_s"/>
+									<UNIT-REF ID-REF="Massflow-g_s"/>
+									<UNIT-REF ID-REF="Massflow-kg_min"/>
+									<UNIT-REF ID-REF="Massflow-kg_h"/>
+									<UNIT-REF ID-REF="MomentOfInertia-Nms_squared"/>
+									<UNIT-REF ID-REF="Power-W"/>
+									<UNIT-REF ID-REF="Power-mW"/>
+									<UNIT-REF ID-REF="Power-kW"/>
+									<UNIT-REF ID-REF="Pressure-Pa"/>
+									<UNIT-REF ID-REF="Pressure-mPa"/>
+									<UNIT-REF ID-REF="Pressure-kPa"/>
+									<UNIT-REF ID-REF="Pressure-MPa"/>
+									<UNIT-REF ID-REF="Pressure-bar"/>
+									<UNIT-REF ID-REF="Pressure-mbar"/>
+									<UNIT-REF ID-REF="Pressure-hPa"/>
+									<UNIT-REF ID-REF="Resistance-R"/>
+									<UNIT-REF ID-REF="Resistance-mR"/>
+									<UNIT-REF ID-REF="Resistance-kR"/>
+									<UNIT-REF ID-REF="Resistance-MR"/>
+									<UNIT-REF ID-REF="Solid-Angle-sr"/>
+									<UNIT-REF ID-REF="Strings-Error"/>
+									<UNIT-REF ID-REF="Strings-STRING"/>
+									<UNIT-REF ID-REF="Substance-mol"/>
+									<UNIT-REF ID-REF="Temperature-K"/>
+									<UNIT-REF ID-REF="Temperature-degC"/>
+									<UNIT-REF ID-REF="ThrashingPerformance-ha_h"/>
+									<UNIT-REF ID-REF="Time-s"/>
+									<UNIT-REF ID-REF="Time-ms"/>
+									<UNIT-REF ID-REF="Time-min"/>
+									<UNIT-REF ID-REF="Time-h"/>
+									<UNIT-REF ID-REF="Time-d"/>
+									<UNIT-REF ID-REF="Torque-Nm"/>
+									<UNIT-REF ID-REF="Velocity-m_s"/>
+									<UNIT-REF ID-REF="Velocity-kph"/>
+									<UNIT-REF ID-REF="Velocity-mm_s"/>
+									<UNIT-REF ID-REF="Velocity-km_h"/>
+									<UNIT-REF ID-REF="Voltage-V"/>
+									<UNIT-REF ID-REF="Voltage-mV"/>
+									<UNIT-REF ID-REF="Voltage-kV"/>
+									<UNIT-REF ID-REF="Volume-m_cubed"/>
+									<UNIT-REF ID-REF="Volume-L"/>
+									<UNIT-REF ID-REF="Volume-mL"/>
+									<UNIT-REF ID-REF="Volume-cc"/>
+									<UNIT-REF ID-REF="Volume-galUS"/>
+									<UNIT-REF ID-REF="Volume-cm_cubed"/>
+									<UNIT-REF ID-REF="Volume-mm_cubed"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-Acceleration">
+								<SHORT-NAME>Acceleration</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Acceleration-m_s_squared"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-Angle">
+								<SHORT-NAME>Angle</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Angle-deg"/>
+									<UNIT-REF ID-REF="Angle-rad"/>
+									<UNIT-REF ID-REF="Angle-mrad"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-AngularMomentum">
+								<SHORT-NAME>AngularMomentum</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="AngularMomentum-Nms"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-AngularVelocity">
+								<SHORT-NAME>AngularVelocity</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="AngularVelocity-deg_s"/>
+									<UNIT-REF ID-REF="AngularVelocity-rad_s"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-Area">
+								<SHORT-NAME>Area</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Area-ha"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-Capacitance">
+								<SHORT-NAME>Capacitance</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Capacitance-nF"/>
+									<UNIT-REF ID-REF="Capacitance-pF"/>
+									<UNIT-REF ID-REF="Capacitance-uF"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-Charge">
+								<SHORT-NAME>Charge</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Charge-Ah"/>
+									<UNIT-REF ID-REF="Charge-C"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-Current">
+								<SHORT-NAME>Current</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Current-A"/>
+									<UNIT-REF ID-REF="Current-mA"/>
+									<UNIT-REF ID-REF="Current-uA"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-Curvature">
+								<SHORT-NAME>Curvature</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Curvature-per_km"/>
+									<UNIT-REF ID-REF="Curvature-per_m"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-Density">
+								<SHORT-NAME>Density</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Density-kg_m_cubed"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-Dimensionless">
+								<SHORT-NAME>Dimensionless</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Dimensionless-bin"/>
+									<UNIT-REF ID-REF="Dimensionless-dB"/>
+									<UNIT-REF ID-REF="Dimensionless-dBmicroV"/>
+									<UNIT-REF ID-REF="Dimensionless-hex"/>
+									<UNIT-REF ID-REF="Dimensionless-int"/>
+									<UNIT-REF ID-REF="Dimensionless-long"/>
+									<UNIT-REF ID-REF="Dimensionless-noUnits"/>
+									<UNIT-REF ID-REF="Dimensionless-pct"/>
+									<UNIT-REF ID-REF="Dimensionless-pu"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-Economy">
+								<SHORT-NAME>Economy</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Economy-L_100km"/>
+									<UNIT-REF ID-REF="Economy-L_km"/>
+									<UNIT-REF ID-REF="Economy-L_m"/>
+									<UNIT-REF ID-REF="Economy-L_mm"/>
+									<UNIT-REF ID-REF="Economy-galUS_mi"/>
+									<UNIT-REF ID-REF="Economy-galUK_mi"/>
+									<UNIT-REF ID-REF="Economy-km_l"/>
+									<UNIT-REF ID-REF="Economy-m_l"/>
+									<UNIT-REF ID-REF="Economy-mi_galUS"/>
+									<UNIT-REF ID-REF="Economy-mi_galUK"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-EconomyRate">
+								<SHORT-NAME>EconomyRate</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="EconomyRate-galUS_h"/>
+									<UNIT-REF ID-REF="EconomyRate-galUK_h"/>
+									<UNIT-REF ID-REF="EconomyRate-ml_h"/>
+									<UNIT-REF ID-REF="EconomyRate-ml_t"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-Energy">
+								<SHORT-NAME>Energy</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Energy-J"/>
+									<UNIT-REF ID-REF="Energy-MJ"/>
+									<UNIT-REF ID-REF="Energy-kJ"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-FieldStrength">
+								<SHORT-NAME>FieldStrength</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="FieldStrength-V_m"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-Flow">
+								<SHORT-NAME>Flow</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Flow-L_h"/>
+									<UNIT-REF ID-REF="Flow-L_s"/>
+									<UNIT-REF ID-REF="Flow-M3PerSec"/>
+									<UNIT-REF ID-REF="Flow-l_min"/>
+									<UNIT-REF ID-REF="Flow-galUS_h"/>
+									<UNIT-REF ID-REF="Flow-galUK_h"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-Force">
+								<SHORT-NAME>Force</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Force-N"/>
+									<UNIT-REF ID-REF="Force-kN"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-Frequency">
+								<SHORT-NAME>Frequency</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Frequency-Hz"/>
+									<UNIT-REF ID-REF="Frequency-MHz"/>
+									<UNIT-REF ID-REF="Frequency-kHz"/>
+									<UNIT-REF ID-REF="Frequency-mHz"/>
+									<UNIT-REF ID-REF="Frequency-pctPerSec"/>
+									<UNIT-REF ID-REF="Frequency-per_min"/>
+									<UNIT-REF ID-REF="Frequency-rpm"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-Inductance">
+								<SHORT-NAME>Inductance</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Inductance-H"/>
+									<UNIT-REF ID-REF="Inductance-mH"/>
+									<UNIT-REF ID-REF="Inductance-uH"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-Length">
+								<SHORT-NAME>Length</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Length-cm"/>
+									<UNIT-REF ID-REF="Length-ft"/>
+									<UNIT-REF ID-REF="Length-in"/>
+									<UNIT-REF ID-REF="Length-km"/>
+									<UNIT-REF ID-REF="Length-m"/>
+									<UNIT-REF ID-REF="Length-mi"/>
+									<UNIT-REF ID-REF="Length-mm"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-Luminosity">
+								<SHORT-NAME>Luminosity</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Luminosity-cd"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-luminous-emittance">
+								<SHORT-NAME>LuminousEmittance</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="luminous-emittance-lux"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-luminous-flux">
+								<SHORT-NAME>LuminousFlux</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="luminous-flux-lumen"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-magneticFlux">
+								<SHORT-NAME>MagneticFlux</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="magneticFlux-weber"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-magneticFluxDensity">
+								<SHORT-NAME>MagneticFluxDensity</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="magneticFluxDensity-T"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-Mass">
+								<SHORT-NAME>Mass</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Mass-g"/>
+									<UNIT-REF ID-REF="Mass-kg"/>
+									<UNIT-REF ID-REF="Mass-lb"/>
+									<UNIT-REF ID-REF="Mass-oz"/>
+									<UNIT-REF ID-REF="Mass-ton"/>
+									<UNIT-REF ID-REF="Mass-tonne"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-Massflow">
+								<SHORT-NAME>Massflow</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Massflow-g_s"/>
+									<UNIT-REF ID-REF="Massflow-kg_h"/>
+									<UNIT-REF ID-REF="Massflow-kg_min"/>
+									<UNIT-REF ID-REF="Massflow-kg_s"/>
+									<UNIT-REF ID-REF="Massflow-lb_min"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-MomentOfInertia">
+								<SHORT-NAME>MomentOfInertia</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="MomentOfInertia-Nms_squared"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-Power">
+								<SHORT-NAME>Power</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Power-W"/>
+									<UNIT-REF ID-REF="Power-kW"/>
+									<UNIT-REF ID-REF="Power-mW"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-Pressure">
+								<SHORT-NAME>Pressure</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Pressure-MPa"/>
+									<UNIT-REF ID-REF="Pressure-Pa"/>
+									<UNIT-REF ID-REF="Pressure-atm"/>
+									<UNIT-REF ID-REF="Pressure-bar"/>
+									<UNIT-REF ID-REF="Pressure-mbar"/>
+									<UNIT-REF ID-REF="Pressure-hPa"/>
+									<UNIT-REF ID-REF="Pressure-inHg"/>
+									<UNIT-REF ID-REF="Pressure-kPa"/>
+									<UNIT-REF ID-REF="Pressure-mPa"/>
+									<UNIT-REF ID-REF="Pressure-psi"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-Resistance">
+								<SHORT-NAME>Resistance</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Resistance-MR"/>
+									<UNIT-REF ID-REF="Resistance-R"/>
+									<UNIT-REF ID-REF="Resistance-kR"/>
+									<UNIT-REF ID-REF="Resistance-mR"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-Solid-Angle">
+								<SHORT-NAME>SolidAngle</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Solid-Angle-sr"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-Strings">
+								<SHORT-NAME>Strings</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Strings-Error"/>
+									<UNIT-REF ID-REF="Strings-STRING"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-Substance">
+								<SHORT-NAME>Substance</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Substance-mol"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-Temperature">
+								<SHORT-NAME>Temperature</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Temperature-K"/>
+									<UNIT-REF ID-REF="Temperature-degC"/>
+									<UNIT-REF ID-REF="Temperature-degF"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-ThrashingPerformance">
+								<SHORT-NAME>ThrashingPerformance</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="ThrashingPerformance-ha_h"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-Time">
+								<SHORT-NAME>Time</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Time-d"/>
+									<UNIT-REF ID-REF="Time-h"/>
+									<UNIT-REF ID-REF="Time-min"/>
+									<UNIT-REF ID-REF="Time-ms"/>
+									<UNIT-REF ID-REF="Time-s"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-Torque">
+								<SHORT-NAME>Torque</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Torque-Lbft"/>
+									<UNIT-REF ID-REF="Torque-Lbin"/>
+									<UNIT-REF ID-REF="Torque-Nm"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-Velocity">
+								<SHORT-NAME>Velocity</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Velocity-km_h"/>
+									<UNIT-REF ID-REF="Velocity-kph"/>
+									<UNIT-REF ID-REF="Velocity-m_s"/>
+									<UNIT-REF ID-REF="Velocity-mm_s"/>
+									<UNIT-REF ID-REF="Velocity-mph"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-Voltage">
+								<SHORT-NAME>Voltage</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Voltage-V"/>
+									<UNIT-REF ID-REF="Voltage-kV"/>
+									<UNIT-REF ID-REF="Voltage-mV"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							<UNIT-GROUP OID="EquivUnits-Volume">
+								<SHORT-NAME>Volume</SHORT-NAME>
+								<CATEGORY>EQUIV-UNITS</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Volume-L"/>
+									<UNIT-REF ID-REF="Volume-cc"/>
+									<UNIT-REF ID-REF="Volume-cm_cubed"/>
+									<UNIT-REF ID-REF="Volume-galUK"/>
+									<UNIT-REF ID-REF="Volume-galUS"/>
+									<UNIT-REF ID-REF="Volume-mL"/>
+									<UNIT-REF ID-REF="Volume-m_cubed"/>
+									<UNIT-REF ID-REF="Volume-mm_cubed"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							
+							<UNIT-GROUP OID="Default_Country_EU_Metric">
+								<SHORT-NAME>DefaultUnitGroup_Metric</SHORT-NAME>
+								<CATEGORY>COUNTRY</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Acceleration-m_s_squared"/>
+									<UNIT-REF ID-REF="Angle-deg"/>
+									<UNIT-REF ID-REF="AngularMomentum-Nms"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Charge-Ah"/>
+									<UNIT-REF ID-REF="Current-A"/>
+									<UNIT-REF ID-REF="Curvature-per_m"/>
+									<UNIT-REF ID-REF="Density-kg_m_cubed"/>
+									<UNIT-REF ID-REF="Dimensionless-noUnits"/>
+									<UNIT-REF ID-REF="Economy-L_100km"/>
+									<UNIT-REF ID-REF="Energy-J"/>
+									<UNIT-REF ID-REF="FieldStrength-V_m"/>
+									<UNIT-REF ID-REF="Flow-l_min"/>
+									<UNIT-REF ID-REF="Force-N"/>
+									<UNIT-REF ID-REF="Frequency-kHz"/>
+									<UNIT-REF ID-REF="Inductance-mH"/>
+									<UNIT-REF ID-REF="Length-m"/>
+									<UNIT-REF ID-REF="Luminosity-cd"/>
+									<UNIT-REF ID-REF="luminous-emittance-lux"/>
+									<UNIT-REF ID-REF="luminous-flux-lumen"/>
+									<UNIT-REF ID-REF="magneticFlux-weber"/>
+									<UNIT-REF ID-REF="magneticFluxDensity-T"/>
+									<UNIT-REF ID-REF="Mass-kg"/>
+									<UNIT-REF ID-REF="Massflow-kg_min"/>
+									<UNIT-REF ID-REF="MomentOfInertia-Nms_squared"/>
+									<UNIT-REF ID-REF="Power-W"/>
+									<UNIT-REF ID-REF="Pressure-bar"/>
+									<UNIT-REF ID-REF="Resistance-R"/>
+									<UNIT-REF ID-REF="Solid-Angle-sr"/>
+									<UNIT-REF ID-REF="Strings-STRING"/>
+									<UNIT-REF ID-REF="Substance-mol"/>
+									<UNIT-REF ID-REF="Temperature-degC"/>
+									<UNIT-REF ID-REF="ThrashingPerformance-ha_h"/>
+									<UNIT-REF ID-REF="Time-s"/>
+									<UNIT-REF ID-REF="Torque-Nm"/>
+									<UNIT-REF ID-REF="Velocity-kph"/>
+									<UNIT-REF ID-REF="Voltage-V"/>
+									<UNIT-REF ID-REF="Volume-L"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							
+							<UNIT-GROUP OID="Default_Country_UK_Imperial">
+								<SHORT-NAME>DefaultUnitGroup_UK</SHORT-NAME>
+								<CATEGORY>COUNTRY</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Acceleration-m_s_squared"/>
+									<UNIT-REF ID-REF="Angle-deg"/>
+									<UNIT-REF ID-REF="AngularMomentum-Nms"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Charge-Ah"/>
+									<UNIT-REF ID-REF="Current-A"/>
+									<UNIT-REF ID-REF="Curvature-per_m"/>
+									<UNIT-REF ID-REF="Density-kg_m_cubed"/>
+									<UNIT-REF ID-REF="Dimensionless-noUnits"/>
+									<UNIT-REF ID-REF="Economy-L_100km"/>
+									<UNIT-REF ID-REF="Energy-J"/>
+									<UNIT-REF ID-REF="FieldStrength-V_m"/>
+									<UNIT-REF ID-REF="Flow-l_min"/>
+									<UNIT-REF ID-REF="Force-N"/>
+									<UNIT-REF ID-REF="Frequency-kHz"/>
+									<UNIT-REF ID-REF="Inductance-mH"/>
+									<UNIT-REF ID-REF="Length-ft"/>
+									<UNIT-REF ID-REF="Luminosity-cd"/>
+									<UNIT-REF ID-REF="luminous-emittance-lux"/>
+									<UNIT-REF ID-REF="luminous-flux-lumen"/>
+									<UNIT-REF ID-REF="magneticFlux-weber"/>
+									<UNIT-REF ID-REF="magneticFluxDensity-T"/>
+									<UNIT-REF ID-REF="Mass-lb"/>
+									<UNIT-REF ID-REF="Massflow-lb_min"/>
+									<UNIT-REF ID-REF="MomentOfInertia-Nms_squared"/>
+									<UNIT-REF ID-REF="Power-W"/>
+									<UNIT-REF ID-REF="Pressure-psi"/>
+									<UNIT-REF ID-REF="Resistance-R"/>
+									<UNIT-REF ID-REF="Solid-Angle-sr"/>
+									<UNIT-REF ID-REF="Strings-STRING"/>
+									<UNIT-REF ID-REF="Substance-mol"/>
+									<UNIT-REF ID-REF="Temperature-degF"/>
+									<UNIT-REF ID-REF="ThrashingPerformance-ha_h"/>
+									<UNIT-REF ID-REF="Time-s"/>
+									<UNIT-REF ID-REF="Torque-Lbft"/>
+									<UNIT-REF ID-REF="Velocity-mph"/>
+									<UNIT-REF ID-REF="Voltage-V"/>
+									<UNIT-REF ID-REF="Volume-galUK"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							
+							<UNIT-GROUP OID="Default_Country_US_Imperial">
+								<SHORT-NAME>DefaultUnitGroup_US</SHORT-NAME>
+								<CATEGORY>COUNTRY</CATEGORY>
+								<UNIT-REFS>
+									<UNIT-REF ID-REF="Acceleration-m_s_squared"/>
+									<UNIT-REF ID-REF="Angle-deg"/>
+									<UNIT-REF ID-REF="AngularMomentum-Nms"/>
+									<UNIT-REF ID-REF="Area-m_squared"/>
+									<UNIT-REF ID-REF="Capacitance-F"/>
+									<UNIT-REF ID-REF="Charge-Ah"/>
+									<UNIT-REF ID-REF="Current-A"/>
+									<UNIT-REF ID-REF="Curvature-per_m"/>
+									<UNIT-REF ID-REF="Density-kg_m_cubed"/>
+									<UNIT-REF ID-REF="Dimensionless-noUnits"/>
+									<UNIT-REF ID-REF="Economy-mi_galUS"/>
+									<UNIT-REF ID-REF="EconomyRate-galUS_h"/>
+									<UNIT-REF ID-REF="Energy-J"/>
+									<UNIT-REF ID-REF="FieldStrength-V_m"/>
+									<UNIT-REF ID-REF="Flow-l_min"/>
+									<UNIT-REF ID-REF="Force-N"/>
+									<UNIT-REF ID-REF="Frequency-kHz"/>
+									<UNIT-REF ID-REF="Inductance-mH"/>
+									<UNIT-REF ID-REF="Length-ft"/>
+									<UNIT-REF ID-REF="Luminosity-cd"/>
+									<UNIT-REF ID-REF="luminous-emittance-lux"/>
+									<UNIT-REF ID-REF="luminous-flux-lumen"/>
+									<UNIT-REF ID-REF="magneticFlux-weber"/>
+									<UNIT-REF ID-REF="magneticFluxDensity-T"/>
+									<UNIT-REF ID-REF="Mass-lb"/>
+									<UNIT-REF ID-REF="Massflow-lb_min"/>
+									<UNIT-REF ID-REF="MomentOfInertia-Nms_squared"/>
+									<UNIT-REF ID-REF="Power-W"/>
+									<UNIT-REF ID-REF="Pressure-psi"/>
+									<UNIT-REF ID-REF="Resistance-R"/>
+									<UNIT-REF ID-REF="Solid-Angle-sr"/>
+									<UNIT-REF ID-REF="Strings-STRING"/>
+									<UNIT-REF ID-REF="Substance-mol"/>
+									<UNIT-REF ID-REF="Temperature-degF"/>
+									<UNIT-REF ID-REF="ThrashingPerformance-ha_h"/>
+									<UNIT-REF ID-REF="Time-s"/>
+									<UNIT-REF ID-REF="Torque-Lbft"/>
+									<UNIT-REF ID-REF="Velocity-mph"/>
+									<UNIT-REF ID-REF="Voltage-V"/>
+									<UNIT-REF ID-REF="Volume-galUS"/>
+								</UNIT-REFS>
+							</UNIT-GROUP>
+							
+						</UNIT-GROUPS>
+						
+						<UNITS>
+							<UNIT ID="Acceleration-m_s_squared">
+								<SHORT-NAME>m_s_squared</SHORT-NAME>
+								<LONG-NAME>acceleration : metre per second squared</LONG-NAME>
+								<DISPLAY-NAME>m/s&#178;</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-m_s_squared"/>
+							</UNIT>
+							<UNIT ID="Angle-rad">
+								<SHORT-NAME>rad</SHORT-NAME>
+								<LONG-NAME>plane angle : radian</LONG-NAME>
+								<DISPLAY-NAME>rad</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-rad"/>
+							</UNIT>
+							<UNIT ID="Angle-mrad">
+								<SHORT-NAME>mrad</SHORT-NAME>
+								<LONG-NAME>plane angle : milliRadian</LONG-NAME>
+								<DISPLAY-NAME>mrad</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1000.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-rad"/>
+							</UNIT>
+							<UNIT ID="Angle-deg">
+								<SHORT-NAME>deg</SHORT-NAME>
+								<LONG-NAME>plane angle : degree</LONG-NAME>
+								<DISPLAY-NAME>&#176;</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>57.295776</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-rad"/>
+							</UNIT>
+							<UNIT ID="AngularMomentum-Nms">
+								<SHORT-NAME>Nms</SHORT-NAME>
+								<LONG-NAME>angular momentum : newton metre second</LONG-NAME>
+								<DISPLAY-NAME>Nms</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-Nms"/>
+							</UNIT>
+							<UNIT ID="AngularVelocity-rad_s">
+								<SHORT-NAME>rad_s</SHORT-NAME>
+								<LONG-NAME>angular velocity : radian per second</LONG-NAME>
+								<DISPLAY-NAME>rad/s</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-rad_s"/>
+							</UNIT>
+							<UNIT ID="AngularVelocity-deg_s">
+								<SHORT-NAME>deg_s</SHORT-NAME>
+								<LONG-NAME>angular velocity : degree per second</LONG-NAME>
+								<DISPLAY-NAME>&#176;/s</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>57.295776</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-rad_s"/>
+							</UNIT>
+							<UNIT ID="Area-m_squared">
+								<SHORT-NAME>m_squared</SHORT-NAME>
+								<LONG-NAME>area : square metre</LONG-NAME>
+								<DISPLAY-NAME>m&#178;</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-m_squared"/>
+							</UNIT>
+							<UNIT ID="Area-ha">
+								<SHORT-NAME>ha</SHORT-NAME>
+								<LONG-NAME>area : hectare</LONG-NAME>
+								<DISPLAY-NAME>ha</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>0.0001</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-m_squared"/>
+							</UNIT>
+							<UNIT ID="Capacitance-F">
+								<SHORT-NAME>F</SHORT-NAME>
+								<LONG-NAME>capacitance : farad</LONG-NAME>
+								<DISPLAY-NAME>F</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-F"/>
+							</UNIT>
+							<UNIT ID="Capacitance-pF">
+								<SHORT-NAME>pF</SHORT-NAME>
+								<LONG-NAME>capacitance : picofarad</LONG-NAME>
+								<DISPLAY-NAME>pF</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0E12</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-F"/>
+							</UNIT>
+							<UNIT ID="Capacitance-nF">
+								<SHORT-NAME>nF</SHORT-NAME>
+								<LONG-NAME>capacitance : nanofarad</LONG-NAME>
+								<DISPLAY-NAME>nF</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0E9</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-F"/>
+							</UNIT>
+							<UNIT ID="Capacitance-uF">
+								<SHORT-NAME>uF</SHORT-NAME>
+								<LONG-NAME>capacitance : microfarad</LONG-NAME>
+								<DISPLAY-NAME>&#181;F</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1000000.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-F"/>
+							</UNIT>
+							<UNIT ID="Charge-C">
+								<SHORT-NAME>C</SHORT-NAME>
+								<LONG-NAME>electric charge : coulomb</LONG-NAME>
+								<DISPLAY-NAME>C</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-C"/>
+							</UNIT>
+							<UNIT ID="Charge-Ah">
+								<SHORT-NAME>Ah</SHORT-NAME>
+								<LONG-NAME>electric charge : ampere hour</LONG-NAME>
+								<DISPLAY-NAME>Ah</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>2.7777778E-4</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-C"/>
+							</UNIT>
+							<UNIT ID="Current-A">
+								<SHORT-NAME>A</SHORT-NAME>
+								<LONG-NAME>current : ampere</LONG-NAME>
+								<DISPLAY-NAME>A</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-A"/>
+							</UNIT>
+							<UNIT ID="Current-uA">
+								<SHORT-NAME>uA</SHORT-NAME>
+								<LONG-NAME>current : microampere</LONG-NAME>
+								<DISPLAY-NAME>&#181;A</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1000000.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-A"/>
+							</UNIT>
+							<UNIT ID="Current-mA">
+								<SHORT-NAME>mA</SHORT-NAME>
+								<LONG-NAME>current : milliampere</LONG-NAME>
+								<DISPLAY-NAME>mA</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1000.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-A"/>
+							</UNIT>
+							<UNIT ID="Curvature-per_m">
+								<SHORT-NAME>per_m</SHORT-NAME>
+								<LONG-NAME>curvature : per metre</LONG-NAME>
+								<DISPLAY-NAME>1/m</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-per_m"/>
+							</UNIT>
+							<UNIT ID="Curvature-per_km">
+								<SHORT-NAME>per_km</SHORT-NAME>
+								<LONG-NAME>curvature : per kilometre</LONG-NAME>
+								<DISPLAY-NAME>1/km</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1000.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-per_m"/>
+							</UNIT>
+							<UNIT ID="Density-kg_m_cubed">
+								<SHORT-NAME>kg_m_cubed</SHORT-NAME>
+								<LONG-NAME>density : kilogram per cubic metre</LONG-NAME>
+								<DISPLAY-NAME>kg/m&#179;</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-kg_m_cubed"/>
+							</UNIT>
+							<UNIT ID="Dimensionless-noUnits">
+								<SHORT-NAME>noUnits</SHORT-NAME>
+								<LONG-NAME>dimensionless : no units</LONG-NAME>
+								<DISPLAY-NAME/>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-noUnits"/>
+							</UNIT>
+							<UNIT ID="Dimensionless-pu">
+								<SHORT-NAME>pu</SHORT-NAME>
+								<LONG-NAME>dimensionless : per unit</LONG-NAME>
+								<DISPLAY-NAME>pu</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-noUnits"/>
+							</UNIT>
+							<UNIT ID="Dimensionless-pct">
+								<SHORT-NAME>pct</SHORT-NAME>
+								<LONG-NAME>dimensionless : percent</LONG-NAME>
+								<DISPLAY-NAME>%</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>100.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-noUnits"/>
+							</UNIT>
+							<UNIT ID="Dimensionless-hex">
+								<SHORT-NAME>hex</SHORT-NAME>
+								<LONG-NAME>dimensionless : hexadecimal</LONG-NAME>
+								<DISPLAY-NAME>hex</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-noUnits"/>
+							</UNIT>
+							<UNIT ID="Dimensionless-int">
+								<SHORT-NAME>int</SHORT-NAME>
+								<LONG-NAME>dimensionless : integer</LONG-NAME>
+								<DISPLAY-NAME/>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-noUnits"/>
+							</UNIT>
+							<UNIT ID="Dimensionless-long">
+								<SHORT-NAME>long</SHORT-NAME>
+								<LONG-NAME>dimensionless : long</LONG-NAME>
+								<DISPLAY-NAME/>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-noUnits"/>
+							</UNIT>
+							<UNIT ID="Dimensionless-bin">
+								<SHORT-NAME>bin</SHORT-NAME>
+								<LONG-NAME>dimensionless : binary</LONG-NAME>
+								<DISPLAY-NAME>bin</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-noUnits"/>
+							</UNIT>
+							<UNIT ID="Dimensionless-dB">
+								<SHORT-NAME>dB</SHORT-NAME>
+								<LONG-NAME>dimensionless : decibel</LONG-NAME>
+								<DISPLAY-NAME>dB</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-noUnits"/>
+							</UNIT>
+							<UNIT ID="Dimensionless-dBmicroV">
+								<SHORT-NAME>dBmicroV</SHORT-NAME>
+								<LONG-NAME>dimensionless : decibel per microvolt</LONG-NAME>
+								<DISPLAY-NAME>dB&#181;V</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-noUnits"/>
+							</UNIT>
+							<UNIT ID="Economy-L_m">
+								<SHORT-NAME>L_m</SHORT-NAME>
+								<LONG-NAME>economy : litre per metre</LONG-NAME>
+								<DISPLAY-NAME>L/m</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-L_m"/>
+							</UNIT>
+							<UNIT ID="Economy-L_km">
+								<SHORT-NAME>L_km</SHORT-NAME>
+								<LONG-NAME>economy : litre per kilometre</LONG-NAME>
+								<DISPLAY-NAME>L/km</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1000.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-L_m"/>
+							</UNIT>
+							<UNIT ID="Economy-L_mm">
+								<SHORT-NAME>L_mm</SHORT-NAME>
+								<LONG-NAME>economy : litre per millimetre</LONG-NAME>
+								<DISPLAY-NAME>L/mm</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>0.0010</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-L_m"/>
+							</UNIT>
+							<UNIT ID="Economy-galUS_mi">
+								<SHORT-NAME>galUS_mi</SHORT-NAME>
+								<LONG-NAME>economy : gallon (US) per mile</LONG-NAME>
+								<DISPLAY-NAME>galUS/mi</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>425.1437</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-L_m"/>
+							</UNIT>
+							<UNIT ID="Economy-galUK_mi">
+								<SHORT-NAME>galUK_mi</SHORT-NAME>
+								<LONG-NAME>economy : gallon (UK) per mile</LONG-NAME>
+								<DISPLAY-NAME>galUK/mi</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>354.0062</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-L_m"/>
+							</UNIT>							
+							<UNIT ID="Economy-L_100km">
+								<SHORT-NAME>L_100km</SHORT-NAME>
+								<LONG-NAME>economy : litre per 100 kilometre</LONG-NAME>
+								<DISPLAY-NAME>L/100km</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>100000.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-L_m"/>
+							</UNIT>
+							<UNIT ID="Economy-mi_galUS">
+								<SHORT-NAME>mi_galUS</SHORT-NAME>
+								<LONG-NAME>economy : mile per gallon (US)</LONG-NAME>
+								<DISPLAY-NAME>mi/galUS</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>0.002352146</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-L_m"/>
+							</UNIT>
+							<UNIT ID="Economy-mi_galUK">
+								<SHORT-NAME>mi_galUK</SHORT-NAME>
+								<LONG-NAME>economy : mile per gallon (UK)</LONG-NAME>
+								<DISPLAY-NAME>mi/galUK</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>0.0028248094</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-L_m"/>
+							</UNIT>
+							<UNIT ID="Economy-m_l">
+								<SHORT-NAME>m_l</SHORT-NAME>
+								<LONG-NAME>economy : metre per litre</LONG-NAME>
+								<DISPLAY-NAME>m/l</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-L_m"/>
+							</UNIT>
+							<UNIT ID="Economy-km_l">
+								<SHORT-NAME>km_l</SHORT-NAME>
+								<LONG-NAME>economy : kilometre per litre</LONG-NAME>
+								<DISPLAY-NAME>km/l</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-L_m"/>
+							</UNIT>
+							<UNIT ID="EconomyRate-galUS_h">
+								<SHORT-NAME>galUS_h</SHORT-NAME>
+								<LONG-NAME>economy rate : gallon (US) per hour</LONG-NAME>
+								<DISPLAY-NAME>galUS/h</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>0.26417205</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-L_h"/>
+							</UNIT>
+							<UNIT ID="EconomyRate-galUK_h">
+								<SHORT-NAME>galUK_h</SHORT-NAME>
+								<LONG-NAME>economy rate : gallon (UK) per hour</LONG-NAME>
+								<DISPLAY-NAME>galUK/h</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>0.21996925</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-L_h"/>
+							</UNIT>
+							<UNIT ID="EconomyRate-ml_t">
+								<SHORT-NAME>ml_t</SHORT-NAME>
+								<LONG-NAME>economy rate : millilitre per day</LONG-NAME>
+								<DISPLAY-NAME>ml/t</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>41.666668</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-L_h"/>
+							</UNIT>
+							<UNIT ID="EconomyRate-ml_h">
+								<SHORT-NAME>ml_h</SHORT-NAME>
+								<LONG-NAME>economy rate : millilitre per hour</LONG-NAME>
+								<DISPLAY-NAME>ml/h</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1000.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-L_h"/>
+							</UNIT>
+							<UNIT ID="Energy-J">
+								<SHORT-NAME>J</SHORT-NAME>
+								<LONG-NAME>energy : joule</LONG-NAME>
+								<DISPLAY-NAME>J</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-J"/>
+							</UNIT>
+							<UNIT ID="Energy-kJ">
+								<SHORT-NAME>kJ</SHORT-NAME>
+								<LONG-NAME>energy : kilojoule</LONG-NAME>
+								<DISPLAY-NAME>kJ</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>0.0010</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-J"/>
+							</UNIT>
+							<UNIT ID="Energy-MJ">
+								<SHORT-NAME>MJ</SHORT-NAME>
+								<LONG-NAME>energy : megajoule</LONG-NAME>
+								<DISPLAY-NAME>MJ</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0E-6</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-J"/>
+							</UNIT>
+							<UNIT ID="FieldStrength-V_m">
+								<SHORT-NAME>V_m</SHORT-NAME>
+								<LONG-NAME>electric field strength : volt per metre</LONG-NAME>
+								<DISPLAY-NAME>V/m</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-J"/>
+							</UNIT>
+							<UNIT ID="Flow-M3PerSec">
+								<SHORT-NAME>M3PerSec</SHORT-NAME>
+								<LONG-NAME>flow rate : cubic metre per second</LONG-NAME>
+								<DISPLAY-NAME>m&#179;/s</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-M3PerSec"/>
+							</UNIT>
+							<UNIT ID="Flow-L_s">
+								<SHORT-NAME>L_s</SHORT-NAME>
+								<LONG-NAME>flow rate : liter per second</LONG-NAME>
+								<DISPLAY-NAME>L/s</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1000.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-M3PerSec"/>
+							</UNIT>
+							<UNIT ID="Flow-L_h">
+								<SHORT-NAME>L_h</SHORT-NAME>
+								<LONG-NAME>flow rate : liter per hour</LONG-NAME>
+								<DISPLAY-NAME>L/h</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>3600000.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-M3PerSec"/>
+							</UNIT>
+							<UNIT ID="Flow-galUS_h">
+								<SHORT-NAME>galUS_h</SHORT-NAME>
+								<LONG-NAME>flow rate : gallon (US) per hour</LONG-NAME>
+								<DISPLAY-NAME>galUS/h</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>951019.39</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-M3PerSec"/>
+							</UNIT>
+							<UNIT ID="Flow-galUK_h">
+								<SHORT-NAME>galUK_h</SHORT-NAME>
+								<LONG-NAME>flow rate : gallon (UK) per hour</LONG-NAME>
+								<DISPLAY-NAME>galUK/h</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>791889.29</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-M3PerSec"/>
+							</UNIT>							
+							<UNIT ID="Flow-l_min">
+								<SHORT-NAME>l_min</SHORT-NAME>
+								<LONG-NAME>flow rate : liter per minute</LONG-NAME>
+								<DISPLAY-NAME>l/min</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1000.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-M3PerSec"/>
+							</UNIT>
+							<UNIT ID="Force-N">
+								<SHORT-NAME>N</SHORT-NAME>
+								<LONG-NAME>force : newton</LONG-NAME>
+								<DISPLAY-NAME>N</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-N"/>		
+							</UNIT>					
+							<UNIT ID="Force-kN">
+								<SHORT-NAME>kN</SHORT-NAME>
+								<LONG-NAME>force : kilonewton</LONG-NAME>
+								<DISPLAY-NAME>kN</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>0.0010</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-N"/>
+							</UNIT>
+							<UNIT ID="Frequency-Hz">
+								<SHORT-NAME>Hz</SHORT-NAME>
+								<LONG-NAME>frequency : hertz</LONG-NAME>
+								<DISPLAY-NAME>Hz</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-Hz"/>
+							</UNIT>
+							<UNIT ID="Frequency-mHz">
+								<SHORT-NAME>mHz</SHORT-NAME>
+								<LONG-NAME>frequency : millihertz</LONG-NAME>
+								<DISPLAY-NAME>mHz</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1000.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-Hz"/>
+							</UNIT>
+							<UNIT ID="Frequency-kHz">
+								<SHORT-NAME>kHz</SHORT-NAME>
+								<LONG-NAME>frequency : kilohertz</LONG-NAME>
+								<DISPLAY-NAME>kHz</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>0.0010</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-Hz"/>
+							</UNIT>
+							<UNIT ID="Frequency-MHz">
+								<SHORT-NAME>MHz</SHORT-NAME>
+								<LONG-NAME>frequency : megahertz</LONG-NAME>
+								<DISPLAY-NAME>MHz</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0E-6</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-Hz"/>
+							</UNIT>
+							<UNIT ID="Frequency-pctPerSec">
+								<SHORT-NAME>pctPerSec</SHORT-NAME>
+								<LONG-NAME>frequency : percent per second</LONG-NAME>
+								<DISPLAY-NAME>%/s</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>100.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-Hz"/>
+							</UNIT>
+							<UNIT ID="Frequency-per_min">
+								<SHORT-NAME>per_min</SHORT-NAME>
+								<LONG-NAME>frequency : per minute</LONG-NAME>
+								<DISPLAY-NAME>1/min</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>60.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-Hz"/>
+							</UNIT>
+							<UNIT ID="Frequency-rpm">
+								<SHORT-NAME>rpm</SHORT-NAME>
+								<LONG-NAME>frequency : rotation per minute</LONG-NAME>
+								<DISPLAY-NAME>rpm</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>60.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-Hz"/>
+							</UNIT>
+							<UNIT ID="Inductance-H">
+								<SHORT-NAME>H</SHORT-NAME>
+								<LONG-NAME>inductance : henry</LONG-NAME>
+								<DISPLAY-NAME>H</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-H"/>
+							</UNIT>
+							<UNIT ID="Inductance-uH">
+								<SHORT-NAME>uH</SHORT-NAME>
+								<LONG-NAME>inductance : microhenry</LONG-NAME>
+								<DISPLAY-NAME>&#181;H</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1000000.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-H"/>
+							</UNIT>
+							<UNIT ID="Inductance-mH">
+								<SHORT-NAME>mH</SHORT-NAME>
+								<LONG-NAME>inductance : millihenry</LONG-NAME>
+								<DISPLAY-NAME>mH</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1000.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-H"/>
+							</UNIT>
+							<UNIT ID="Length-m">
+								<SHORT-NAME>m</SHORT-NAME>
+								<LONG-NAME>length : metre</LONG-NAME>
+								<DISPLAY-NAME>m</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-m"/>
+							</UNIT>
+							<UNIT ID="Length-mm">
+								<SHORT-NAME>mm</SHORT-NAME>
+								<LONG-NAME>length : millimetre</LONG-NAME>
+								<DISPLAY-NAME>mm</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1000.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-m"/>
+							</UNIT>
+							<UNIT ID="Length-cm">
+								<SHORT-NAME>cm</SHORT-NAME>
+								<LONG-NAME>length : centimetre</LONG-NAME>
+								<DISPLAY-NAME>cm</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>100.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-m"/>
+							</UNIT>
+							<UNIT ID="Length-km">
+								<SHORT-NAME>km</SHORT-NAME>
+								<LONG-NAME>length : kilometre</LONG-NAME>
+								<DISPLAY-NAME>km</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>0.0010</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-m"/>
+							</UNIT>
+							<UNIT ID="Length-mi">
+								<SHORT-NAME>mi</SHORT-NAME>
+								<LONG-NAME>length : mile</LONG-NAME>
+								<DISPLAY-NAME>mi</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>6.213712E-4</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-m"/>
+							</UNIT>
+							<UNIT ID="Length-ft">
+								<SHORT-NAME>ft</SHORT-NAME>
+								<LONG-NAME>length : foot</LONG-NAME>
+								<DISPLAY-NAME>ft</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>3.28084</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-m"/>
+							</UNIT>
+							<UNIT ID="Length-in">
+								<SHORT-NAME>in</SHORT-NAME>
+								<LONG-NAME>length : inch</LONG-NAME>
+								<DISPLAY-NAME>in</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>39.37008</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-m"/>
+							</UNIT>
+							<UNIT ID="Luminosity-cd">
+								<SHORT-NAME>cd</SHORT-NAME>
+								<LONG-NAME>luminous intensity : candela</LONG-NAME>
+								<DISPLAY-NAME>cd</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-cd"/>
+							</UNIT>
+							<UNIT ID="luminous-flux-lumen">
+								<SHORT-NAME>lumen</SHORT-NAME>
+								<LONG-NAME>luminous flux : lumen</LONG-NAME>
+								<DISPLAY-NAME>lm</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-lumen"/>
+							</UNIT>
+							<UNIT ID="luminous-emittance-lux">
+								<SHORT-NAME>lux</SHORT-NAME>
+								<LONG-NAME>illuminance : lux</LONG-NAME>
+								<DISPLAY-NAME>lx</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-lux"/>
+							</UNIT>
+							<UNIT ID="magneticFlux-weber">
+								<SHORT-NAME>weber</SHORT-NAME>
+								<LONG-NAME>magnetic flux : weber</LONG-NAME>
+								<DISPLAY-NAME>Wb</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-weber"/>
+							</UNIT>
+							<UNIT ID="magneticFluxDensity-T">
+								<SHORT-NAME>T</SHORT-NAME>
+								<LONG-NAME>magnetic flux density : tesla</LONG-NAME>
+								<DISPLAY-NAME>T</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-T"/>
+							</UNIT>
+							<UNIT ID="Mass-kg">
+								<SHORT-NAME>kg</SHORT-NAME>
+								<LONG-NAME>mass : kilogram</LONG-NAME>
+								<DISPLAY-NAME>kg</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-kg"/>
+							</UNIT>
+							<UNIT ID="Mass-g">
+								<SHORT-NAME>g</SHORT-NAME>
+								<LONG-NAME>mass : gram</LONG-NAME>
+								<DISPLAY-NAME>g</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1000.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-kg"/>
+							</UNIT>
+							<UNIT ID="Mass-tonne">
+								<SHORT-NAME>tonne</SHORT-NAME>
+								<LONG-NAME>mass : tonne</LONG-NAME>
+								<DISPLAY-NAME>tonne</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>0.0010</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-kg"/>
+							</UNIT>
+							<UNIT ID="Mass-ton">
+								<SHORT-NAME>ton</SHORT-NAME>
+								<LONG-NAME>mass : ton</LONG-NAME>
+								<DISPLAY-NAME>ton</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>0.0011023113</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-kg"/>
+							</UNIT>
+							<UNIT ID="Mass-lb">
+								<SHORT-NAME>lb</SHORT-NAME>
+								<LONG-NAME>mass : pound</LONG-NAME>
+								<DISPLAY-NAME>lb</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>2.2046225</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-kg"/>
+							</UNIT>
+							<UNIT ID="Mass-oz">
+								<SHORT-NAME>oz</SHORT-NAME>
+								<LONG-NAME>mass : ounce</LONG-NAME>
+								<DISPLAY-NAME>oz</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>35.27396</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-kg"/>
+							</UNIT>
+							<UNIT ID="Massflow-kg_s">
+								<SHORT-NAME>kg_s</SHORT-NAME>
+								<LONG-NAME>mass flow : kilogram per second</LONG-NAME>
+								<DISPLAY-NAME>kg/s</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-kg_s"/>
+							</UNIT>
+							<UNIT ID="Massflow-g_s">
+								<SHORT-NAME>g_s</SHORT-NAME>
+								<LONG-NAME>mass flow : gram per second</LONG-NAME>
+								<DISPLAY-NAME>g/s</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1000.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-kg_s"/>
+							</UNIT>
+							<UNIT ID="Massflow-kg_min">
+								<SHORT-NAME>kg_min</SHORT-NAME>
+								<LONG-NAME>mass flow : kilogram per minute</LONG-NAME>
+								<DISPLAY-NAME>kg/min</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>60.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-kg_s"/>
+							</UNIT>
+							<UNIT ID="Massflow-lb_min">
+								<SHORT-NAME>lb_min</SHORT-NAME>
+								<LONG-NAME>mass flow : pound per minute</LONG-NAME>
+								<DISPLAY-NAME>lb/min</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>132.27736</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-kg_s"/>
+							</UNIT>
+							<UNIT ID="Massflow-kg_h">
+								<SHORT-NAME>kg_h</SHORT-NAME>
+								<LONG-NAME>mass flow : kilogram per hour</LONG-NAME>
+								<DISPLAY-NAME>kg/h</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>3600.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-kg_s"/>
+							</UNIT>
+							<UNIT ID="MomentOfInertia-Nms_squared">
+								<SHORT-NAME>Nms_squared</SHORT-NAME>
+								<LONG-NAME>mass flow : newton metre second squared</LONG-NAME>
+								<DISPLAY-NAME>Nms&#178;</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-Nms_squared"/>
+							</UNIT>
+							<UNIT ID="Power-W">
+								<SHORT-NAME>W</SHORT-NAME>
+								<LONG-NAME>power : watt</LONG-NAME>
+								<DISPLAY-NAME>W</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-W"/>
+							</UNIT>
+							<UNIT ID="Power-mW">
+								<SHORT-NAME>mW</SHORT-NAME>
+								<LONG-NAME>power : milliwatt</LONG-NAME>
+								<DISPLAY-NAME>mW</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1000.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-W"/>
+							</UNIT>
+							<UNIT ID="Power-kW">
+								<SHORT-NAME>kW</SHORT-NAME>
+								<LONG-NAME>power : kilowatt</LONG-NAME>
+								<DISPLAY-NAME>kW</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>0.0010</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-W"/>
+							</UNIT>
+							<UNIT ID="Pressure-Pa">
+								<SHORT-NAME>Pa</SHORT-NAME>
+								<LONG-NAME>pressure : pascal</LONG-NAME>
+								<DISPLAY-NAME>Pa</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-Pa"/>
+							</UNIT>
+							<UNIT ID="Pressure-mPa">
+								<SHORT-NAME>mPa</SHORT-NAME>
+								<LONG-NAME>pressure : millipascal</LONG-NAME>
+								<DISPLAY-NAME>mPa</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1000.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-Pa"/>
+							</UNIT>
+							<UNIT ID="Pressure-kPa">
+								<SHORT-NAME>kPa</SHORT-NAME>
+								<LONG-NAME>pressure : kilopascal</LONG-NAME>
+								<DISPLAY-NAME>kPa</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>0.0010</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-Pa"/>
+							</UNIT>
+							<UNIT ID="Pressure-MPa">
+								<SHORT-NAME>MPa</SHORT-NAME>
+								<LONG-NAME>pressure : megapascal</LONG-NAME>
+								<DISPLAY-NAME>MPa</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0E-6</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-Pa"/>
+							</UNIT>
+							<UNIT ID="Pressure-atm">
+								<SHORT-NAME>atm</SHORT-NAME>
+								<LONG-NAME>pressure : atmosphere</LONG-NAME>
+								<DISPLAY-NAME>atm</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>9.869233E-6</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-Pa"/>
+							</UNIT>
+							<UNIT ID="Pressure-bar">
+								<SHORT-NAME>bar</SHORT-NAME>
+								<LONG-NAME>pressure : bar</LONG-NAME>
+								<DISPLAY-NAME>bar</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0E-5</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-Pa"/>
+							</UNIT>
+			                <UNIT ID="Pressure-mbar">
+								<SHORT-NAME>mbar</SHORT-NAME>
+								<LONG-NAME>pressure : milibar</LONG-NAME>
+								<DISPLAY-NAME>mbar</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0E-2</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-Pa"/>
+							</UNIT>
+							<UNIT ID="Pressure-psi">
+								<SHORT-NAME>psi</SHORT-NAME>
+								<LONG-NAME>pressure : pound-force per square inch</LONG-NAME>
+								<DISPLAY-NAME>psi</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.4503773E-4</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-Pa"/>
+							</UNIT>
+							<UNIT ID="Pressure-inHg">
+								<SHORT-NAME>inHg</SHORT-NAME>
+								<LONG-NAME>pressure : inch of mercury</LONG-NAME>
+								<DISPLAY-NAME>inHg</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>2.9613273E-4</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-Pa"/>
+							</UNIT>
+							<UNIT ID="Pressure-hPa">
+								<SHORT-NAME>hPa</SHORT-NAME>
+								<LONG-NAME>pressure : hectopascal</LONG-NAME>
+								<DISPLAY-NAME>hPa</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>0.01</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-Pa"/>
+							</UNIT>
+							<UNIT ID="Resistance-R">
+								<SHORT-NAME>R</SHORT-NAME>
+								<LONG-NAME>resistance : ohm</LONG-NAME>
+								<DISPLAY-NAME>&#937;</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-R"/>
+							</UNIT>
+							<UNIT ID="Resistance-mR">
+								<SHORT-NAME>mR</SHORT-NAME>
+								<LONG-NAME>resistance : milliohm</LONG-NAME>
+								<DISPLAY-NAME>m&#937;</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1000.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-R"/>
+							</UNIT>
+							<UNIT ID="Resistance-kR">
+								<SHORT-NAME>kR</SHORT-NAME>
+								<LONG-NAME>resistance : kilohm</LONG-NAME>
+								<DISPLAY-NAME>k&#937;</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>0.0010</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-R"/>
+							</UNIT>
+							<UNIT ID="Resistance-MR">
+								<SHORT-NAME>MR</SHORT-NAME>
+								<LONG-NAME>resistance : megaohm</LONG-NAME>
+								<DISPLAY-NAME>M&#937;</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>0.0000010</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-R"/>
+							</UNIT>
+							<UNIT ID="Solid-Angle-sr">
+								<SHORT-NAME>sr</SHORT-NAME>
+								<LONG-NAME>solid angle : steradian</LONG-NAME>
+								<DISPLAY-NAME>sr</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-sr"/>
+							</UNIT>
+							<UNIT ID="Strings-Error">
+								<SHORT-NAME>Error</SHORT-NAME>
+								<LONG-NAME>string error</LONG-NAME>
+								<DISPLAY-NAME>Error</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-STRING"/>
+							</UNIT>
+							<UNIT ID="Strings-STRING">
+								<SHORT-NAME>STRING</SHORT-NAME>
+								<LONG-NAME>string</LONG-NAME>
+								<DISPLAY-NAME>STRING</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-STRING"/>
+							</UNIT>
+							<UNIT ID="Substance-mol">
+								<SHORT-NAME>mol</SHORT-NAME>
+								<LONG-NAME>amount of substance : mole</LONG-NAME>
+								<DISPLAY-NAME>mol</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-mol"/>
+							</UNIT>
+							<UNIT ID="Temperature-K">
+								<SHORT-NAME>K</SHORT-NAME>
+								<LONG-NAME>temperature : kelvin</LONG-NAME>
+								<DISPLAY-NAME>K</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-K"/>
+							</UNIT>
+							<UNIT ID="Temperature-degC">
+								<SHORT-NAME>degC</SHORT-NAME>
+								<LONG-NAME>temperature : degree celcius</LONG-NAME>
+								<DISPLAY-NAME>&#176;C</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>-273.16</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-K"/>
+							</UNIT>
+							<UNIT ID="Temperature-degF">
+								<SHORT-NAME>degF</SHORT-NAME>
+								<LONG-NAME>temperature : degree fahrenheit</LONG-NAME>
+								<DISPLAY-NAME>&#176;F</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.8</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>-459.688</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-K"/>
+							</UNIT>
+							<UNIT ID="ThrashingPerformance-ha_h">
+								<SHORT-NAME>ha_h</SHORT-NAME>
+								<LONG-NAME>threshing performance : hectare per hour</LONG-NAME>
+								<DISPLAY-NAME>ha/h</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-ha_h"/>
+							</UNIT>
+							<UNIT ID="Time-s">
+								<SHORT-NAME>s</SHORT-NAME>
+								<LONG-NAME>time : second</LONG-NAME>
+								<DISPLAY-NAME>s</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-s"/>
+							</UNIT>
+							<UNIT ID="Time-ms">
+								<SHORT-NAME>ms</SHORT-NAME>
+								<LONG-NAME>time : millisecond</LONG-NAME>
+								<DISPLAY-NAME>ms</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1000.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-s"/>
+							</UNIT>
+							<UNIT ID="Time-min">
+								<SHORT-NAME>min</SHORT-NAME>
+								<LONG-NAME>time : minute</LONG-NAME>
+								<DISPLAY-NAME>min</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>0.016666668</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-s"/>
+							</UNIT>
+							<UNIT ID="Time-h">
+								<SHORT-NAME>h</SHORT-NAME>
+								<LONG-NAME>time : hour</LONG-NAME>
+								<DISPLAY-NAME>h</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>2.7777778E-4</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-s"/>
+							</UNIT>
+							<UNIT ID="Time-d">
+								<SHORT-NAME>d</SHORT-NAME>
+								<LONG-NAME>time : day</LONG-NAME>
+								<DISPLAY-NAME>d</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.1574074E-5</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-s"/>
+							</UNIT>
+							<UNIT ID="Torque-Nm">
+								<SHORT-NAME>Nm</SHORT-NAME>
+								<LONG-NAME>torque : newton metre</LONG-NAME>
+								<DISPLAY-NAME>Nm</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-Nm"/>
+							</UNIT>
+							<UNIT ID="Torque-Lbft">
+								<SHORT-NAME>Lbft</SHORT-NAME>
+								<LONG-NAME>torque : pound-force foot</LONG-NAME>
+								<DISPLAY-NAME>Lbft</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>0.73756105</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-Nm"/>
+							</UNIT>
+							<UNIT ID="Torque-Lbin">
+								<SHORT-NAME>Lbin</SHORT-NAME>
+								<LONG-NAME>torque : pound-force inch</LONG-NAME>
+								<DISPLAY-NAME>Lbin</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>8.850733</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-Nm"/>
+							</UNIT>
+							<UNIT ID="Velocity-m_s">
+								<SHORT-NAME>m_s</SHORT-NAME>
+								<LONG-NAME>velocity : metre per second</LONG-NAME>
+								<DISPLAY-NAME>m/s</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-m_s"/>
+							</UNIT>
+							<UNIT ID="Velocity-kph">
+								<SHORT-NAME>kph</SHORT-NAME>
+								<LONG-NAME>velocity : kilometre per hour</LONG-NAME>
+								<DISPLAY-NAME>kph</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>3.6</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-m_s"/>
+							</UNIT>
+							<UNIT ID="Velocity-mph">
+								<SHORT-NAME>mph</SHORT-NAME>
+								<LONG-NAME>velocity : mile per hour</LONG-NAME>
+								<DISPLAY-NAME>mph</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>2.2369363</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-m_s"/>
+							</UNIT>
+							<UNIT ID="Velocity-mm_s">
+								<SHORT-NAME>mm_s</SHORT-NAME>
+								<LONG-NAME>velocity : millimetre per second</LONG-NAME>
+								<DISPLAY-NAME>mm/s</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1000.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-m_s"/>
+							</UNIT>
+							<UNIT ID="Velocity-km_h">
+								<SHORT-NAME>km_h</SHORT-NAME>
+								<LONG-NAME>velocity : kilometre per hour</LONG-NAME>
+								<DISPLAY-NAME>km/h</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>3.6</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-m_s"/>
+							</UNIT>
+							<UNIT ID="Voltage-V">
+								<SHORT-NAME>V</SHORT-NAME>
+								<LONG-NAME>voltage : volt</LONG-NAME>
+								<DISPLAY-NAME>V</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-V"/>
+							</UNIT>
+							<UNIT ID="Voltage-mV">
+								<SHORT-NAME>mV</SHORT-NAME>
+								<LONG-NAME>voltage : millivolt</LONG-NAME>
+								<DISPLAY-NAME>mV</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1000.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-V"/>
+							</UNIT>
+							<UNIT ID="Voltage-kV">
+								<SHORT-NAME>kV</SHORT-NAME>
+								<LONG-NAME>voltage : kilovolt</LONG-NAME>
+								<DISPLAY-NAME>kV</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>0.0010</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-V"/>
+							</UNIT>
+							<UNIT ID="Volume-m_cubed">
+								<SHORT-NAME>m_cubed</SHORT-NAME>
+								<LONG-NAME>volume : cubic metre</LONG-NAME>
+								<DISPLAY-NAME>m&#179;</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-m_cubed"/>
+							</UNIT>
+							<UNIT ID="Volume-L">
+								<SHORT-NAME>L</SHORT-NAME>
+								<LONG-NAME>volume : litre</LONG-NAME>
+								<DISPLAY-NAME>L</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1000.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-m_cubed"/>
+							</UNIT>
+							<UNIT ID="Volume-mL">
+								<SHORT-NAME>mL</SHORT-NAME>
+								<LONG-NAME>volume : millilitre</LONG-NAME>
+								<DISPLAY-NAME>mL</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1000000.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-m_cubed"/>
+							</UNIT>
+							<UNIT ID="Volume-cc">
+								<SHORT-NAME>cc</SHORT-NAME>
+								<LONG-NAME>volume : cubic centimetre</LONG-NAME>
+								<DISPLAY-NAME>cc</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1000000.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-m_cubed"/>
+							</UNIT>
+							<UNIT ID="Volume-galUK">
+								<SHORT-NAME>galUK</SHORT-NAME>
+								<LONG-NAME>volume : gallon (UK)</LONG-NAME>
+								<DISPLAY-NAME>galUK</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>219.96925</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-m_cubed"/>
+							</UNIT>
+							<UNIT ID="Volume-galUS">
+								<SHORT-NAME>galUS</SHORT-NAME>
+								<LONG-NAME>volume : gallon (US)</LONG-NAME>
+								<DISPLAY-NAME>galUS</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>264.17206</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-m_cubed"/>
+							</UNIT>
+							<UNIT ID="Volume-mm_cubed">
+								<SHORT-NAME>mm_cubed</SHORT-NAME>
+								<LONG-NAME>volume : cubic millimetre</LONG-NAME>
+								<DISPLAY-NAME>mm&#179;</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1.0E9</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-m_cubed"/>
+							</UNIT>
+							<UNIT ID="Volume-cm_cubed">
+								<SHORT-NAME>cm_cubed</SHORT-NAME>
+								<LONG-NAME>volume : cubic centimetre</LONG-NAME>
+								<DISPLAY-NAME>cm&#179;</DISPLAY-NAME>
+								<FACTOR-SI-TO-UNIT>1000000.0</FACTOR-SI-TO-UNIT>
+								<OFFSET-SI-TO-UNIT>0.0</OFFSET-SI-TO-UNIT>
+								<PHYSICAL-DIMENSION-REF ID-REF="PD-m_cubed"/>
+							</UNIT>
+						</UNITS>
+						<PHYSICAL-DIMENSIONS>
+							<!-- Acceleration -->
+							<PHYSICAL-DIMENSION ID="PD-m_s_squared">
+								<SHORT-NAME>m_s_squared</SHORT-NAME>
+								<LENGTH-EXP>1</LENGTH-EXP>
+								<TIME-EXP>-2</TIME-EXP>
+							</PHYSICAL-DIMENSION>
+							<!-- Angle -->
+							<PHYSICAL-DIMENSION ID="PD-rad">
+								<SHORT-NAME>rad</SHORT-NAME>
+							</PHYSICAL-DIMENSION>
+							<!-- Angular Velocity -->
+							<PHYSICAL-DIMENSION ID="PD-rad_s">
+								<SHORT-NAME>rad_s</SHORT-NAME>
+								<TIME-EXP>-1</TIME-EXP>
+							</PHYSICAL-DIMENSION>
+							<!-- AngularMomentum -->
+							<PHYSICAL-DIMENSION ID="PD-Nms">
+								<SHORT-NAME>Nms</SHORT-NAME>
+								<LENGTH-EXP>2</LENGTH-EXP>
+								<MASS-EXP>1</MASS-EXP>
+								<TIME-EXP>-1</TIME-EXP>
+							</PHYSICAL-DIMENSION>
+							<!-- Area -->
+							<PHYSICAL-DIMENSION ID="PD-m_squared">
+								<SHORT-NAME>m_squared</SHORT-NAME>
+								<LENGTH-EXP>2</LENGTH-EXP>
+							</PHYSICAL-DIMENSION>
+							<!-- Capacitance -->
+							<PHYSICAL-DIMENSION ID="PD-F">
+								<SHORT-NAME>F</SHORT-NAME>
+								<LENGTH-EXP>-2</LENGTH-EXP>
+								<MASS-EXP>-1</MASS-EXP>
+								<TIME-EXP>4</TIME-EXP>
+								<CURRENT-EXP>2</CURRENT-EXP>
+							</PHYSICAL-DIMENSION>
+							<!-- Charge -->
+							<PHYSICAL-DIMENSION ID="PD-C">
+								<SHORT-NAME>C</SHORT-NAME>
+								<TIME-EXP>1</TIME-EXP>
+								<CURRENT-EXP>1</CURRENT-EXP>
+							</PHYSICAL-DIMENSION>
+							<!-- Curvature -->
+							<PHYSICAL-DIMENSION ID="PD-per_m">
+								<SHORT-NAME>per_m</SHORT-NAME>
+								<LENGTH-EXP>-1</LENGTH-EXP>
+							</PHYSICAL-DIMENSION>
+							<!-- Density -->
+							<PHYSICAL-DIMENSION ID="PD-kg_m_cubed">
+								<SHORT-NAME>kg_m_cubed</SHORT-NAME>
+								<LENGTH-EXP>-3</LENGTH-EXP>
+								<MASS-EXP>1</MASS-EXP>
+							</PHYSICAL-DIMENSION>
+							<!-- Current -->
+							<PHYSICAL-DIMENSION ID="PD-A">
+								<SHORT-NAME>A</SHORT-NAME>
+								<CURRENT-EXP>1</CURRENT-EXP>
+							</PHYSICAL-DIMENSION>
+							<!-- Dimensionless -->
+							<PHYSICAL-DIMENSION ID="PD-noUnits">
+								<SHORT-NAME>noUnits</SHORT-NAME>
+							</PHYSICAL-DIMENSION>
+							<!-- Economy -->
+							<PHYSICAL-DIMENSION ID="PD-L_m">
+								<SHORT-NAME>L_m</SHORT-NAME>
+								<LENGTH-EXP>2</LENGTH-EXP>
+							</PHYSICAL-DIMENSION>
+							<!-- EconomyRate -->
+							<PHYSICAL-DIMENSION ID="PD-L_h">
+								<SHORT-NAME>L_h</SHORT-NAME>
+								<LENGTH-EXP>3</LENGTH-EXP>
+								<TIME-EXP>-1</TIME-EXP>
+							</PHYSICAL-DIMENSION>
+							<!-- Energy -->
+							<PHYSICAL-DIMENSION ID="PD-J">
+								<SHORT-NAME>J</SHORT-NAME>
+								<LENGTH-EXP>2</LENGTH-EXP>
+								<MASS-EXP>1</MASS-EXP>
+								<TIME-EXP>-2</TIME-EXP>
+							</PHYSICAL-DIMENSION>
+							<!-- FieldStrength -->
+							<PHYSICAL-DIMENSION ID="PD-V_m">
+								<SHORT-NAME>V_m</SHORT-NAME>
+								<LENGTH-EXP>1</LENGTH-EXP>
+								<MASS-EXP>1</MASS-EXP>
+								<TIME-EXP>-3</TIME-EXP>
+								<CURRENT-EXP>-1</CURRENT-EXP>
+							</PHYSICAL-DIMENSION>
+							<!-- Flow -->
+							<PHYSICAL-DIMENSION ID="PD-M3PerSec">
+								<SHORT-NAME>M3PerSec</SHORT-NAME>
+								<LENGTH-EXP>3</LENGTH-EXP>
+								<TIME-EXP>-1</TIME-EXP>
+							</PHYSICAL-DIMENSION>
+							<!-- Force -->
+							<PHYSICAL-DIMENSION ID="PD-N">
+								<SHORT-NAME>N</SHORT-NAME>
+								<LENGTH-EXP>1</LENGTH-EXP>
+								<MASS-EXP>1</MASS-EXP>
+								<TIME-EXP>-2</TIME-EXP>
+							</PHYSICAL-DIMENSION>
+							<!-- Frequency -->
+							<PHYSICAL-DIMENSION ID="PD-Hz">
+								<SHORT-NAME>Hz</SHORT-NAME>
+								<TIME-EXP>-1</TIME-EXP>
+							</PHYSICAL-DIMENSION>
+							<!-- Inductance -->
+							<PHYSICAL-DIMENSION ID="PD-H">
+								<SHORT-NAME>H</SHORT-NAME>
+								<LENGTH-EXP>2</LENGTH-EXP>
+								<MASS-EXP>1</MASS-EXP>
+								<TIME-EXP>-2</TIME-EXP>
+								<CURRENT-EXP>-2</CURRENT-EXP>
+							</PHYSICAL-DIMENSION>
+							<!-- Length -->
+							<PHYSICAL-DIMENSION ID="PD-m">
+								<SHORT-NAME>m</SHORT-NAME>
+								<LENGTH-EXP>1</LENGTH-EXP>
+							</PHYSICAL-DIMENSION>
+							<!-- Luminosity -->
+							<PHYSICAL-DIMENSION ID="PD-cd">
+								<SHORT-NAME>cd</SHORT-NAME>
+								<LUMINOUS-INTENSITY-EXP>1</LUMINOUS-INTENSITY-EXP>
+							</PHYSICAL-DIMENSION>
+							<!-- LuminousFlux -->
+							<PHYSICAL-DIMENSION ID="PD-lumen">
+								<SHORT-NAME>lumen</SHORT-NAME>
+								<LUMINOUS-INTENSITY-EXP>1</LUMINOUS-INTENSITY-EXP>
+							</PHYSICAL-DIMENSION>
+							<!-- LuminousEmittance -->
+							<PHYSICAL-DIMENSION ID="PD-lux">
+								<SHORT-NAME>lux</SHORT-NAME>
+								<LENGTH-EXP>-2</LENGTH-EXP>
+								<LUMINOUS-INTENSITY-EXP>1</LUMINOUS-INTENSITY-EXP>
+							</PHYSICAL-DIMENSION>
+							<!-- MagneticFlux -->
+							<PHYSICAL-DIMENSION ID="PD-weber">
+								<SHORT-NAME>weber</SHORT-NAME>
+								<LENGTH-EXP>2</LENGTH-EXP>
+								<MASS-EXP>1</MASS-EXP>
+								<TIME-EXP>-2</TIME-EXP>
+								<CURRENT-EXP>-1</CURRENT-EXP>
+							</PHYSICAL-DIMENSION>
+							<!-- MagneticFluxDensity -->
+							<PHYSICAL-DIMENSION ID="PD-T">
+								<SHORT-NAME>T</SHORT-NAME>
+								<MASS-EXP>1</MASS-EXP>
+								<TIME-EXP>-2</TIME-EXP>
+								<CURRENT-EXP>-1</CURRENT-EXP>
+							</PHYSICAL-DIMENSION>
+							<!-- Mass -->
+							<PHYSICAL-DIMENSION ID="PD-kg">
+								<SHORT-NAME>kg</SHORT-NAME>
+								<MASS-EXP>1</MASS-EXP>
+							</PHYSICAL-DIMENSION>
+							<!-- Massflow -->
+							<PHYSICAL-DIMENSION ID="PD-kg_s">
+								<SHORT-NAME>kg_s</SHORT-NAME>
+								<MASS-EXP>1</MASS-EXP>
+								<TIME-EXP>-1</TIME-EXP>
+							</PHYSICAL-DIMENSION>
+							<!-- MomentOfInertia -->
+							<PHYSICAL-DIMENSION ID="PD-Nms_squared">
+								<SHORT-NAME>Nms_squared</SHORT-NAME>
+								<LENGTH-EXP>2</LENGTH-EXP>
+								<MASS-EXP>1</MASS-EXP>
+							</PHYSICAL-DIMENSION>
+							<!-- Power -->
+							<PHYSICAL-DIMENSION ID="PD-W">
+								<SHORT-NAME>W</SHORT-NAME>
+								<LENGTH-EXP>2</LENGTH-EXP>
+								<MASS-EXP>1</MASS-EXP>
+								<TIME-EXP>-3</TIME-EXP>
+							</PHYSICAL-DIMENSION>
+							<!-- Pressure -->
+							<PHYSICAL-DIMENSION ID="PD-Pa">
+								<SHORT-NAME>Pa</SHORT-NAME>
+								<LENGTH-EXP>-1</LENGTH-EXP>
+								<MASS-EXP>1</MASS-EXP>
+								<TIME-EXP>-2</TIME-EXP>
+							</PHYSICAL-DIMENSION>
+							<!-- Resistance -->
+							<PHYSICAL-DIMENSION ID="PD-R">
+								<SHORT-NAME>R</SHORT-NAME>
+								<LENGTH-EXP>2</LENGTH-EXP>
+								<MASS-EXP>1</MASS-EXP>
+								<TIME-EXP>-3</TIME-EXP>
+								<CURRENT-EXP>-2</CURRENT-EXP>
+							</PHYSICAL-DIMENSION>
+							<!-- SolidAngle -->
+							<PHYSICAL-DIMENSION ID="PD-sr">
+								<SHORT-NAME>sr</SHORT-NAME>
+							</PHYSICAL-DIMENSION>
+							<!-- Strings -->
+							<PHYSICAL-DIMENSION ID="PD-STRING">
+								<SHORT-NAME>STRING</SHORT-NAME>
+							</PHYSICAL-DIMENSION>
+							<!-- Substance -->
+							<PHYSICAL-DIMENSION ID="PD-mol">
+								<SHORT-NAME>mol</SHORT-NAME>
+								<MOLAR-AMOUNT-EXP>1</MOLAR-AMOUNT-EXP>
+							</PHYSICAL-DIMENSION>
+							<!-- Temperature -->
+							<PHYSICAL-DIMENSION ID="PD-K">
+								<SHORT-NAME>K</SHORT-NAME>
+								<TEMPERATURE-EXP>1</TEMPERATURE-EXP>
+							</PHYSICAL-DIMENSION>
+							<!-- ThrashingPerformance -->
+							<PHYSICAL-DIMENSION ID="PD-ha_h">
+								<SHORT-NAME>ha_h</SHORT-NAME>
+								<LENGTH-EXP>2</LENGTH-EXP>
+								<TIME-EXP>-1</TIME-EXP>
+							</PHYSICAL-DIMENSION>
+							<!-- Time -->
+							<PHYSICAL-DIMENSION ID="PD-s">
+								<SHORT-NAME>s</SHORT-NAME>
+								<TIME-EXP>1</TIME-EXP>
+							</PHYSICAL-DIMENSION>
+							<!-- Torque -->
+							<PHYSICAL-DIMENSION ID="PD-Nm">
+								<SHORT-NAME>Nm</SHORT-NAME>
+								<LENGTH-EXP>2</LENGTH-EXP>
+								<MASS-EXP>1</MASS-EXP>
+								<TIME-EXP>-2</TIME-EXP>
+							</PHYSICAL-DIMENSION>
+							<!-- Velocity -->
+							<PHYSICAL-DIMENSION ID="PD-m_s">
+								<SHORT-NAME>m_s</SHORT-NAME>
+								<LENGTH-EXP>1</LENGTH-EXP>
+								<TIME-EXP>-1</TIME-EXP>
+							</PHYSICAL-DIMENSION>
+							<!-- Volume -->
+							<PHYSICAL-DIMENSION ID="PD-m_cubed">
+								<SHORT-NAME>m_cubed</SHORT-NAME>
+								<LENGTH-EXP>3</LENGTH-EXP>
+							</PHYSICAL-DIMENSION>
+							<!-- Voltage -->
+							<PHYSICAL-DIMENSION ID="PD-V">
+								<SHORT-NAME>V</SHORT-NAME>
+								<LENGTH-EXP>2</LENGTH-EXP>
+								<MASS-EXP>1</MASS-EXP>
+								<TIME-EXP>-3</TIME-EXP>
+								<CURRENT-EXP>-1</CURRENT-EXP>
+							</PHYSICAL-DIMENSION>
+						</PHYSICAL-DIMENSIONS>
+					</UNIT-SPEC>
+				</DIAG-DATA-DICTIONARY-SPEC>
+			</ECU-SHARED-DATA>
+		</ECU-SHARED-DATAS>
+	</DIAG-LAYER-CONTAINER>
+</ODX>

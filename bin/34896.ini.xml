@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<PROPERTIES>
+    <PROPERTY name="locale" value="zh_CN"/>
+    <PROPERTY name="com.bosch.gradex.gsp.demo.branding.RuntimeSplashHandler.applicationLoadTime" value="17443"/>
+	<PROPERTY name="doipCombinationMode" value="1"/>
+	<PROPERTY name="vehicleDiscoveryTime" value="1000"/>
+	<PROPERTY name="gradex.websocket.idletimeout" value="0"/>
+</PROPERTIES>
